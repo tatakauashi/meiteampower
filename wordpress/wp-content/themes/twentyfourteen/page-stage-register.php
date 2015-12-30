@@ -41,6 +41,8 @@ if (isset($_POST["stage_register"])) {
 		
 	// 出演メンバー
 	$stageMembers = explode("・", $_POST["stage_members"]);
+	$stageMembers = array_map('trim', $stageMembers);
+	$stageMembers = array_filter($stageMembers, 'strlen');
 	$memberIds = array();
 	foreach ($stageMembers as $memberName)
 	{
