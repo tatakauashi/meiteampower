@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+/* ------------------------- photolist ------------ */
+.one-title {
+	position: relative;			/* readmoreボタンの配置のため */
+	float: left;
+	width: 200px;						/* 記事一覧のアイキャッチ画像の幅 */
+	margin-left: 15px;
+	margin-bottom: 10px;
+	background-color: #efedfa;			/* 記事紹介部分の背景色 */
+}
+ 
+.one-title .entry-thumbnail {
+	position: relative;			/* テキストを画像上に配置のため */
+	width: 200px;						/* 記事一覧のアイキャッチ画像の幅 */
+}
+ 
+.one-title .entry-meta {
+	clear: none;						/* 投稿情報部分をアイキャッチ画像右側に表示するため */
+	line-height: 1;					/* 投稿情報部分の行の高さ */
+	text-transform: none;		/* 強制大文字表記解除 */
+	background-color: #efedfa;			/* 記事紹介部分の背景色 */
+	margin-bottom: 20px;
+}
+ 
+.one-title .entry-date {
+	font-size: 12px;				/* 投稿日時の文字の大きさ */
+}
+ 
+.one-title .entry-category {
+	background: url(images/category.svg) no-repeat 0 0;	/* カテゴリーの画像表示 */
+	padding-left: 20px;																	/* カテゴリー画像表示調整 */
+	font-size: 12px;																		/* カテゴリーのテキスト大きさ */
+}
+ 
+.one-title .entry-tag {
+	background: url(images/tag.svg) no-repeat 0 0;			/* タグの画像表示 */
+	padding-left: 20px;																	/* タグ画像表示調整 */
+	font-size: 12px;																		/* タグのテキスト大きさ */
+}
+ 
+.one-title h1 {
+	font-size: 26px;
+	font-weight: 300;
+	display: inline;										/* アイキャッチ画像の右側に表示するため */
+}
+ 
+.one-title .aioseop_description {
+	font-size: 13px;										/* 記事一覧にAll in One SEOのdescriptionを表示する */
+	line-height: 1.1;
+	margin-bottom: 25px;								/* readmoreボタンの配置のため */
+}
+ 
+.one-title .readmore {
+	position: absolute;									/* 記事一覧の右下にread moreボタンを設置 */
+	bottom: 5px;
+	right: 5px;
+}
+ 
+.one-title p{
+	position: absolute;
+	left: 0;
+	bottom: 0.5em;
+	color: #fff;
+	margin: 0;
+	padding: 5px 0 5px 3%;
+	width: 97%;
+	background: #432f2f;
+	filter: Alpha(opacity=80);
+	opacity: 0.8;
+}
+ 
+.one-title p a {
+	text-decoration: none;
+	color: #fff;
+}
+.one-title p a:hover {
+	text-decoration: underline;
+}
+ 
+/* コンテンツ部分の上部余白を補正 */
+.content-area-top {
+	padding-top: 30px;
+}
+.content-area {
+	padding-top: 150px;
+}
+.site-content .has-post-thumbnail .entry-header {
+	margin-top: 0;
+}
+ 
+/* サイドバー部分の上部余白を補正 */
+.content-sidebar {
+	padding-top: 150px;
+}
+ 
+/* スマホページの上部余白を補正 */
+.singular .site-content .hentry.has-post-thumbnail {
+	margin-top: 0;
+}
+ 
+/* タグ表示部分の色を統一するため */
+.site-content footer.entry-meta {
+	margin: 0 auto 0;
+	padding: 24px 10px;
+}

@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+#popup-background {
+	position: fixed;		/* 位置の固定 */
+	top: 0;					/* 表示位置タテ */
+	left: 0;				/* 表示位置ヨコ */
+	height: 100%;
+	width:  100%;
+	background: #000;
+	opacity: 0.60;			/* 透明度 */
+	margin: 0;
+	padding: 0;
+	z-index: 1000;			/* 要素のZ座標 */
+}
+#popup-item {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: 0;
+	padding: 0;
+	z-index: 1001;
+}
+h1 {
+	color: gold;
+}

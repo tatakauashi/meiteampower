@@ -1,0 +1,19 @@
+#<Directory "/usr/local/apache/htdocs/">
+AuthUserFile    /var/www/wordpress/.htpasswd
+AuthGroupFile   /dev/null
+AuthName        "Please Enter Your Password"
+AuthType        Basic
+Require valid-user
+#</Directory>
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /w/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /w/index.php [L]
+</IfModule>
+
+# END WordPress

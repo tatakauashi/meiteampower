@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Messages>
+	<Normal>
+		<Param>
+			<Name>meimeiTitleSakaiMei</Name>
+			<Value>SKE48酒井萌衣</Value>
+		</Param>
+		<Param>
+			<Name>meimeiTitleForm</Name>
+			<Value>生日讯息代笔系统</Value>
+		</Param>
+		<Param>
+			<Name>meimei_leadMessage</Name>
+			<Value><![CDATA[2015年12月13日将迎来<span class="nowrap">SKE48 TeamE</span>的<span class="nowrap">酒井萌衣</span>的18岁生日，为此设计了这个网页用于收集生日祝贺讯息。<br>
+握手会现场也会开设生日展台进行收集，但考虑到不能来到握手会现场的fans，希望此网页能为大家提供一些便利。<br>
+只要按照网页提示填写，生诞委员们会负起责任为您代笔，并和握手会现场收集到的讯息一起，以礼物的形式赠与成员本人。<br>
+（部分内容可能被和谐而无法收到，请多谅解）<br>
+若希望代笔，请填写以下内容，并点击[发送]。<br>
+（所有信息均可用简体中文or繁体中文填写）]]></Value>
+		</Param>
+		<Param>
+			<Name>meimei_Required</Name>
+			<Value><![CDATA[有 <span class="required">(・ω・)ノ</span>的为必填信息]]></Value>
+		</Param>
+		<Param>
+			<Name>meimei_input_meimei_name</Name>
+			<Value>您的姓名（可用昵称）</Value>
+		</Param>
+		<Param>
+			<Name>meimei_input_messageColor</Name>
+			<Value>笔的颜色</Value>
+		</Param>
+		<Param>
+			<Name>meimei_input_meimei_message</Name>
+			<Value>您想写下的生日讯息（汉字40字以内）</Value>
+		</Param>
+		<Param>
+			<Name>meimei_Submit</Name>
+			<Value>发 送</Value>
+		</Param>
+		<Param>
+			<Name>meimei_PresentedBy</Name>
+			<Value><![CDATA[<span class="nowrap">SKE48酒井萌衣生诞祭实行委员会2015</span>]]></Value>
+		</Param>
+		<Param>
+			<Name>meimei_thanksMessage</Name>
+			<Value><![CDATA[感谢您的赠言。<br>
+今后的酒井萌衣也请多指教(・ω・)ノ]]></Value>
+		</Param>
+	</Normal>
+	<Error>
+		<Param>
+			<Name>meimei_error_meimei_name_is_empty</Name>
+			<Value>请输入您的姓名</Value>
+		</Param>
+		<Param>
+			<Name>meimei_error_meimei_name_is_too_long</Name>
+			<Value>内容过长</Value>
+		</Param>
+		<Param>
+			<Name>meimei_error_meimei_message_is_empty</Name>
+			<Value>请输入讯息</Value>
+		</Param>
+		<Param>
+			<Name>meimei_error_meimei_message_is_too_long</Name>
+			<Value>内容过长</Value>
+		</Param>
+		<Param>
+			<Name>meimei_error_system_error</Name>
+			<Value>系统调试中。请稍候。</Value>
+		</Param>
+	</Error>
+</Messages>

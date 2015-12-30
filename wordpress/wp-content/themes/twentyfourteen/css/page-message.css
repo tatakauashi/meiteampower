@@ -1,0 +1,335 @@
+h2.entry-title {
+	font-size: larger;
+	font-weight: bold;
+	margin-top: 0px;
+	margin-bottom: 6px;
+	text-align: center;
+	text-transform: none;
+}
+
+body {
+	position: related;
+	background-image: url(http://sakaimei-senkyo.net/wp-content/themes/twentyfourteen/images/free/winter-back053_500.jpg);
+}
+
+body.ja {
+	font-family: 'メイリオ', Meiryo, 'ＭＳ　Ｐゴシック', Sans-serif;
+}
+
+body.zh {
+	font-family: "Microsoft Yahei","PingHei" ,"sans-serif";
+}
+
+body.en {
+	font-family: "Trebuchet MS","Arial " ,"sans-serif";
+}
+
+div#float-box,
+div#float-box table,
+div#float-box tr,
+div#float-box td,
+div#float-box input {
+	margin: 0;
+	padding: 0;
+}
+
+div#float-box {
+	position: absolute;
+	display: none;
+	right: 2px;
+	top: 50%;
+	width: 40px;
+	height: 128px;
+/*	height: 96px;*/
+	margin: 0 2px 0 0;
+	padding: 0;
+	z-index: 2;
+	border: solid 1px darkgray;
+	cursor: pointer;
+}
+
+div#float-box table {
+	border: none;
+}
+
+div#float-box td {
+	border-width: 1px;
+	width: 38px;
+	height: 30px;
+}
+
+div#float-box input {
+	display: block;
+	border: none;
+	border-radius: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.7;
+}
+/*
+div#float-box input[type="submit"] {
+}*/
+
+div#float-box input[type="submit"]#lang_jp {
+	background: url(http://sakaimei-senkyo.net/wp-content/themes/twentyfourteen/images/flag_jp.png) no-repeat;
+}
+
+div#float-box input[type="submit"]#lang_en {
+	background-image: url(http://sakaimei-senkyo.net/wp-content/themes/twentyfourteen/images/flag_en.png);
+}
+
+div#float-box input[type="submit"]#lang_zh {
+	background-image: url(http://sakaimei-senkyo.net/wp-content/themes/twentyfourteen/images/flag_zh.png);
+}
+
+div#float-box input[type="submit"]#lang_hide {
+	background-color: darkgray;
+	font-size: larger;
+	font-weight: bold;
+}
+
+div#float-box td.lang_selected {
+	border-color: red;
+	border-width: 2px;
+	width: 36px;
+	height: 28px;
+}
+
+p.thumbnail {
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+header {
+	margin-top: 12px;
+}
+
+header small {
+	display: block;
+	text-align: center;
+}
+
+article {
+	position: relative;
+	width: 80%;
+	/*height: 300px;*/
+	margin: 12px auto 24px auto;
+	padding: 24px 8px 4px 8px;
+	background-color: #fffeee;
+	opacity: 0.8;
+	border-radius: 5px;
+	/*border: solid 10px;*/
+	box-shadow: -6px -6px 3px gold, 6px 6px 3px yellow;
+	/*border-color: transparent yellow yellow transparent;*/
+	line-height: 1.1;
+}
+
+img#right_top {
+	position: absolute;
+	right: -10px;
+	top: -17px;
+	width: 24px;
+	-webkit-transform: rotate(35deg);
+	-moz-transform: rotate(35deg);
+	-o-transform: rotate(35deg);
+	-ms-transform: rotate(35deg);
+}
+
+img#left_bottom {
+	position: absolute;
+	left: -14px;
+	bottom: -13px;
+	width: 24px;
+	-webkit-transform: rotate(-20deg);
+	-moz-transform: rotate(-20deg);
+	-o-transform: rotate(-20deg);
+	-ms-transform: rotate(-20deg);
+}
+
+div.formarea {
+	max-width: 500px;
+	margin: auto;
+}
+
+form>p {
+	margin-bottom: 1.5em;
+}
+
+input, select, option, textarea {
+	font-family: 'メイリオ', Meiryo, 'ＭＳ　Ｐゴシック', Sans-serif;
+}
+
+input[type="text"] {
+	padding: 4px 6px;
+}
+
+#txtName {
+	width: 300px;
+}
+
+select {
+	width: 200px;
+}
+
+input:valid {
+	background-image: none;
+}
+
+div.formarea p {
+	/*float: left;*/
+}
+
+p.explanation {
+/*	font-family: 'ＭＳ　Ｐゴシック', Gothic, Sans-serif;*/
+	line-height: 1.5;
+	font-size: 14px;
+	margin-bottom: 12px;
+}
+
+div.formarea p:last-of-type {
+	float: none;
+	clear: both;
+}
+
+#meimei_submit,
+#meimei_submit:hover,
+#meimei_submit:focus,
+#meimei_submit:active {
+	display: block;
+	margin: auto;
+	width: 40%;
+	padding: 8px 0px;
+	background-color: gold;
+	color: white;
+	font-family: 'メイリオ', Meiryo, 'ＭＳ　Ｐゴシック', Sans-serif;
+	font-size: medium;
+	text-transform: none;
+}
+
+footer {
+	/*position: absolute;*/
+	/*bottom: 0px;*/
+	width: 100%;
+	text-align: center;
+}
+
+.required {
+	font-size: 8px;
+	font-weight: bold;
+	font-family: 'メイリオ', Meiryo, 'ＭＳ　Ｐゴシック', Sans-serif;
+	color: #ec9800;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+img.picture {
+	display: block;
+	margin-left: auto;
+	margin-right: 30px;
+	border-radius: 6px;
+	width: 30%;
+	max-width: 400px;
+}
+
+.english {
+	color: gray;
+	font-size: smaller;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.inputError {
+	color: red;
+	font-weight: bold;
+}
+
+.orange {
+	color: orange;
+}
+
+.yellow {
+	color: #eeee44;
+}
+
+@media only screen and (max-width: 399px) {
+	h2.entry-title {
+		font-size: large;
+	}
+	img.picture {
+		margin: auto;
+		width: 55%;
+	}
+
+	div#float-box {
+		width: 22px;
+	}
+
+	div#float-box td {
+		width: 20px;
+	}
+
+	div#float-box td.lang_selected {
+		width: 18px;
+	}
+}
+@media only screen and (min-width: 400px) and (max-width: 799px) {
+	h2.entry-title {
+		font-size: 24px;
+	}
+	#meimei_submit,
+	#meimei_submit:hover,
+	#meimei_submit:focus,
+	#meimei_submit:active {
+		border-radius: 4px;
+	}
+	img.picture {
+		border-radius: 9px;
+		width: 45%;
+	}
+
+	div#float-box {
+		width: 22px;
+	}
+
+	div#float-box td {
+		width: 20px;
+	}
+
+	div#float-box td.lang_selected {
+		width: 18px;
+	}
+}
+@media only screen and (min-width: 800px) {
+	h2.entry-title {
+		font-size: 32px;
+	}
+	article {
+		margin-top: 26px;
+		margin-bottom: 26px;
+		border-radius: 10px;
+		box-shadow: -12px -12px 8px gold, 12px 12px 8px yellow;
+	}
+	#meimei_submit,
+	#meimei_submit:hover,
+	#meimei_submit:focus,
+	#meimei_submit:active {
+		border-radius: 6px;
+	}
+	img.picture {
+		border-radius: 12px;
+	}
+
+	img#right_top {
+		right: -15px;
+		top: -25px;
+		width: 51px;
+	}
+
+	img#left_bottom {
+		left: -20px;
+		bottom: -13px;
+		width: 71px;
+	}
+}

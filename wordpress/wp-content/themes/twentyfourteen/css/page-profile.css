@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+@media screen and (min-width: 501px) {
+	div.entry-content section {
+	    margin: 55px 0;
+	}
+	div.entry-content section.catchphrase {
+	    margin: 60px 0;
+	}
+}
+@media screen and (max-width: 500px) {
+	div.entry-content section {
+	    margin: 90px 0;
+	}
+	div.entry-content section.catchphrase {
+	    margin: 94px 0;
+	}
+}
+
+div.entry-content section>span {
+    position: relative;
+    padding: 2em 3em;
+    border-radius: 25px;
+}
+div.entry-content section.catchphrase>span {
+    padding: 2.2em 1.7em;
+}
+div.entry-content section:nth-of-type(odd) {
+    text-align: left;
+}
+div.entry-content section:nth-of-type(even) {
+    text-align: right;
+}
+div.entry-content section:nth-of-type(odd)>span {
+	border: solid 5px #ffccee;
+}
+div.entry-content section:nth-of-type(even)>span {
+	border: solid 5px #bbbbff;
+}
+div.entry-content>section>span>span:first-of-type {
+	position: absolute;
+	padding: 2px 8px;
+    border-radius: 5px;
+	background: url("../images/white.png") repeat;
+}
+div.entry-content section:nth-of-type(odd)>span>span:first-of-type {
+	top: -19px;
+	left: 20px;
+}
+div.entry-content section:nth-of-type(even)>span>span:first-of-type {
+	top: -19px;
+	right: 20px;
+}
+div.entry-content section>span.designpadding {
+    width: 40px;
+    border: none;
+    content: '';
+    padding: 20px;
+}
+p.popup {
+	text-align: right;
+}
+p.popup img {
+    border-radius: 10px;
+    width: 36%;
+}

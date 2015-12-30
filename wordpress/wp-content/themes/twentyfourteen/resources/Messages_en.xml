@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Messages>
+	<Normal>
+		<Param>
+			<Name>meimeiTitleSakaiMei</Name>
+			<Value>SKE48 Mei Sakai</Value>
+		</Param>
+		<Param>
+			<Name>meimeiTitleForm</Name>
+			<Value>Birthday message vicarious writing input form</Value>
+		</Param>
+		<Param>
+			<Name>meimei_leadMessage</Name>
+			<Value><![CDATA[This is a web page for birthday message vicarious writing of Mei Sakai [SKE48 team E] (She will become 18 years old on the 13th December).<br>
+We collect the birthday messages in birth festival space of the meet-and-greet event meeting place.<br>
+But we think that many person cannot come to the meeting place.<br>
+If you have messages, please fill in below form.<br>
+We write for you with responsibility and present it to Mei with the birthday messages which collected in birth festival space of the meet-and-greet event meeting place.<br>
+(We may not accept it depending on contents.)]]></Value>
+		</Param>
+		<Param>
+			<Name>meimei_Required</Name>
+			<Value><![CDATA[(<span class="required">(・ω・)ノ</span> Mandatory)]]></Value>
+		</Param>
+		<Param>
+			<Name>meimei_input_meimei_name</Name>
+			<Value>your name or nickname</Value>
+		</Param>
+		<Param>
+			<Name>meimei_input_messageColor</Name>
+			<Value>the color of the pen</Value>
+		</Param>
+		<Param>
+			<Name>meimei_input_meimei_message</Name>
+			<Value>Message to Mei Sakai (80 character limit)</Value>
+		</Param>
+		<Param>
+			<Name>meimei_Submit</Name>
+			<Value>Send</Value>
+		</Param>
+		<Param>
+			<Name>meimei_PresentedBy</Name>
+			<Value><![CDATA[Festival for the 18th anniversary of Mei Sakai(SKE48)'s birth Executive committee]]></Value>
+		</Param>
+		<Param>
+			<Name>meimei_thanksMessage</Name>
+			<Value><![CDATA[Thank you for filling in this form.<br>
+Please continue supporting Mei Sakai.]]></Value>
+		</Param>
+	</Normal>
+	<Error>
+		<Param>
+			<Name>meimei_error_meimei_name_is_empty</Name>
+			<Value>Please type your name or nickname.</Value>
+		</Param>
+		<Param>
+			<Name>meimei_error_meimei_name_is_too_long</Name>
+			<Value>Over 40 characters. please try again.</Value>
+		</Param>
+		<Param>
+			<Name>meimei_error_meimei_message_is_empty</Name>
+			<Value>Please add any comments in below form.</Value>
+		</Param>
+		<Param>
+			<Name>meimei_error_meimei_message_is_too_long</Name>
+			<Value>Over 80 characters. please try again.</Value>
+		</Param>
+		<Param>
+			<Name>meimei_error_system_error</Name>
+			<Value><![CDATA[This is currently being adjusted.<br>
+Please wait a moment.]]></Value>
+		</Param>
+	</Error>
+</Messages>

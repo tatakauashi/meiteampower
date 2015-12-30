@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Messages>
+	<Normal>
+		<Param>
+			<Name>meimeiTitleSakaiMei</Name>
+			<Value>SKE48酒井萌衣</Value>
+		</Param>
+		<Param>
+			<Name>meimeiTitleForm</Name>
+			<Value>生誕メッセージ代筆フォーム</Value>
+		</Param>
+		<Param>
+			<Name>meimei_leadMessage</Name>
+			<Value><![CDATA[2015年12月13日に18歳のお誕生日を迎える、<span class="nowrap">SKE48チームE</span> <span class="nowrap">酒井萌衣さん</span> <span class="nowrap">(めいめい)</span> の生誕メッセージ代筆のためのページです。<br>
+生誕メッセージは握手会会場の生誕祭スペースにて募集しておりますが、会場に来られない方もいらっしゃると思います。<br>
+こちらで<span class="nowrap">酒井萌衣</span>さんへの生誕メッセージを送信していただければ、生誕委員が責任を持って代筆し、会場で書いていただいたメッセージと一緒に<span class="nowrap">酒井萌衣</span>さんにプレゼントいたします。<br>
+（内容によってはお受けできない場合があります）<br>
+代筆をご希望の方は下記フォームへ入力し、[送信]ボタンよりメッセージをお送りください。]]></Value>
+		</Param>
+		<Param>
+			<Name>meimei_Required</Name>
+			<Value><![CDATA[<span class="required">(・ω・)ノ</span>は必ず入力してください。]]></Value>
+		</Param>
+		<Param>
+			<Name>meimei_input_meimei_name</Name>
+			<Value>お名前(ニックネーム可)</Value>
+		</Param>
+		<Param>
+			<Name>meimei_input_messageColor</Name>
+			<Value>ペンの色</Value>
+		</Param>
+		<Param>
+			<Name>meimei_input_meimei_message</Name>
+			<Value>酒井萌衣さん(めいめい)へのメッセージ(60字程度)</Value>
+		</Param>
+		<Param>
+			<Name>meimei_Submit</Name>
+			<Value>送 信</Value>
+		</Param>
+		<Param>
+			<Name>meimei_PresentedBy</Name>
+			<Value><![CDATA[<span class="nowrap">SKE48酒井萌衣生誕祭実行委員会2015</span>]]></Value>
+		</Param>
+		<Param>
+			<Name>meimei_thanksMessage</Name>
+			<Value><![CDATA[ご記入ありがとうございました。<br>
+これからも酒井萌衣さんへの応援をよろしくお願いします(・ω・)ノ]]></Value>
+		</Param>
+	</Normal>
+	<Error>
+		<Param>
+			<Name>meimei_error_meimei_name_is_empty</Name>
+			<Value>お名前を入力してください。</Value>
+		</Param>
+		<Param>
+			<Name>meimei_error_meimei_name_is_too_long</Name>
+			<Value>お名前はもう少し短くお願いします。</Value>
+		</Param>
+		<Param>
+			<Name>meimei_error_meimei_message_is_empty</Name>
+			<Value>メッセージを入力してください。</Value>
+		</Param>
+		<Param>
+			<Name>meimei_error_meimei_message_is_too_long</Name>
+			<Value>メッセージはもう少し短くお願いします。</Value>
+		</Param>
+		<Param>
+			<Name>meimei_error_system_error</Name>
+			<Value>ただいま調整中です。今しばらくお待ちください。</Value>
+		</Param>
+	</Error>
+</Messages>
