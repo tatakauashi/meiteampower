@@ -28,31 +28,12 @@ if (isset($_GET["stage_id"]) && is_numeric($_GET["stage_id"])) {
 		$stageDate = $stageInfo[0]->stage_date;
 
 		// チーム
-		$teamSelected1 = "";
-		$teamSelected2 = "";
-		$teamSelected3 = "";
-		$teamSelected4 = "";
 		eval("\$teamSelected" . $stageInfo[0]->team_id . " = \" selected\";");
 
 		// その日の回数
-		$timeSelected1 = "";
-		$timeSelected2 = "";
-		$timeSelected3 = "";
-		$timeSelected4 = "";
-		$timeSelected5 = "";
 		eval("\$timeSelected" . $stageInfo[0]->stage_time . " = \" selected\";");
 
 		// 公演
-		$programSelected1 = "";
-		$programSelected2 = "";
-		$programSelected3 = "";
-		$programSelected4 = "";
-		$programSelected5 = "";
-		$programSelected6 = "";
-		$programSelected7 = "";
-		$programSelected8 = "";
-		$programSelected9 = "";
-		$programSelected10 = "";
 		eval("\$programSelected" . $stageInfo[0]->program_id . " = \" selected\";");
 		
 		// シャッフル？
@@ -82,7 +63,7 @@ if (isset($_GET["stage_id"]) && is_numeric($_GET["stage_id"])) {
 			}
 			$linkList = implode("\n", $linkStringList);
 		}
-		
+
 		include_once('page-templates/page-stage-input.tpl');
 		return;
 	}

@@ -22,10 +22,11 @@ if (!isset($_POST["stage_register"])) {
 
 	$query = "SELECT s.stage_id, s.stage_time, s.stage_date, p.program_name, t.team_name, s.is_shuffled + 0 AS is_shuffled, m2.CNT "
 		. " FROM Stage s "
+		. " JOIN (SELECT s2.stage_id, MAX(s2.revision) AS revision FROM Stage s2 GROUP BY s2.stage_id) sRev ON (s.stage_id = sRev.stage_id AND s.revision = sRev.revision) "
 		. " JOIN Program p ON (s.program_id = p.program_id) "
 		. " JOIN Team t ON (s.team_id = t.team_id) "
 //		. " LEFT JOIN RelatedLink link ON (s.stage_id = link.stage_id) "
-		. " LEFT JOIN (SELECT m.stage_id, COUNT(*) AS CNT FROM Stage_Member m WHERE m.delete_time is null GROUP BY m.stage_id ) m2 ON (s.stage_id = m2.stage_id) ";
+		. " LEFT JOIN (SELECT m.stage_id, m.revision, COUNT(*) AS CNT FROM Stage_Member m WHERE m.delete_time is null GROUP BY m.stage_id, m.revision ) m2 ON (s.stage_id = m2.stage_id AND s.revision = m2.revision) ";
 
 	$condition = " WHERE ";
 	$param = array();

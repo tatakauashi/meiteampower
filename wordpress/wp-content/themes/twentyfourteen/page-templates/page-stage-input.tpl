@@ -9,12 +9,9 @@
 <?php wp_head(); ?>
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/page-message.css?<?php echo date('YmdHis'); ?>" />
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/js/page-message.js?<?php echo date('YmdHis'); ?>"></script>
-<script>
-</script>
-</head>
 <?php
 // 変更画面か
-$inputReadOnly = ""; $inputDisabled = "";
+$inputReadOnly = " "; $inputDisabled = "";
 if (isset($isUpdate) && $isUpdate == 1)
 {
 	$inputReadOnly = " readonly";
@@ -30,38 +27,44 @@ if (!isset($teamSelected2)) $teamSelected2 = "";
 if (!isset($teamSelected3)) $teamSelected3 = "";
 if (!isset($teamSelected4)) $teamSelected4 = "";
 
-$timeSelected1; $timeSelected2; $timeSelected3; $timeSelected4; $timeSelected5;
-$timeSelected6; $timeSelected7; $timeSelected8; $timeSelected9; $timeSelected10;
-if (!isset($timeSelected1)) $timeSelected1 = "";
-if (!isset($timeSelected2)) $timeSelected2 = "";
-if (!isset($timeSelected3)) $timeSelected3 = "";
-if (!isset($timeSelected4)) $timeSelected4 = "";
-if (!isset($timeSelected5)) $timeSelected5 = "";
-if (!isset($timeSelected6)) $timeSelected6 = "";
-if (!isset($timeSelected7)) $timeSelected7 = "";
-if (!isset($timeSelected8)) $timeSelected8 = "";
-if (!isset($timeSelected9)) $timeSelected9 = "";
-if (!isset($timeSelected10)) $timeSelected10 = "";
-
 $programSelected1; $programSelected2; $programSelected3; $programSelected4; $programSelected5;
+$programSelected6; $programSelected7; $programSelected8; $programSelected9; $programSelected10;
 if (!isset($programSelected1)) $programSelected1 = "";
 if (!isset($programSelected2)) $programSelected2 = "";
 if (!isset($programSelected3)) $programSelected3 = "";
 if (!isset($programSelected4)) $programSelected4 = "";
 if (!isset($programSelected5)) $programSelected5 = "";
+if (!isset($programSelected6)) $programSelected6 = "";
+if (!isset($programSelected7)) $programSelected7 = "";
+if (!isset($programSelected8)) $programSelected8 = "";
+if (!isset($programSelected9)) $programSelected9 = "";
+if (!isset($programSelected10)) $programSelected10 = "";
+
+$timeSelected1; $timeSelected2; $timeSelected3; $timeSelected4; $timeSelected5;
+if (!isset($timeSelected1)) $timeSelected1 = $inputDisabled;
+if (!isset($timeSelected2)) $timeSelected2 = $inputDisabled;
+if (!isset($timeSelected3)) $timeSelected3 = $inputDisabled;
+if (!isset($timeSelected4)) $timeSelected4 = $inputDisabled;
+if (!isset($timeSelected5)) $timeSelected5 = $inputDisabled;
 
 $shuffledChecked;
 if (!isset($shuffledChecked)) $shuffledChecked = "";
 
-$memberList;
-if (!isset($memberList)) $memberList = "";
+$membersString;
+if (!isset($membersString)) $membersString = "";
 
 $linkList;
 if (!isset($linkList)) $linkList = "";
+
+$memberInfoList;
+if (!isset($memberInfoList)) $memberInfoList = "";
 ?>
+<script>
+</script>
+</head>
 <body>
 <p class="thumbnail"><?php the_post_thumbnail(); ?></p>
-<header class="entry-header"><h2 id="headerTitle" class="entry-title"><?php the_title(); ?></h2>
+<header class="entry-header"><h2 id="headerTitle" class="entry-title"><a href="<?php echo get_permalink() ?>"><?php the_title(); ?></a></h2>
 </header><!-- .entry-header -->
 	<form name="form1" action="<?php echo get_permalink(); ?>" method="post">
 <article class="main">
@@ -72,7 +75,7 @@ if (!isset($linkList)) $linkList = "";
 		</label></div>
 		<div style="float:left; width:40%; margin-left: 1em;"><label>
 			何回目：<br>
-			<select name="stage_time[]" multiple <?php echo $inputDisabled ?>>
+			<select name="stage_time[]" multiple>
 				<option value="1" <?php echo $timeSelected1 ?>>１回目</option>
 				<option value="2" <?php echo $timeSelected2 ?>>２回目</option>
 				<option value="3" <?php echo $timeSelected3 ?>>３回目</option>
@@ -110,12 +113,71 @@ if (!isset($linkList)) $linkList = "";
 		</p>
 
 		<p><label>出演メンバー：<br>
-		<textarea name="stage_members" rows="4" required><?php echo $memberList ?></textarea>
+		<textarea name="stage_members" rows="4" required><?php echo $membersString ?></textarea>
 		</label></p>
 		
 		<p><label>関連リンク：<br>
 		<textarea name="stage_links" rows="2"><?php echo $linkList ?></textarea>
 		</label></p>
+
+		<div id="stage_event_register_header">イベント登録 開く</div>
+		<div id="stage_event_register_area">
+
+			<div>
+				<p><label>イベント1<br>
+					<select name="stage_event1">
+						<option value="0">なし</option>
+						<option value="1" <?php echo isset($stageEventSelected1) && $stageEventSelected1 == 1 ? " selected" : "" ?>>生誕祭</option>
+						<option value="2" <?php echo isset($stageEventSelected1) && $stageEventSelected1 == 2 ? " selected" : "" ?>>劇場最終公演</option>
+					</select>
+				</label></p>
+				<p><label>関連メンバー<br>
+					<select name="stage_event_member1">
+						<option value="0">なし</option>
+<?php foreach ($memberInfoList as $member) { ?>
+						<option value="<?php echo $member->member_id ?>" <?php echo isset($stageEventMemberSelected1) && $stageEventMemberSelected1 == $member->member_id ? " selected" : "" ?>><?php echo $member->member_name ?></option>
+<?php } ?>
+					</select>
+				</label></p>
+			</div>
+
+			<div>
+				<p><label>イベント2<br>
+					<select name="stage_event2">
+						<option value="0">なし</option>
+						<option value="1" <?php echo isset($stageEventSelected2) && $stageEventSelected2 == 1 ? " selected" : "" ?>>生誕祭</option>
+						<option value="2" <?php echo isset($stageEventSelected2) && $stageEventSelected2 == 2 ? " selected" : "" ?>>劇場最終公演</option>
+					</select>
+				</label></p>
+				<p><label>関連メンバー<br>
+					<select name="stage_event_member2">
+						<option value="0">なし</option>
+<?php foreach ($memberInfoList as $member) { ?>
+						<option value="<?php echo $member->member_id ?>" <?php echo isset($stageEventMemberSelected2) && $stageEventMemberSelected2 == $member->member_id ? " selected" : "" ?>><?php echo $member->member_name ?></option>
+<?php } ?>
+					</select>
+				</label></p>
+			</div>
+
+			<div>
+				<p><label>イベント3<br>
+					<select name="stage_event3">
+						<option value="0">なし</option>
+						<option value="1" <?php echo isset($stageEventSelected3) && $stageEventSelected3 == 1 ? " selected" : "" ?>>生誕祭</option>
+						<option value="2" <?php echo isset($stageEventSelected3) && $stageEventSelected3 == 2 ? " selected" : "" ?>>劇場最終公演</option>
+					</select>
+				</label></p>
+				<p><label>関連メンバー<br>
+					<select name="stage_event_member3">
+						<option value="0">なし</option>
+<?php foreach ($memberInfoList as $member) { ?>
+						<option value="<?php echo $member->member_id ?>" <?php echo isset($stageEventMemberSelected3) && $stageEventMemberSelected3 == $member->member_id ? " selected" : "" ?>><?php echo $member->member_name ?></option>
+<?php } ?>
+					</select>
+				</label></p>
+			</div>
+
+		</div>
 		
 		<p><label>
 			<input type="submit" name="stage_register" value=" 登 録 " style="width:70%; display:block; margin:auto;">

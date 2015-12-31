@@ -6,23 +6,17 @@ Template Name: stage-register
 namespace MEIMEI;
 
 include_once('inc/meimei_libs.php');
+include_once('inc/stage_libs.php');
 
-	// ログインの確認
-	if (!is_user_logged_in()) {
-		//header("Location: /message");
-		include_once("404.php");
-		exit;
-	}
+// ログインの確認
+if (!is_user_logged_in()) {
+	//header("Location: /message");
+	include_once("404.php");
+	exit;
+}
 
+$stageId = 0;
 if (isset($_POST["stage_register"])) {
-	// 登録処理
-	global $wpdb;
-	$wpdb->show_errors();
-	array_push($wpdb->tables, 'Stage');
-	array_push($wpdb->tables, 'Member');
-	array_push($wpdb->tables, 'Stage_Member');
-	array_push($wpdb->tables, 'Related_Link');
-
 	// 日付
 	$stageDate = $_POST["stage_date"];
 
@@ -30,117 +24,115 @@ if (isset($_POST["stage_register"])) {
 	$teamId = $_POST["stage_team"];
 
 	// シャッフル？
-	$isShuffle = 0;
+	$isShuffled = 0;
 	if (isset($_POST["stage_shuffle"]))
 	{
-		$isShuffle = 1;
+		$isShuffled = 1;
 	}
 
 	// 公演名
 	$programId = $_POST["stage_program"];
 		
 	// 出演メンバー
-	$stageMembers = explode("・", $_POST["stage_members"]);
-	$stageMembers = array_map('trim', $stageMembers);
-	$stageMembers = array_filter($stageMembers, 'strlen');
-	$memberIds = array();
-	foreach ($stageMembers as $memberName)
-	{
-		$query = "SELECT member_id FROM Member WHERE member_name = %s ";
-		$rows = $wpdb->get_results($wpdb->prepare($query, $memberName));
-		if (count($rows) > 0)
-		{
-			$memberIds[] = $rows[0]->member_id;
-		}
-	}
+	$memberIds = getMemberIds($_POST["stage_members"]);
 	
 	// リンク
 	$links = explode("\n", $_POST["stage_links"]);
 	$links = array_map('trim', $links);
 	$links = array_filter($links, 'strlen');
 
-	$results = array();
-	$wpdb->query('START TRANSACTION');
-
 	// 何回目
 	$stageTimes = $_POST["stage_time"];
-	foreach ($stageTimes as $stageTime)
-	{
-		$stageId = str_replace("-", "", $stageDate) . "0" . $stageTime;
 
-		// 公演の登録
-		$results[] = $wpdb->insert(
-			'Stage',
-			array(
-				'stage_id' => $stageId,
-				'program_id' => $programId,
-				'team_id' => $teamId,
-				'stage_date' => $stageDate,
-				'stage_time' => $stageTime,
-				'is_shuffled' => $isShuffle,
-				'regist_time' => date("Y-m-d H:i:s TO")
-			),
-			array(
-				'%d',
-				'%d',
-				'%d',
-				'%s',
-				'%d',
-				'%d',
-				'%s'
-			)
-		);
-		
-		// 出演メンバー
-		foreach ($memberIds as $memberId)
-		{
-			$results[] = $wpdb->insert(
-				'Stage_Member',
-				array(
-					'stage_id' => $stageId,
-					'member_id' => $memberId,
-					'regist_time' => date("Y-m-d H:i:s TO")
-				),
-				array(
-					'%d',
-					'%d',
-					'%s'
-				)
-			);
+	// イベント
+	$eventIds = array();
+	$eventMemberIds = array();
+	for ($i = 1; $i <= 3; $i++) {
+		if (isset($_POST["stage_event" . $i]) && isset($_POST["stage_event_member" . $i])
+				&& $_POST["stage_event" . $i] != "0"
+				&& $_POST["stage_event_member" . $i] != "0") {
+			$eventIds[] = intval($_POST["stage_event" . $i]);
+			$eventMemberIds[] = intval($_POST["stage_event_member" . $i]);
 		}
-		
-		// リンク
-		foreach ($links as $link)
-		{
-			$results[] = $wpdb->insert(
-				'Related_Link',
-				array(
-					'stage_id' => $stageId,
-					'link' => $link,
-					'regist_time' => date("Y-m-d H:i:s TO")
-				),
-				array(
-					'%d',
-					'%s',
-					'%s'
-				)
-			);
-		};
 	}
+
+	// 公演を登録する
+	$stageId = registerStage($stageDate, $stageTimes, $teamId, $isShuffled,
+			$programId, $memberIds, $links, $eventIds, $eventMemberIds);
+
+	if ($stageId > 0) {
+		header("Location: /stage?stage_id=" . $stageId);
+		return;
+	} else {
+		include_once('page-templates/page-stage-input.tpl');
+		return;
+	}
+}
+else
+{
+	if (isset($_GET["stage_id"]) && is_numeric($_GET["stage_id"])) {
+		$isUpdate = 1;	// 変更画面であることを示す
+		$stageId = $_GET["stage_id"];
 	
-	$success = 1;
-	foreach ($results as $result)
-	{
-		$success = $success * $result;
-	}
-	if ($success > 0)
-	{
-		$wpdb->query("COMMIT;");
-	}
-	else
-	{
-		$wpdb->query("ROLLBACK;");
+		// 公演情報取得
+		$stageInfo = getStageDetail($stageId);
+		if ($stageInfo != null)
+		{
+			// 公演日
+			$stageDate = $stageInfo[0]->stage_date;
+	
+			// チーム
+			eval("\$teamSelected" . $stageInfo[0]->team_id . " = \" selected\";");
+	
+			// その日の回数
+			eval("\$timeSelected" . $stageInfo[0]->stage_time . " = \" selected\";");
+	
+			// 公演
+			eval("\$programSelected" . $stageInfo[0]->program_id . " = \" selected\";");
+	
+			// シャッフル？
+			$shuffledChecked = "";
+			if ($stageInfo[0]->is_shuffled == 1) $shuffledChecked = " checked";
+	
+			// 出演メンバー
+			$membersString = "";
+			if (isset($stageInfo[0]->memberList))
+			{
+				$memberNameList = array();
+				for ($i = 0; $i < count($stageInfo[0]->memberList); $i = $i + 1)
+				{
+					$memberNameList[] = $stageInfo[0]->memberList[$i]->member_name;
+				}
+				$membersString = implode("・", $memberNameList);
+			}
+
+			// 関連リンク
+			$linkList = "";
+			if (isset($stageInfo[0]->linkList))
+			{
+				$linkStringList = array();
+				for ($i = 0; $i < count($stageInfo[0]->linkList); $i = $i + 1)
+				{
+					$linkStringList[] = $stageInfo[0]->linkList[$i]->link;
+				}
+				$linkList = implode("\n", $linkStringList);
+			}
+
+			// イベント
+			if (isset($stageInfo[0]->eventMemberList)
+					&& count($stageInfo[0]->eventMemberList) > 0) {
+				$i = 1;
+				foreach ($stageInfo[0]->eventMemberList as $eventMember) {
+					eval("\$stageEventSelected" . $i . " = $eventMember->event_id;");
+					eval("\$stageEventMemberSelected" . $i . " = $eventMember->member_id;");
+					$i++;
+				}
+			}
+		}
 	}
 }
 
+// メンバーリスト
+$memberInfoList = getMembers();
 include_once('page-templates/page-stage-input.tpl');
+return;

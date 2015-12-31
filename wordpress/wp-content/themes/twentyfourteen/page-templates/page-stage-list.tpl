@@ -36,7 +36,7 @@
 				</tr>
 				<?php foreach ($rows as $stage) { ?>
 				<tr>
-					<td><a href="/stagedetail?stage_id=<?php echo $stage->stage_id ?>"><?php echo $stage->stage_date ?> (<?php echo $stage->stage_time ?>)</a></td>
+					<td><a href="/stage?stage_id=<?php echo $stage->stage_id ?>"><?php echo $stage->stage_date ?> (<?php echo $stage->stage_time ?>)</a></td>
 					<td><?php echo $stage->program_name ?></td>
 					<td><?php echo $stage->team_name . ($stage->is_shuffled ? "（シャッフル）" : "") ?>
 					<td><?php echo $stage->CNT ?> 名</td>
