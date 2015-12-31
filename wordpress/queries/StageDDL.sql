@@ -108,9 +108,21 @@ CREATE TABLE Stage_Event_Member (
 	stage_id int not null,
 	event_id int not null,
 	member_id int not null,
-	revision int not null revision 1,
+	revision int not null default 1,
 	regist_time datetime not null,			-- 登録日時
 	regist_user varchar(20) NOT NULL,
 	delete_time datetime,					-- 削除日時
 	PRIMARY KEY (stage_id, event_id, member_id, revision)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS Stage_Comment;
+CREATE TABLE Stage_Comment (
+	stage_id int not null,
+	branch_no int not null,
+	revision int not null default 1,
+	comment text not null,
+	regist_time datetime not null,			-- 登録日時
+	regist_user varchar(20) NOT NULL,
+	delete_time datetime,					-- 削除日時
+	PRIMARY KEY (stage_id, branch_no, revision)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

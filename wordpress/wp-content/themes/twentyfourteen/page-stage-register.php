@@ -50,15 +50,22 @@ if (isset($_POST["stage_register"])) {
 	for ($i = 1; $i <= 3; $i++) {
 		if (isset($_POST["stage_event" . $i]) && isset($_POST["stage_event_member" . $i])
 				&& $_POST["stage_event" . $i] != "0"
-				&& $_POST["stage_event_member" . $i] != "0") {
+// 				&& $_POST["stage_event_member" . $i] != "0") {
+				) {
 			$eventIds[] = intval($_POST["stage_event" . $i]);
 			$eventMemberIds[] = intval($_POST["stage_event_member" . $i]);
 		}
 	}
+	
+	// コメント
+	$stageComment = "";
+	if (isset($_POST["stage_comment"]) && $_POST["stage_comment"] != null) {
+		$stageComment = $_POST["stage_comment"];
+	}
 
 	// 公演を登録する
 	$stageId = registerStage($stageDate, $stageTimes, $teamId, $isShuffled,
-			$programId, $memberIds, $links, $eventIds, $eventMemberIds);
+			$programId, $memberIds, $links, $eventIds, $eventMemberIds, $stageComment);
 
 	if ($stageId > 0) {
 		header("Location: /stage?stage_id=" . $stageId);
@@ -95,27 +102,23 @@ else
 			if ($stageInfo[0]->is_shuffled == 1) $shuffledChecked = " checked";
 	
 			// 出演メンバー
-			$membersString = "";
+			$memberNameList = array();
 			if (isset($stageInfo[0]->memberList))
 			{
-				$memberNameList = array();
 				for ($i = 0; $i < count($stageInfo[0]->memberList); $i = $i + 1)
 				{
 					$memberNameList[] = $stageInfo[0]->memberList[$i]->member_name;
 				}
-				$membersString = implode("・", $memberNameList);
 			}
 
 			// 関連リンク
-			$linkList = "";
+			$linkStringList = array();
 			if (isset($stageInfo[0]->linkList))
 			{
-				$linkStringList = array();
 				for ($i = 0; $i < count($stageInfo[0]->linkList); $i = $i + 1)
 				{
 					$linkStringList[] = $stageInfo[0]->linkList[$i]->link;
 				}
-				$linkList = implode("\n", $linkStringList);
 			}
 
 			// イベント
@@ -126,6 +129,14 @@ else
 					eval("\$stageEventSelected" . $i . " = $eventMember->event_id;");
 					eval("\$stageEventMemberSelected" . $i . " = $eventMember->member_id;");
 					$i++;
+				}
+			}
+			
+			// コメント
+			$commentList = array();
+			foreach ($stageInfo[0]->commentList as $comment) {
+				if ($comment != "") {
+					$commentList[] = $comment;
 				}
 			}
 		}

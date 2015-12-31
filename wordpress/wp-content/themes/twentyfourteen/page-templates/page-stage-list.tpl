@@ -25,8 +25,17 @@
 			<label><input type="date" name="stage_date_to" value="<?php echo $stageDateTo ?>">　
 			<input type="submit" name="stage_period" value=" 期間指定 ">
 		</label></p>
+		<p><label>
+			メンバー：<br>
+			<select name="stage_members[]" multiple>
+				<option value="0">指定なし</option>
+<?php foreach ($memberInfoList as $member) { ?>
+				<option value="<?php echo $member->member_id ?>"<?php echo in_array($member->member_id, $stageMemberIds) ? " selected" : "" ?>><?php echo $member->member_name ?></option>
+<?php } ?>
+			</select>
+		</label></p>
 
-		<p>
+		<p>表示公演数：<?php echo count($rows) ?><br>
 			<table>
 				<tr>
 					<th>日付</th>

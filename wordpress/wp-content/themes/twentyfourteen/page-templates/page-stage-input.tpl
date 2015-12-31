@@ -29,6 +29,7 @@ if (!isset($teamSelected4)) $teamSelected4 = "";
 
 $programSelected1; $programSelected2; $programSelected3; $programSelected4; $programSelected5;
 $programSelected6; $programSelected7; $programSelected8; $programSelected9; $programSelected10;
+$programSelected11; $programSelected12;
 if (!isset($programSelected1)) $programSelected1 = "";
 if (!isset($programSelected2)) $programSelected2 = "";
 if (!isset($programSelected3)) $programSelected3 = "";
@@ -39,6 +40,8 @@ if (!isset($programSelected7)) $programSelected7 = "";
 if (!isset($programSelected8)) $programSelected8 = "";
 if (!isset($programSelected9)) $programSelected9 = "";
 if (!isset($programSelected10)) $programSelected10 = "";
+if (!isset($programSelected11)) $programSelected11 = "";
+if (!isset($programSelected12)) $programSelected12 = "";
 
 $timeSelected1; $timeSelected2; $timeSelected3; $timeSelected4; $timeSelected5;
 if (!isset($timeSelected1)) $timeSelected1 = $inputDisabled;
@@ -50,16 +53,27 @@ if (!isset($timeSelected5)) $timeSelected5 = $inputDisabled;
 $shuffledChecked;
 if (!isset($shuffledChecked)) $shuffledChecked = "";
 
-$membersString;
-if (!isset($membersString)) $membersString = "";
+$memberNameList;
+if (!isset($memberNameList)) $memberNameList = array();
 
-$linkList;
-if (!isset($linkList)) $linkList = "";
+$linkStringList;
+if (!isset($linkStringList)) $linkStringList = array();
 
 $memberInfoList;
 if (!isset($memberInfoList)) $memberInfoList = "";
 ?>
 <script>
+function changeStageDate(me)
+{
+	if (me.value != "") {
+		var d = new Date(me.value);
+		var span = document.getElementById('stageDay');
+		while( span.firstChild ) {
+		    span.removeChild( span.firstChild );
+		}
+		span.appendChild( document.createTextNode("(" + [ "日", "月", "火", "水", "木", "金", "土" ][d.getDay()] + ")") );
+	}
+}
 </script>
 </head>
 <body>
@@ -71,7 +85,7 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 	<div class="formarea">
 		<div style="float:left; width:40%"><label>
 			日付：<br>
-			<input type="date" name="stage_date" value="<?php echo $stageDate ?>" <?php echo $inputReadOnly ?>>
+			<input type="date" id="stage_date" name="stage_date" value="<?php echo $stageDate ?>" <?php echo $inputReadOnly ?> onchange="changeStageDate(this);"> <span id="stageDay"></span>
 		</label></div>
 		<div style="float:left; width:40%; margin-left: 1em;"><label>
 			何回目：<br>
@@ -91,6 +105,7 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 				<option value="2" <?php echo $teamSelected2 ?>>チームＫⅡ</option>
 				<option value="3" <?php echo $teamSelected3 ?>>チームＥ</option>
 				<option value="4" <?php echo $teamSelected4 ?>>研究生</option>
+				<option value="99" <?php echo $teamSelected99 ?>>その他</option>
 			</select>
 		</label>
 		<label style="margin-left:1em">シャッフル？<input type="checkbox" name="stage_shuffle" <?php echo $shuffledChecked ?>></label>
@@ -108,16 +123,21 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 				<option value="8" <?php echo $programSelected8 ?>>RESET</option>
 				<option value="9" <?php echo $programSelected9 ?>>シアターの女神</option>
 				<option value="10" <?php echo $programSelected10 ?>>僕の太陽</option>
+				<option value="11" <?php echo $programSelected11 ?>>アップカミング</option>
+				<option value="12" <?php echo $programSelected12 ?>>ミッドナイト</option>
 			</select>
 		</label>
 		</p>
 
-		<p><label>出演メンバー：<br>
-		<textarea name="stage_members" rows="4" required><?php echo $membersString ?></textarea>
+		<p><label>出演メンバー：（<?php echo count($memberNameList) ?> 名）<br>
+		<textarea name="stage_members" rows="4" required><?php echo implode("・", $memberNameList) ?></textarea>
 		</label></p>
 		
 		<p><label>関連リンク：<br>
-		<textarea name="stage_links" rows="2"><?php echo $linkList ?></textarea>
+		<?php foreach ($linkStringList as $linkString) { ?>
+			<a href="<?php echo $linkString ?>" target="_blank"><?php echo $linkString ?></a><br>
+		<?php } ?>
+		<textarea name="stage_links" rows="2"><?php echo implode("\n", $linkStringList) ?></textarea>
 		</label></p>
 
 		<div id="stage_event_register_header">イベント登録 開く</div>
@@ -129,6 +149,9 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 						<option value="0">なし</option>
 						<option value="1" <?php echo isset($stageEventSelected1) && $stageEventSelected1 == 1 ? " selected" : "" ?>>生誕祭</option>
 						<option value="2" <?php echo isset($stageEventSelected1) && $stageEventSelected1 == 2 ? " selected" : "" ?>>劇場最終公演</option>
+						<option value="3" <?php echo isset($stageEventSelected1) && $stageEventSelected1 == 3 ? " selected" : "" ?>>AKB48劇場出張公演</option>
+						<option value="4" <?php echo isset($stageEventSelected1) && $stageEventSelected1 == 4 ? " selected" : "" ?>>NMB48劇場出張公演</option>
+						<option value="5" <?php echo isset($stageEventSelected1) && $stageEventSelected1 == 5 ? " selected" : "" ?>>HKT48劇場出張公演</option>
 					</select>
 				</label></p>
 				<p><label>関連メンバー<br>
@@ -147,6 +170,9 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 						<option value="0">なし</option>
 						<option value="1" <?php echo isset($stageEventSelected2) && $stageEventSelected2 == 1 ? " selected" : "" ?>>生誕祭</option>
 						<option value="2" <?php echo isset($stageEventSelected2) && $stageEventSelected2 == 2 ? " selected" : "" ?>>劇場最終公演</option>
+						<option value="3" <?php echo isset($stageEventSelected2) && $stageEventSelected2 == 3 ? " selected" : "" ?>>AKB48劇場出張公演</option>
+						<option value="4" <?php echo isset($stageEventSelected2) && $stageEventSelected2 == 4 ? " selected" : "" ?>>NMB48劇場出張公演</option>
+						<option value="5" <?php echo isset($stageEventSelected2) && $stageEventSelected2 == 5 ? " selected" : "" ?>>HKT48劇場出張公演</option>
 					</select>
 				</label></p>
 				<p><label>関連メンバー<br>
@@ -165,6 +191,9 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 						<option value="0">なし</option>
 						<option value="1" <?php echo isset($stageEventSelected3) && $stageEventSelected3 == 1 ? " selected" : "" ?>>生誕祭</option>
 						<option value="2" <?php echo isset($stageEventSelected3) && $stageEventSelected3 == 2 ? " selected" : "" ?>>劇場最終公演</option>
+						<option value="3" <?php echo isset($stageEventSelected3) && $stageEventSelected3 == 3 ? " selected" : "" ?>>AKB48劇場出張公演</option>
+						<option value="4" <?php echo isset($stageEventSelected3) && $stageEventSelected3 == 4 ? " selected" : "" ?>>NMB48劇場出張公演</option>
+						<option value="5" <?php echo isset($stageEventSelected3) && $stageEventSelected3 == 5 ? " selected" : "" ?>>HKT48劇場出張公演</option>
 					</select>
 				</label></p>
 				<p><label>関連メンバー<br>
@@ -177,6 +206,13 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 				</label></p>
 			</div>
 
+		</div>
+		
+		<div>
+			<p><label>
+				コメント・メモ：<br>
+				<textarea name="stage_comment" rows="4"><?php echo isset($commentList) && count($commentList) > 0 ? $commentList[0]->comment : "" ?></textarea>
+			</label></p>
 		</div>
 		
 		<p><label>

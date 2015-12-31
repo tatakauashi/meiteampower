@@ -6,6 +6,7 @@ Template Name: stage-list
 namespace MEIMEI;
 
 include_once('inc/meimei_libs.php');
+include_once('inc/stage_libs.php');
 
 	// ログインの確認
 	if (!is_user_logged_in()) {
@@ -28,6 +29,15 @@ if (!isset($_POST["stage_register"])) {
 //		. " LEFT JOIN RelatedLink link ON (s.stage_id = link.stage_id) "
 		. " LEFT JOIN (SELECT m.stage_id, m.revision, COUNT(*) AS CNT FROM Stage_Member m WHERE m.delete_time is null GROUP BY m.stage_id, m.revision ) m2 ON (s.stage_id = m2.stage_id AND s.revision = m2.revision) ";
 
+	// 出演メンバーによる絞込み
+	$stageMemberIds = array();
+	if (isset($_POST["stage_members"]) && count($_POST["stage_members"]) > 0 && $_POST["stage_members"][0] != 0)
+	{
+		$stageMemberIds = $_POST["stage_members"];
+		$stageMemberIdsString = implode(",", $stageMemberIds);
+		$query .= $condition .  " JOIN (SELECT selMem.stage_id FROM Stage_Member selMem WHERE selMem.member_id IN ($stageMemberIdsString) GROUP BY selMem.stage_id) selMem2 ON (s.stage_id = selMem2.stage_id) ";
+	}
+
 	$condition = " WHERE ";
 	$param = array();
 	$needPreparedStatement = 0;
@@ -44,6 +54,7 @@ if (!isset($_POST["stage_register"])) {
 		$param[] = $_POST["stage_date_to"];
 		$needPreparedStatement = 1;
 	}
+
 	$query .= " ORDER BY s.stage_id ";
 
 	if ($needPreparedStatement != 0)
@@ -64,4 +75,6 @@ if (isset($_POST["stage_date_to"]) && $_POST["stage_date_to"] != "")
 	$stageDateTo = $_POST["stage_date_to"];
 }
 
+// メンバーリスト
+$memberInfoList = getMembers();
 include_once('page-templates/page-stage-list.tpl');

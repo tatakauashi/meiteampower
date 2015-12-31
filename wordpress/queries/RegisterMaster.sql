@@ -9,13 +9,17 @@ INSERT INTO Program VALUES
 ,(8, 'RESET', now(), null)
 ,(9, 'シアターの女神', now(), null)
 ,(10, '僕の太陽', now(), null)
+,(11, 'アップカミング', now(), null)
+,(12, 'ミッドナイト', now(), null)
 ;
 
-INSERT INTO Team VALUES
- (1, 'TeamS', NOW(), null)
-,(2, 'TeamKⅡ', NOW(), null)
-,(3, 'TeamE', NOW(), null)
-,(4, 'Team研究生', NOW(), null)
+INSERT INTO Team (team_id, team_name, regist_time, regist_user)
+VALUES
+ (1, 'TeamS', NOW(), 'tatakauashi')
+,(2, 'TeamKⅡ', NOW(), 'tatakauashi')
+,(3, 'TeamE', NOW(), 'tatakauashi')
+,(4, '研究生', NOW(), 'tatakauashi')
+,(99, 'その他', NOW(), 'tatakauashi')
 ;
 
 INSERT INTO Member VALUES
@@ -88,6 +92,65 @@ INSERT INTO Member VALUES
 ,(67, '上村亜柚香', 412, NOW(), null)
 ,(68, '水野愛理', 413, NOW(), null)
 ;
+
+INSERT INTO Member (member_id, member_name, sort_order, regist_time, regist_user)
+VALUES
+ (10001, '赤枝里々奈', 10001, NOW(), 'tatakauashi')
+,(10002, '阿比留李帆', 10002, NOW(), 'tatakauashi')
+,(10003, '井口栞里', 10003, NOW(), 'tatakauashi')
+,(10004, '岩永亞美', 10004, NOW(), 'tatakauashi')
+,(10005, '今出舞', 10005, NOW(), 'tatakauashi')
+,(10006, '上野圭澄', 10006, NOW(), 'tatakauashi')
+,(10007, '大脇有紗', 10007, NOW(), 'tatakauashi')
+,(10008, '小木曽汐莉', 10008, NOW(), 'tatakauashi')
+,(10009, '荻野利沙', 10009, NOW(), 'tatakauashi')
+,(10010, '小野晴香', 10010, NOW(), 'tatakauashi')
+,(10011, '折戸愛彩', 10011, NOW(), 'tatakauashi')
+,(10012, '加藤智子', 10012, NOW(), 'tatakauashi')
+,(10013, '金子栞', 10013, NOW(), 'tatakauashi')
+,(10014, '木崎ゆりあ', 10014, NOW(), 'tatakauashi')
+,(10015, '北原侑奈', 10015, NOW(), 'tatakauashi')
+,(10016, '鬼頭桃菜', 10016, NOW(), 'tatakauashi')
+,(10017, '木下有希子', 10017, NOW(), 'tatakauashi')
+,(10018, '桑原みずき', 10018, NOW(), 'tatakauashi')
+,(10019, '後藤真由子', 10019, NOW(), 'tatakauashi')
+,(10020, '小林亜実', 10020, NOW(), 'tatakauashi')
+,(10021, '小林絵未梨', 10021, NOW(), 'tatakauashi')
+,(10022, '佐々木柚香', 10022, NOW(), 'tatakauashi')
+,(10023, '佐藤聖羅', 10023, NOW(), 'tatakauashi')
+,(10024, '佐藤実絵子', 10024, NOW(), 'tatakauashi')
+,(10025, '菅なな子', 10025, NOW(), 'tatakauashi')
+,(10026, '空美夕日', 10026, NOW(), 'tatakauashi')
+,(10027, '高田志織', 10027, NOW(), 'tatakauashi')
+,(10028, '出口陽', 10028, NOW(), 'tatakauashi')
+,(10029, '中西優香', 10029, NOW(), 'tatakauashi')
+,(10030, '中村優花', 10030, NOW(), 'tatakauashi')
+,(10031, '新土居沙也加', 10031, NOW(), 'tatakauashi')
+,(10032, '秦佐和子', 10032, NOW(), 'tatakauashi')
+,(10033, '原望奈美', 10033, NOW(), 'tatakauashi')
+,(10034, '日置実希', 10034, NOW(), 'tatakauashi')
+,(10035, '平田璃香子', 10035, NOW(), 'tatakauashi')
+,(10036, '平松可奈子', 10036, NOW(), 'tatakauashi')
+,(10037, '藤本美月', 10037, NOW(), 'tatakauashi')
+,(10038, '古川愛李', 10038, NOW(), 'tatakauashi')
+,(10039, '松井玲奈', 10039, NOW(), 'tatakauashi')
+,(10040, '松本梨奈', 10040, NOW(), 'tatakauashi')
+,(10041, '間野春香', 10041, NOW(), 'tatakauashi')
+,(10042, '水埜帆乃香', 10042, NOW(), 'tatakauashi')
+,(10043, '向田茉夏', 10043, NOW(), 'tatakauashi')
+,(10044, '矢神久美', 10044, NOW(), 'tatakauashi')
+,(10045, '矢野杏月', 10045, NOW(), 'tatakauashi')
+,(10046, '山田恵里伽', 10046, NOW(), 'tatakauashi')
+,(10047, '山田みずほ', 10047, NOW(), 'tatakauashi')
+,(10048, '山田澪花', 10048, NOW(), 'tatakauashi')
+,(10049, '山本由香', 10049, NOW(), 'tatakauashi')
+,(10050, '若林倫香', 10050, NOW(), 'tatakauashi')
+,(10051, '神門沙樹', 10051, NOW(), 'tatakauashi')
+,(10052, '辻のぞみ', 10052, NOW(), 'tatakauashi')
+,(10053, '田中菜津美', 10053, NOW(), 'tatakauashi')
+,(10054, '渡辺美優紀', 10054, NOW(), 'tatakauashi')
+;
+
 
 INSERT INTO Belonging
 (member_id, team_id, from_date, regist_time, delete_time)
@@ -162,7 +225,11 @@ INSERT INTO Belonging
 ,(68, 4, NOW(), NOW(), null)
 ;
 
-INSERT INTO Event VALUES
- (1, '生誕祭', NOW(), null)
-,(2, '劇場最終公演', NOW(), null)
+INSERT INTO Event (event_id, event_name, regist_time, regist_user)
+VALUES
+ (1, '生誕祭', NOW(), 'tatakauashi')
+,(2, '劇場最終公演', NOW(), 'tatakauashi')
+,(3, 'AKB48劇場出張公演', NOW(), 'tatakauashi')
+,(4, 'NMB48劇場出張公演', NOW(), 'tatakauashi')
+,(5, 'HKT48劇場出張公演', NOW(), 'tatakauashi')
 ;

@@ -55,22 +55,32 @@ function getStageDetail($stageId)
 	$result[0]->linkList = $rows;
 
 	// 関連イベントを取得
-	$query = " SELECT em.event_id "
+	$query = " SELECT se.event_id "
 			. " , em.member_id "
-			. " FROM Stage_Event_Member em "
-			. " JOIN Member m ON (em.member_id = m.member_id) "
-			. " WHERE em.stage_id = %d AND em.revision = %d "
-			. " ORDER BY em.event_id, m.sort_order ";
-			$query = $wpdb->prepare($query, $param);
-			$rows = $wpdb->get_results($query);
-			$result[0]->eventMemberList = $rows;
+			. " FROM Stage_Event se "
+			. " LEFT JOIN Stage_Event_Member em ON (se.stage_id = em.stage_id AND se.revision = em.revision) "
+			. " LEFT JOIN Member m ON (em.member_id = m.member_id) "
+			. " WHERE se.stage_id = %d AND se.revision = %d "
+			. " ORDER BY se.event_id, m.sort_order ";
+	$query = $wpdb->prepare($query, $param);
+	$rows = $wpdb->get_results($query);
+	$result[0]->eventMemberList = $rows;
+
+	// コメントを取得
+	$query = " SELECT sc.comment, sc.regist_time, sc.regist_user "
+			. " FROM Stage_Comment sc "
+			. " WHERE sc.stage_id = %d AND sc.revision = %d "
+			. " ORDER BY sc.branch_no DESC ";
+	$query = $wpdb->prepare($query, $param);
+	$rows = $wpdb->get_results($query);
+	$result[0]->commentList = $rows;
 	
 	return $result;
 }
 
 // 公演情報を登録する。
 function registerStage($stageDate, $stageTimes, $teamId, $isShuffled,
-		$programId, $memberIds, $links, $eventIds, $eventMemberIds)
+		$programId, $memberIds, $links, $eventIds, $eventMemberIds, $stageComment)
 {
 	global $wpdb;
 	$wpdb->show_errors();
@@ -178,6 +188,8 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled,
 					'%s'
 				)
 			);
+			
+			if ($memberId <= 0) continue;
 			$results[] = $wpdb->insert(
 				'Stage_Event_Member',
 				array(
@@ -198,6 +210,29 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled,
 				)
 			);
 		}
+
+		// コメント
+		if ($stageComment != "") {
+		$results[] = $wpdb->insert(
+			'Stage_Comment',
+			array(
+				'stage_id' => $stageId,
+				'branch_no' => 1,
+				'revision' => $revision,
+				'comment' => $stageComment,
+				'regist_time' => date("Y-m-d H:i:s TO"),
+				'regist_user' => $userLogin
+			),
+			array(
+				'%d',
+				'%d',
+				'%d',
+				'%s',
+				'%s',
+				'%s'
+			)
+		);
+	}
 	}
 
 	$success = 1;
@@ -224,6 +259,8 @@ function getMemberIds($stageMembersString)
 	global $wpdb;
 	$wpdb->show_errors();
 
+	$stageMembersString = str_replace("高寺", "髙寺", $stageMembersString);
+	$stageMembersString = str_replace("高塚", "髙塚", $stageMembersString);
 	$stageMembers = explode("・", $stageMembersString);
 	$stageMembers = array_map('trim', $stageMembers);
 	$stageMembers = array_filter($stageMembers, 'strlen');
