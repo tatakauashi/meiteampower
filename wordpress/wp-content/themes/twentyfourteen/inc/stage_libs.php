@@ -61,6 +61,7 @@ function getStageDetail($stageId)
 			. " LEFT JOIN Stage_Event_Member em ON (se.stage_id = em.stage_id AND se.revision = em.revision) "
 			. " LEFT JOIN Member m ON (em.member_id = m.member_id) "
 			. " WHERE se.stage_id = %d AND se.revision = %d "
+			. " GROUP BY se.event_id, em.member_id "
 			. " ORDER BY se.event_id, m.sort_order ";
 	$query = $wpdb->prepare($query, $param);
 	$rows = $wpdb->get_results($query);
@@ -261,20 +262,81 @@ function getMemberIds($stageMembersString)
 
 	$stageMembersString = str_replace("高寺", "髙寺", $stageMembersString);
 	$stageMembersString = str_replace("高塚", "髙塚", $stageMembersString);
+	$stageMembersString = str_replace("、", "・", $stageMembersString);
 	$stageMembers = explode("・", $stageMembersString);
 	$stageMembers = array_map('trim', $stageMembers);
 	$stageMembers = array_filter($stageMembers, 'strlen');
 	$memberIds = array();
-	foreach ($stageMembers as $memberName)
-	{
-		$query = "SELECT member_id FROM Member WHERE member_name = %s ";
-		$rows = $wpdb->get_results($wpdb->prepare($query, $memberName));
-		if (count($rows) > 0)
+	if (count($stageMembers) > 0) {
+		$sqlInString = "'" . implode("','", $stageMembers) . "'";
+		$query = "SELECT member_id FROM Member WHERE member_name IN ($sqlInString) ";
+		$rows = $wpdb->get_results($query);
+		foreach ($rows as $row)
 		{
-			$memberIds[] = $rows[0]->member_id;
+			$memberIds[] = $row->member_id;
 		}
 	}
 	return $memberIds;
+}
+
+// メンバーIDのリストからメンバー名のリストを取得する。
+function getMemberNameList($memberIdList)
+{
+	global $wpdb;
+	$wpdb->show_errors();
+
+	$memberIdsString = implode(",", $memberIdList);
+	$query = "SELECT member_name FROM Member WHERE member_id IN ($memberIdsString) ORDER BY sort_order ";
+	$rows = $wpdb->get_results($query);
+	$memberNameList = array();
+	if (count($rows) > 0)
+	{
+		foreach ($rows as $row) {
+			$memberNameList[] = $row->member_name;
+		}
+	}
+
+	return $memberNameList;
+}
+
+// 演目IDのリストから演目名（公演名）のリストを取得する。
+function getProgramNameList($programIdList)
+{
+	global $wpdb;
+	$wpdb->show_errors();
+
+	$programIdsString = implode(",", $programIdList);
+	$query = "SELECT program_name FROM Program WHERE program_id IN ($programIdsString) ORDER BY program_id ";
+	$rows = $wpdb->get_results($query);
+	$programNameList = array();
+	if (count($rows) > 0)
+	{
+		foreach ($rows as $row) {
+			$programNameList[] = $row->program_name;
+		}
+	}
+
+	return $programNameList;
+}
+
+// イベントIDのリストからイベント名のリストを取得する。
+function getEventNameList($eventIdList)
+{
+	global $wpdb;
+	$wpdb->show_errors();
+
+	$eventIdsString = implode(",", $eventIdList);
+	$query = "SELECT event_name FROM Event WHERE event_id IN ($eventIdsString) ORDER BY event_id ";
+	$rows = $wpdb->get_results($query);
+	$eventNameList = array();
+	if (count($rows) > 0)
+	{
+		foreach ($rows as $row) {
+			$eventNameList[] = $row->event_name;
+		}
+	}
+
+	return $eventNameList;
 }
 
 // メンバー全員のIDと名前を取得する。
@@ -284,6 +346,28 @@ function getMembers()
 	$wpdb->show_errors();
 
 	$query = "SELECT member_id, member_name FROM Member ";
+	$rows = $wpdb->get_results($query);
+	return $rows;
+}
+
+// 演目のIDと名前を取得する。
+function getPrograms()
+{
+	global $wpdb;
+	$wpdb->show_errors();
+
+	$query = "SELECT program_id, program_name FROM Program ";
+	$rows = $wpdb->get_results($query);
+	return $rows;
+}
+
+// イベントのIDと名前を取得する。
+function getEvents()
+{
+	global $wpdb;
+	$wpdb->show_errors();
+
+	$query = "SELECT event_id, event_name FROM Event ";
 	$rows = $wpdb->get_results($query);
 	return $rows;
 }

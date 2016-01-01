@@ -19,14 +19,16 @@
 	<form name="form1" action="<?php echo get_permalink(); ?>" method="post">
 <article class="main">
 	<div class="formarea">
+		<p>
+			<dl>
+			<dt>期間：</dt>
+			<dd><label>FROM:<br><input type="date" name="stage_date_from" value="<?php echo $stageDateFrom ?>"></label></dd>
+			<dd><label>To:<br><input type="date" name="stage_date_to" value="<?php echo $stageDateTo ?>"></label></dd>
+			</dl>
+		</p>
+
 		<p><label>
-			期間：<br>
-			<input type="date" name="stage_date_from" value="<?php echo $stageDateFrom ?>"></label>～
-			<label><input type="date" name="stage_date_to" value="<?php echo $stageDateTo ?>">　
-			<input type="submit" name="stage_period" value=" 期間指定 ">
-		</label></p>
-		<p><label>
-			メンバー：<br>
+			出演・共演メンバー：<?php echo isset($stageMemberNameList) && count($stageMemberNameList) > 0 ? implode("・", $stageMemberNameList) : "" ?><br>
 			<select name="stage_members[]" multiple>
 				<option value="0">指定なし</option>
 <?php foreach ($memberInfoList as $member) { ?>
@@ -34,6 +36,28 @@
 <?php } ?>
 			</select>
 		</label></p>
+
+		<p><label>
+			公演：<?php echo isset($programNameList) && count($programNameList) > 0 ? implode("・", $programNameList) : "" ?><br>
+			<select name="stage_programs[]" multiple>
+				<option value="0">指定なし</option>
+<?php foreach ($programList as $program) { ?>
+				<option value="<?php echo $program->program_id ?>"<?php echo in_array($program->program_id, $programIds) ? " selected" : "" ?>><?php echo $program->program_name ?></option>
+<?php } ?>
+			</select>
+		</label></p>
+
+		<p><label>
+			イベント：<?php echo isset($eventNameList) && count($eventNameList) > 0 ? implode("・", $eventNameList) : "" ?><br>
+			<select name="stage_events[]" multiple>
+				<option value="0">指定なし</option>
+<?php foreach ($eventList as $event) { ?>
+				<option value="<?php echo $event->event_id ?>"<?php echo in_array($event->event_id, $eventIds) ? " selected" : "" ?>><?php echo $event->event_name ?></option>
+<?php } ?>
+			</select>
+		</label></p>
+
+		<p><label><input type="submit" name="stage_period" value=" 検 索 "></label></p>
 
 		<p>表示公演数：<?php echo count($rows) ?><br>
 			<table>

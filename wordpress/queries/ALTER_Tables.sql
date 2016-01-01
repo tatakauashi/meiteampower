@@ -49,3 +49,6 @@ UPDATE Related_Link SET regist_user = 'tatakauashi';
 UPDATE Event SET regist_user = 'tatakauashi';
 UPDATE Stage_Event SET regist_user = 'tatakauashi';
 UPDATE Stage_Event_Member SET regist_user = 'tatakauashi';
+
+ALTER TABLE Stage_Event DROP PRIMARY KEY, ADD KEY stage_id(stage_id);
+ALTER TABLE Stage_Event_Member DROP PRIMARY KEY, ADD KEY stage_id(stage_id);

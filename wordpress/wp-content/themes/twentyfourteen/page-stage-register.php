@@ -141,6 +141,10 @@ else
 			}
 		}
 	}
+	else if (isset($_GET["stage_date"]) && $_GET["stage_date"] != "")
+	{
+		$stageDate = $_GET["stage_date"];
+	}
 }
 
 // メンバーリスト

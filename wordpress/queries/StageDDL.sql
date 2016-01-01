@@ -99,7 +99,7 @@ CREATE TABLE Stage_Event (
 	regist_time datetime not null,			-- 登録日時
 	regist_user varchar(20) NOT NULL,
 	delete_time datetime,					-- 削除日時
-	PRIMARY KEY (stage_id, event_id, revision)
+	KEY stage_id (stage_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- イベントに関連するメンバー
@@ -112,7 +112,7 @@ CREATE TABLE Stage_Event_Member (
 	regist_time datetime not null,			-- 登録日時
 	regist_user varchar(20) NOT NULL,
 	delete_time datetime,					-- 削除日時
-	PRIMARY KEY (stage_id, event_id, member_id, revision)
+	KEY stage_id (stage_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS Stage_Comment;

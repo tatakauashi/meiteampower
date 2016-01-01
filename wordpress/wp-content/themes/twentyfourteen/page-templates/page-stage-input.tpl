@@ -78,7 +78,7 @@ function changeStageDate(me)
 </head>
 <body>
 <p class="thumbnail"><?php the_post_thumbnail(); ?></p>
-<header class="entry-header"><h2 id="headerTitle" class="entry-title"><a href="<?php echo get_permalink() ?>"><?php the_title(); ?></a></h2>
+<header class="entry-header"><h2 id="headerTitle" class="entry-title"><a href="<?php echo get_permalink() ?><?php echo $stageDate == "" ? "" : "?stage_date=$stageDate" ?>"><?php the_title(); ?></a></h2>
 </header><!-- .entry-header -->
 	<form name="form1" action="<?php echo get_permalink(); ?>" method="post">
 <article class="main">
