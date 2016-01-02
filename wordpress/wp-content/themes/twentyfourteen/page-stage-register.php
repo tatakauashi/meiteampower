@@ -29,7 +29,14 @@ if (isset($_POST["stage_register"])) {
 	{
 		$isShuffled = 1;
 	}
-
+	
+	// 非公式情報か
+	$isUnofficial = 0;
+	if (isset($_POST["stage_unofficial"]))
+	{
+		$isUnofficial = 1;
+	}
+	
 	// 公演名
 	$programId = $_POST["stage_program"];
 		
@@ -64,7 +71,7 @@ if (isset($_POST["stage_register"])) {
 	}
 
 	// 公演を登録する
-	$stageId = registerStage($stageDate, $stageTimes, $teamId, $isShuffled,
+	$stageId = registerStage($stageDate, $stageTimes, $teamId, $isShuffled, $isUnofficial,
 			$programId, $memberIds, $links, $eventIds, $eventMemberIds, $stageComment);
 
 	if ($stageId > 0) {
@@ -100,7 +107,11 @@ else
 			// シャッフル？
 			$shuffledChecked = "";
 			if ($stageInfo[0]->is_shuffled == 1) $shuffledChecked = " checked";
-	
+
+			// 非公式か？
+			$unofficialChecked = "";
+			if ($stageInfo[0]->is_unofficial == 1) $unofficialChecked = " checked";
+
 			// 出演メンバー
 			$memberNameList = array();
 			if (isset($stageInfo[0]->memberList))

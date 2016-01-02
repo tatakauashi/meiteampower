@@ -21,7 +21,7 @@ if (!isset($_POST["stage_register"])) {
 	global $wpdb;
 	$wpdb->show_errors();
 
-	$query = "SELECT s.stage_id, s.stage_time, s.stage_date, p.program_id, p.program_name, t.team_name, s.is_shuffled + 0 AS is_shuffled, m2.CNT "
+	$query = "SELECT s.stage_id, s.stage_time, s.stage_date, p.program_id, p.program_name, t.team_name, s.is_shuffled + 0 AS is_shuffled, s.delete_time, m2.CNT "
 		. " FROM Stage s "
 		. " JOIN (SELECT s2.stage_id, MAX(s2.revision) AS revision FROM Stage s2 GROUP BY s2.stage_id) sRev ON (s.stage_id = sRev.stage_id AND s.revision = sRev.revision) "
 		. " JOIN Program p ON (s.program_id = p.program_id) "
@@ -85,6 +85,7 @@ if (!isset($_POST["stage_register"])) {
 		$programNameList = getProgramNameList($programIds);
 	}
 	
+	$query .= $condition . " s.delete_time IS NULL ";
 	$query .= " ORDER BY s.stage_id ";
 
 	if ($needPreparedStatement != 0)

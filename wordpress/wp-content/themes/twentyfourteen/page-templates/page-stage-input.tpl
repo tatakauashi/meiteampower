@@ -52,7 +52,8 @@ if (!isset($timeSelected5)) $timeSelected5 = $inputDisabled;
 
 $shuffledChecked;
 if (!isset($shuffledChecked)) $shuffledChecked = "";
-
+$unofficialChecked;
+if (!isset($unofficialChecked)) $unofficialChecked = "";
 $memberNameList;
 if (!isset($memberNameList)) $memberNameList = array();
 
@@ -83,11 +84,11 @@ function changeStageDate(me)
 	<form name="form1" action="<?php echo get_permalink(); ?>" method="post">
 <article class="main">
 	<div class="formarea">
-		<div style="float:left; width:40%"><label>
+		<p><label>
 			日付：<br>
 			<input type="date" id="stage_date" name="stage_date" value="<?php echo $stageDate ?>" <?php echo $inputReadOnly ?> onchange="changeStageDate(this);"> <span id="stageDay"></span>
-		</label></div>
-		<div style="float:left; width:40%; margin-left: 1em;"><label>
+		</label></p>
+		<p><label>
 			何回目：<br>
 			<select name="stage_time[]" multiple>
 				<option value="1" <?php echo $timeSelected1 ?>>１回目</option>
@@ -96,8 +97,7 @@ function changeStageDate(me)
 				<option value="4" <?php echo $timeSelected4 ?>>４回目</option>
 				<option value="5" <?php echo $timeSelected5 ?>>５回目</option>
 			</select>
-		</label></div>
-		<p style="clear:both;">
+		</label></p>
 		<p><label>
 			チーム：<br>
 			<select name="stage_team">
@@ -107,9 +107,9 @@ function changeStageDate(me)
 				<option value="4" <?php echo $teamSelected4 ?>>研究生</option>
 				<option value="99" <?php echo $teamSelected99 ?>>その他</option>
 			</select>
-		</label>
-		<label style="margin-left:1em">シャッフル？<input type="checkbox" name="stage_shuffle" <?php echo $shuffledChecked ?>></label>
-		</p>
+		</label></p>
+		<p><label>シャッフル？ <input type="checkbox" name="stage_shuffle" <?php echo $shuffledChecked ?>></label></p>
+		<p><label>公式情報不十分 <input type="checkbox" name="stage_unofficial" <?php echo $unofficialChecked ?>></label></p>
 		<p>
 		<label>公演名：<br>
 			<select name="stage_program">

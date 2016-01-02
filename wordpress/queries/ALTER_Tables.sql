@@ -52,3 +52,5 @@ UPDATE Stage_Event_Member SET regist_user = 'tatakauashi';
 
 ALTER TABLE Stage_Event DROP PRIMARY KEY, ADD KEY stage_id(stage_id);
 ALTER TABLE Stage_Event_Member DROP PRIMARY KEY, ADD KEY stage_id(stage_id);
+
+ALTER TABLE Stage ADD COLUMN is_unofficial bit not null default false AFTER is_shuffled;

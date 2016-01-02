@@ -8,6 +8,7 @@ CREATE TABLE Stage (
 	stage_date date not null,				-- 公演日
 	stage_time int not null,				-- その日の何回目の公演か
 	is_shuffled bit not null default false,	-- シャッフル公演かどうか
+	is_unofficial bit not null default false,
 	regist_time datetime not null,	-- 登録日時
 	regist_user varchar(20) NOT NULL,
 	delete_time datetime			-- 削除日時

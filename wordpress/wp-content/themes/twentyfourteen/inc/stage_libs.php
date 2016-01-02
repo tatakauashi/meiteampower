@@ -10,6 +10,9 @@ function getStageDetail($stageId)
 	global $wpdb;
 	$wpdb->show_errors();
 	$revision = getCurrentRevision($stageId);
+	if ($revision <= 0) {
+		return null;
+	}
 
 	$query =  " SELECT s.stage_id "
 				. " , s.program_id "
@@ -17,6 +20,7 @@ function getStageDetail($stageId)
 				. " , s.stage_date "
 				. " , s.stage_time "
 				. " , s.is_shuffled + 0 AS is_shuffled "
+				. " , s.is_unofficial + 0 AS is_unofficial "
 				. " , p.program_name "
 				. " , t.team_name "
 				. " FROM Stage s "
@@ -80,7 +84,7 @@ function getStageDetail($stageId)
 }
 
 // 公演情報を登録する。
-function registerStage($stageDate, $stageTimes, $teamId, $isShuffled,
+function registerStage($stageDate, $stageTimes, $teamId, $isShuffled, $isUnofficial,
 		$programId, $memberIds, $links, $eventIds, $eventMemberIds, $stageComment)
 {
 	global $wpdb;
@@ -107,7 +111,8 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled,
 				'stage_date' => $stageDate,
 				'stage_time' => $stageTime,
 				'is_shuffled' => $isShuffled,
-				'regist_time' => date("Y-m-d H:i:s TO"),
+				'is_unofficial' => $isUnofficial,
+				'regist_time' => getSqlNowDate(),
 				'regist_user' => $userLogin
 			),
 			array(
@@ -116,6 +121,7 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled,
 				'%d',
 				'%d',
 				'%s',
+				'%d',
 				'%d',
 				'%d',
 				'%s',
@@ -132,7 +138,7 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled,
 					'stage_id' => $stageId,
 					'member_id' => $memberId,
 					'revision' => $revision,
-					'regist_time' => date("Y-m-d H:i:s TO"),
+					'regist_time' => getSqlNowDate(),
 					'regist_user' => $userLogin
 				),
 				array(
@@ -154,7 +160,7 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled,
 					'stage_id' => $stageId,
 					'revision' => $revision,
 					'link' => $link,
-					'regist_time' => date("Y-m-d H:i:s TO"),
+					'regist_time' => getSqlNowDate(),
 					'regist_user' => $userLogin
 				),
 				array(
@@ -178,7 +184,7 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled,
 					'stage_id' => $stageId,
 					'event_id' => $eventId,
 					'revision' => $revision,
-					'regist_time' => date("Y-m-d H:i:s TO"),
+					'regist_time' => getSqlNowDate(),
 					'regist_user' => $userLogin
 				),
 				array(
@@ -198,7 +204,7 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled,
 					'event_id' => $eventId,
 					'member_id' => $memberId,
 					'revision' => $revision,
-					'regist_time' => date("Y-m-d H:i:s TO"),
+					'regist_time' => getSqlNowDate(),
 					'regist_user' => $userLogin
 				),
 				array(
@@ -221,7 +227,7 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled,
 				'branch_no' => 1,
 				'revision' => $revision,
 				'comment' => $stageComment,
-				'regist_time' => date("Y-m-d H:i:s TO"),
+				'regist_time' => getSqlNowDate(),
 				'regist_user' => $userLogin
 			),
 			array(
@@ -345,7 +351,7 @@ function getMembers()
 	global $wpdb;
 	$wpdb->show_errors();
 
-	$query = "SELECT member_id, member_name FROM Member ";
+	$query = "SELECT member_id, member_name FROM Member ORDER BY sort_order ";
 	$rows = $wpdb->get_results($query);
 	return $rows;
 }
@@ -385,8 +391,11 @@ function getCurrentRevision($stageId)
 	global $wpdb;
 	$wpdb->show_errors();
 	
-	$query = " SELECT MAX(revision) AS revision FROM Stage "
-			. " WHERE stage_id = %d ";
+	$query = " SELECT s.stage_id, s.revision, s.delete_time FROM Stage s "
+			. " JOIN (SELECT s2.stage_id, MAX(s2.revision) AS revision FROM Stage s2 "
+			. "   GROUP BY s2.stage_id) s3 "
+			. "   ON (s.stage_id = s3.stage_id AND s.revision = s3.revision) "
+			. " WHERE s.stage_id = %d AND s.delete_time IS NULL ";
 	$param = array();
 	$param[] = $stageId;
 	$query = $wpdb->prepare($query, $param);
@@ -397,4 +406,10 @@ function getCurrentRevision($stageId)
 		$revision = $rows[0]->revision;
 	}
 	return $revision;
+}
+
+// SQL用に現在時刻（日本時間）を取得する。
+function getSqlNowDate()
+{
+	return date("Y-m-d H:i:s TO", time() + 9 * 60 * 60);
 }
