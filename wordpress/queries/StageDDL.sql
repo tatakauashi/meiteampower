@@ -30,6 +30,7 @@ DROP TABLE IF EXISTS Team;
 CREATE TABLE Team (
 	team_id int primary key,				-- チームID
 	team_name nvarchar(200) not null,		-- チーム名
+	sort_order int not null,
 	regist_time datetime not null,			-- 登録日時
 	regist_user varchar(20) NOT NULL,
 	delete_time datetime					-- 削除日時
@@ -40,7 +41,7 @@ DROP TABLE IF EXISTS Member;
 CREATE TABLE Member (
 	member_id int primary key,				-- メンバーID
 	member_name nvarchar(200) not null,		-- メンバー名
-	sort_order int,
+	sort_order nvarchar(200) not null,
 	regist_time datetime not null,			-- 登録日時
 	regist_user varchar(20) NOT NULL,
 	delete_time datetime					-- 削除日時
@@ -53,6 +54,7 @@ CREATE TABLE Belonging (
 	member_id int not null,
 	team_id int not null,
 	from_date date,
+	to_date date,
 	regist_time datetime not null,			-- 登録日時
 	regist_user varchar(20) NOT NULL,
 	delete_time datetime					-- 削除日時

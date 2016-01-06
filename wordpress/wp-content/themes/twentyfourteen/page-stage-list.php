@@ -8,12 +8,26 @@ namespace MEIMEI;
 include_once('inc/meimei_libs.php');
 include_once('inc/stage_libs.php');
 
-	// ログインの確認
-	if (!is_user_logged_in()) {
-		//header("Location: /message");
-		include_once("404.php");
-		exit;
-	}
+// ログインの確認
+if (!is_user_logged_in()) {
+	//header("Location: /message");
+	include_once("404.php");
+	exit;
+}
+
+$stageDateFrom = "";
+//if (isset($_POST["stage_date_from"]) && $_POST["stage_date_from"] != "")
+if (isset($_POST["stage_date_from"]))
+{
+	$stageDateFrom = $_POST["stage_date_from"];
+} else {
+	$stageDateFrom = date("Y-m-d", time() - 31 * 24 * 60 * 60);
+}
+$stageDateTo = "";
+if (isset($_POST["stage_date_to"]) && $_POST["stage_date_to"] != "")
+{
+	$stageDateTo = $_POST["stage_date_to"];
+}
 
 $rows = array();
 if (!isset($_POST["stage_register"])) {
@@ -60,11 +74,12 @@ if (!isset($_POST["stage_register"])) {
 	$condition = " WHERE ";
 	$param = array();
 	$needPreparedStatement = 0;
-	if (isset($_POST["stage_date_from"]) && $_POST["stage_date_from"] != "")
+//	if (isset($_POST["stage_date_from"]) && $_POST["stage_date_from"] != "")
+	if ($stageDateFrom != "")
 	{
 		$query .= $condition . " s.stage_date >= %s ";
 		$condition = " AND ";
-		$param[] = $_POST["stage_date_from"];
+		$param[] = $stageDateFrom;
 		$needPreparedStatement = 1;
 	}
 	if (isset($_POST["stage_date_to"]) && $_POST["stage_date_to"] != "")
@@ -74,6 +89,7 @@ if (!isset($_POST["stage_register"])) {
 		$param[] = $_POST["stage_date_to"];
 		$needPreparedStatement = 1;
 	}
+	$programIds = array();
 	if (isset($_POST["stage_programs"]) && count($_POST["stage_programs"]) > 0 && $_POST["stage_programs"][0] != 0)
 	{
 		$programIds = $_POST["stage_programs"];
@@ -93,17 +109,6 @@ if (!isset($_POST["stage_register"])) {
 		$query = $wpdb->prepare($query, $param);
 	}
 	$rows = $wpdb->get_results($query);
-}
-
-$stageDateFrom = "";
-if (isset($_POST["stage_date_from"]) && $_POST["stage_date_from"] != "")
-{
-	$stageDateFrom = $_POST["stage_date_from"];
-}
-$stageDateTo = "";
-if (isset($_POST["stage_date_to"]) && $_POST["stage_date_to"] != "")
-{
-	$stageDateTo = $_POST["stage_date_to"];
 }
 
 // メンバーリスト

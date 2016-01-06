@@ -21,11 +21,12 @@ if (isset($isUpdate) && $isUpdate == 1)
 $stageDate;
 if (!isset($stageDate)) $stageDate = "";
 
-$teamSelected1; $teamSelected2; $teamSelected3; $teamSelected4;
+$teamSelected1; $teamSelected2; $teamSelected3; $teamSelected4; $teamSelected99;
 if (!isset($teamSelected1)) $teamSelected1 = "";
 if (!isset($teamSelected2)) $teamSelected2 = "";
 if (!isset($teamSelected3)) $teamSelected3 = "";
 if (!isset($teamSelected4)) $teamSelected4 = "";
+if (!isset($teamSelected99)) $teamSelected99 = "";
 
 $programSelected1; $programSelected2; $programSelected3; $programSelected4; $programSelected5;
 $programSelected6; $programSelected7; $programSelected8; $programSelected9; $programSelected10;

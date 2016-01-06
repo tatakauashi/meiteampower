@@ -37,6 +37,11 @@ function escapeHtml($val)
 	return $val;
 }
 
+function printHtml($val)
+{
+	echo escapeHtml($val);
+}
+
 function setPrintValue($name, $val, $isEscapeHtml = true)
 {
 	global $PHP_PRINT_VALUE; //, $htmlEncode, $processEncode;

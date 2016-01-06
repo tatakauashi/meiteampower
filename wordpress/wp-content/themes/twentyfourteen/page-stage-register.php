@@ -16,6 +16,7 @@ if (!is_user_logged_in()) {
 }
 
 $stageId = 0;
+$stageDate = null;
 if (isset($_POST["stage_register"])) {
 	// 日付
 	$stageDate = $_POST["stage_date"];
@@ -159,6 +160,6 @@ else
 }
 
 // メンバーリスト
-$memberInfoList = getMembers();
+$memberInfoList = getMembers($stageDate);
 include_once('page-templates/page-stage-input.tpl');
 return;

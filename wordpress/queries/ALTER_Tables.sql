@@ -54,3 +54,10 @@ ALTER TABLE Stage_Event DROP PRIMARY KEY, ADD KEY stage_id(stage_id);
 ALTER TABLE Stage_Event_Member DROP PRIMARY KEY, ADD KEY stage_id(stage_id);
 
 ALTER TABLE Stage ADD COLUMN is_unofficial bit not null default false AFTER is_shuffled;
+
+ALTER TABLE Belonging ADD COLUMN to_date date default null AFTER from_date;
+
+ALTER TABLE Member DROP COLUMN sort_order;
+ALTER TABLE Member ADD COLUMN sort_order NVARCHAR(200) NOT NULL AFTER member_name;
+
+ALTER TABLE Team ADD COLUMN sort_order int not null AFTER team_name;

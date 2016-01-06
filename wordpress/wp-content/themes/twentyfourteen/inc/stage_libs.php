@@ -40,11 +40,19 @@ function getStageDetail($stageId)
 	// 参加メンバーを取得
 	$query = " SELECT m.member_id "
 			. " , m.member_name "
-			. " FROM Stage_Member sm "
-			. " JOIN Member m ON (sm.member_id = m.member_id) "
-			. " WHERE sm.stage_id = %d AND sm.revision = %d "
-			. " ORDER BY m.sort_order ";
-	$query = $wpdb->prepare($query, $param);
+			. " FROM Member m "
+			. " JOIN (SELECT sm.member_id FROM Stage_Member sm WHERE sm.stage_id = %d AND sm.revision = %d) sm2 ON (m.member_id = sm2.member_id) "
+			. " JOIN (SELECT bl.member_id, bl.team_id FROM Belonging bl WHERE bl.from_date <= %s AND bl.to_date >= %s) bl2 ON (m.member_id = bl2.member_id) "
+			. " JOIN Team t ON (bl2.team_id = t.team_id) "
+//			. " WHERE sm.stage_id = %d AND sm.revision = %d "
+			. " ORDER BY t.sort_order, m.sort_order ";
+	$stageDate = getStageDate($stageId);
+	$paramMember = array();
+	$paramMember[] = $stageId;
+	$paramMember[] = $revision;
+	$paramMember[] = $stageDate;
+	$paramMember[] = $stageDate;
+	$query = $wpdb->prepare($query, $paramMember);
 	$rows = $wpdb->get_results($query);
 	$result[0]->memberList = $rows;
 	
@@ -346,12 +354,25 @@ function getEventNameList($eventIdList)
 }
 
 // メンバー全員のIDと名前を取得する。
-function getMembers()
+function getMembers($specificialDate = null)
 {
+	if ($specificialDate == null) {
+		$specificialDate = getSqlNowDate();
+	}
 	global $wpdb;
 	$wpdb->show_errors();
 
-	$query = "SELECT member_id, member_name FROM Member ORDER BY sort_order ";
+// 	$query = "SELECT member_id, member_name FROM Member ORDER BY sort_order ";
+// 	$rows = $wpdb->get_results($query);
+	$query = "SELECT m.member_id, m.member_name FROM Member m "
+			. " JOIN (SELECT bl.member_id, bl.team_id FROM Belonging bl WHERE bl.from_date <= %s AND bl.to_date >= %s) bl2 "
+					. " ON (bl2.member_id = m.member_id) "
+			. " JOIN Team t ON (t.team_id = bl2.team_id) "
+			. " ORDER BY t.sort_order, m.sort_order ";
+	$param = array();
+	$param[] = $specificialDate;
+	$param[] = $specificialDate;
+	$query = $wpdb->prepare($query, $param);
 	$rows = $wpdb->get_results($query);
 	return $rows;
 }
@@ -412,4 +433,11 @@ function getCurrentRevision($stageId)
 function getSqlNowDate()
 {
 	return date("Y-m-d H:i:s TO", time() + 9 * 60 * 60);
+}
+
+// 公演IDから公演日を取得する。その日の何回目の公演かという情報は落ちる。
+function getStageDate($stageId)
+{
+	$s = "" . $stageId;
+	return substr($s, 0, 4) . "-" . substr($s, 4, 2) . "-" . substr($s, 6, 2);
 }
