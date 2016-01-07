@@ -109,7 +109,7 @@ function changeStageDate(me)
 				<option value="99" <?php echo $teamSelected99 ?>>その他</option>
 			</select>
 		</label></p>
-		<p><label>シャッフル？ <input type="checkbox" name="stage_shuffle" <?php echo $shuffledChecked ?>></label></p>
+		<p><label>シャッフル？ <input type="checkbox" name="stage_shuffled" <?php echo $shuffledChecked ?>></label></p>
 		<p><label>公式情報不十分 <input type="checkbox" name="stage_unofficial" <?php echo $unofficialChecked ?>></label></p>
 		<p>
 		<label>公演名：<br>
@@ -212,7 +212,7 @@ function changeStageDate(me)
 		<div>
 			<p><label>
 				コメント・メモ：<br>
-				<textarea name="stage_comment" rows="4"><?php echo isset($commentList) && count($commentList) > 0 ? $commentList[0]->comment : "" ?></textarea>
+				<textarea name="stage_comment" rows="4"><?php printHtml(isset($commentList) && count($commentList) > 0 ? $commentList[0]->comment : "") ?></textarea>
 			</label></p>
 		</div>
 		

@@ -15,6 +15,9 @@ if (!is_user_logged_in()) {
 	exit;
 }
 
+// チェック済みのパラメータを取得する。
+$received = getReceivedParameter();
+
 $stageId = 0;
 $stageDate = null;
 if (isset($_POST["stage_register"])) {
@@ -26,7 +29,7 @@ if (isset($_POST["stage_register"])) {
 
 	// シャッフル？
 	$isShuffled = 0;
-	if (isset($_POST["stage_shuffle"]))
+	if (isset($_POST["stage_shuffled"]))
 	{
 		$isShuffled = 1;
 	}
@@ -163,3 +166,29 @@ else
 $memberInfoList = getMembers($stageDate);
 include_once('page-templates/page-stage-input.tpl');
 return;
+
+function getReceivedParameter()
+{
+	$obj = (object) array(
+		'stage_register' => isset($_POST["stage_register"]),
+		'stage_date' => preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST["stage_date"]) == 1 ? $_POST["stage_date"] : "",
+		'stage_shuffled' => isset($_POST["stage_shuffled"]),
+		'stage_unofficial' => isset($_POST["stage_unofficial"]),
+		'stage_program' => preg_match('/^\d{1,2}$/', $_POST["stage_program"]) ? intval($_POST["stage_program"]) : 0,
+		'stage_members' => isset($_POST["stage_members"]) ? $_POST["stage_members"] : "",
+		'stage_event' => array(),
+		'stage_comment' => isset($_POST["stage_comment"]) ? $_POST["stage_comment"] : ""
+	);
+	$eventIndex = 0;
+	for ($i = 0; $i < 3; $i++) {
+		if (isset($_POST["stage_event" . $i]) && $_POST["stage_event" . $i] != "0"
+				&& preg_match('/^\d$/', $_POST["stage_event" . $i])) {
+			$obj[$eventIndex] = array(
+				'event_id' => $_POST["stage_event" . $i],
+				'member_id' => preg_match('/^\d+$/', $_POST["stage_event_member" . $i]) ? $_POST["stage_event_member" . $i] : 0
+			);
+			$eventIndex++;
+		}
+	}
+	return $obj;
+}
