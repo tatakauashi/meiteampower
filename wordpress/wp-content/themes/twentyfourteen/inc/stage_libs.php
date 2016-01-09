@@ -92,8 +92,8 @@ function getStageDetail($stageId)
 }
 
 // 公演情報を登録する。
-function registerStage($stageDate, $stageTimes, $teamId, $isShuffled, $isUnofficial,
-		$programId, $memberIds, $links, $eventIds, $eventMemberIds, $stageComment)
+function registerStage($registerInfo/*$stageDate, $stageTimes, $teamId, $isShuffled, $isUnofficial,
+		$programId, $memberIds, $links, $eventIds, $eventMemberIds, $stageComment*/)
 {
 	global $wpdb;
 	$wpdb->show_errors();
@@ -103,10 +103,11 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled, $isUnoffic
 	$stageId = 0;
 	$results = array();
 	$wpdb->query('START TRANSACTION');
-	foreach ($stageTimes as $stageTime)
+	foreach ($registerInfo->stage_time as $stageTime)
 	{
-		$stageId = getStageId($stageDate, $stageTime);
+		$stageId = getStageId($registerInfo->stage_date, $stageTime);
 		$revision = getCurrentRevision($stageId) + 1;
+		$nowDateTime = getSqlNowDateTime();
 
 		// 公演の登録
 		$results[] = $wpdb->insert(
@@ -114,13 +115,13 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled, $isUnoffic
 			array(
 				'stage_id' => $stageId,
 				'revision' => $revision,
-				'program_id' => $programId,
-				'team_id' => $teamId,
-				'stage_date' => $stageDate,
+				'program_id' => $registerInfo->stage_program,
+				'team_id' => $registerInfo->team_id,
+				'stage_date' => $registerInfo->stage_date,
 				'stage_time' => $stageTime,
-				'is_shuffled' => $isShuffled,
-				'is_unofficial' => $isUnofficial,
-				'regist_time' => getSqlNowDate(),
+				'is_shuffled' => $registerInfo->stage_shuffled,
+				'is_unofficial' => $registerInfo->stage_unofficial,
+				'regist_time' => $nowDateTime,
 				'regist_user' => $userLogin
 			),
 			array(
@@ -138,7 +139,7 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled, $isUnoffic
 		);
 		
 		// 出演メンバー
-		foreach ($memberIds as $memberId)
+		foreach ($registerInfo->stage_members as $memberId)
 		{
 			$results[] = $wpdb->insert(
 				'Stage_Member',
@@ -146,7 +147,7 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled, $isUnoffic
 					'stage_id' => $stageId,
 					'member_id' => $memberId,
 					'revision' => $revision,
-					'regist_time' => getSqlNowDate(),
+					'regist_time' => $nowDateTime,
 					'regist_user' => $userLogin
 				),
 				array(
@@ -160,7 +161,7 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled, $isUnoffic
 		}
 		
 		// リンク
-		foreach ($links as $link)
+		foreach ($registerInfo->stage_links as $link)
 		{
 			$results[] = $wpdb->insert(
 				'Related_Link',
@@ -168,7 +169,7 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled, $isUnoffic
 					'stage_id' => $stageId,
 					'revision' => $revision,
 					'link' => $link,
-					'regist_time' => getSqlNowDate(),
+					'regist_time' => $nowDateTime,
 					'regist_user' => $userLogin
 				),
 				array(
@@ -182,17 +183,16 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled, $isUnoffic
 		};
 
 		// イベント
-		for ($i = 0; $i < count($eventIds); $i++)
+		for ($i = 0; $i < count($registerInfo->stage_event); $i++)
 		{
-			$eventId = $eventIds[$i];
-			$memberId = $eventMemberIds[$i];
+			$eventId = $registerInfo->stage_event[$i]->evnet_id;
 			$results[] = $wpdb->insert(
 				'Stage_Event',
 				array(
 					'stage_id' => $stageId,
 					'event_id' => $eventId,
 					'revision' => $revision,
-					'regist_time' => getSqlNowDate(),
+					'regist_time' => $nowDateTime,
 					'regist_user' => $userLogin
 				),
 				array(
@@ -204,6 +204,7 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled, $isUnoffic
 				)
 			);
 			
+			$memberId = $registerInfo->stage_event[$i]->member_id;
 			if ($memberId <= 0) continue;
 			$results[] = $wpdb->insert(
 				'Stage_Event_Member',
@@ -212,7 +213,7 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled, $isUnoffic
 					'event_id' => $eventId,
 					'member_id' => $memberId,
 					'revision' => $revision,
-					'regist_time' => getSqlNowDate(),
+					'regist_time' => $nowDateTime,
 					'regist_user' => $userLogin
 				),
 				array(
@@ -227,15 +228,15 @@ function registerStage($stageDate, $stageTimes, $teamId, $isShuffled, $isUnoffic
 		}
 
 		// コメント
-		if ($stageComment != "") {
+		if ($registerInfo->stage_comment != "") {
 		$results[] = $wpdb->insert(
 			'Stage_Comment',
 			array(
 				'stage_id' => $stageId,
 				'branch_no' => 1,
 				'revision' => $revision,
-				'comment' => $stageComment,
-				'regist_time' => getSqlNowDate(),
+				'comment' => $registerInfo->stage_comment,
+				'regist_time' => $nowDateTime,
 				'regist_user' => $userLogin
 			),
 			array(
@@ -357,7 +358,7 @@ function getEventNameList($eventIdList)
 function getMembers($specificialDate = null)
 {
 	if ($specificialDate == null) {
-		$specificialDate = getSqlNowDate();
+		$specificialDate = getSqlNowDateTime();
 	}
 	global $wpdb;
 	$wpdb->show_errors();
@@ -430,9 +431,10 @@ function getCurrentRevision($stageId)
 }
 
 // SQL用に現在時刻（日本時間）を取得する。
-function getSqlNowDate()
+function getSqlNowDateTime()
 {
-	return date("Y-m-d H:i:s TO", time() + 9 * 60 * 60);
+// 	return date("Y-m-d H:i:s TO", time() + 9 * 60 * 60);
+	return date("Y-m-d H:i:s", time() + 9 * 60 * 60);
 }
 
 // 公演IDから公演日を取得する。その日の何回目の公演かという情報は落ちる。
