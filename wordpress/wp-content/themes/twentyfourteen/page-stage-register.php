@@ -105,7 +105,7 @@ function main()
 	{
 		if (isset($_GET["stage_id"]) && is_numeric($_GET["stage_id"])) {
 			$display = (object) array();
-			$display->is_update = 1;	// 変更画面であることを示す
+			$display->is_update = true;	// 変更画面であることを示す
 			$stageId = $_GET["stage_id"];
 		
 			// 公演情報取得

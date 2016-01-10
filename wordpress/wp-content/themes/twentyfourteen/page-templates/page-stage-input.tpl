@@ -12,7 +12,7 @@
 <?php
 // 変更画面か
 $inputReadOnly = " "; $inputDisabled = "";
-if (isset($isUpdate) && $isUpdate == 1)
+if (isset($display->is_update) && $display->is_update)
 {
 	$inputReadOnly = " readonly";
 	$inputDisabled = " disabled";
@@ -83,7 +83,7 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 			何回目：<br>
 			<select name="stage_time[]" multiple required>
 <?php $days = array(1 => "１", 2 => "２", 3 => "３", 4 =>"４", 5 => "５"); for ($i = 1; $i <= 5; $i++) { ?>
-				<option value="<?php echo $i ?>"<?php echo isset($display->stage_time) && in_array($i, $display->stage_time) ? " selected" : "" ?>><?php echo $days[$i] ?>回目</option>
+				<option value="<?php echo $i ?>"<?php echo isset($display->stage_time) && in_array($i, $display->stage_time) ? " selected" : $inputDisabled ?>><?php echo $days[$i] ?>回目</option>
 <?php } ?>
 			</select>
 		</label></p>
