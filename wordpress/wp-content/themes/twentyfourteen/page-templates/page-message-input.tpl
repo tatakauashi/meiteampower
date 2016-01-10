@@ -29,7 +29,8 @@ div#float-box {
 	<div class="formarea">
 	<p id="explanation" class="explanation">
 		酒井萌衣さんへの温かい生誕メッセージをありがとうございました。<br>
-		2015年の酒井萌衣さんへの生誕メッセージの募集は締め切らせていただきました。
+		2015年の酒井萌衣さんへの生誕メッセージの募集は締め切らせていただきました。<br>
+		お寄せいただいたメッセージは運営さんにお届けしました。
 	</p>
 	<p id="explanation" class="explanation">
 		今後とも、酒井萌衣さんへの応援をよろしくお願いします！<br>
