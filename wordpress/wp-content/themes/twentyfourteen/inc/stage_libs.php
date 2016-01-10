@@ -318,7 +318,13 @@ function getMemberNameList($memberIdList)
 	global $wpdb;
 	$wpdb->show_errors();
 
-	$memberIdsString = implode(",", $memberIdList);
+	$inElements = array();
+	foreach ($memberIdList as $memberId) {
+		if (is_numeric($memberId)) {
+			$inElements[] = $memberId;
+		}
+	}
+	$memberIdsString = implode(",", $inElements);
 	$query = "SELECT member_name FROM Member WHERE member_id IN ($memberIdsString) ORDER BY sort_order ";
 	$rows = $wpdb->get_results($query);
 	$memberNameList = array();

@@ -67,10 +67,25 @@ ALTER TABLE Stage_Event ADD PRIMARY KEY stage_id(stage_id, event_id, revision);
 ALTER TABLE Stage_Event_Member DROP KEY stage_id;
 ALTER TABLE Stage_Event_Member ADD PRIMARY KEY stage_id(stage_id, event_id, member_id, revision);
 
-CREATE VIEW Stage_Latest_View AS
+CREATE OR REPLACE VIEW Stage_Latest_View AS
 SELECT s2.stage_id, MAX(s2.revision) AS revision FROM Stage s2 GROUP BY s2.stage_id;
 
-CREATE VIEW Stage_View AS
+CREATE OR REPLACE VIEW Stage_View AS
 SELECT s.* FROM Stage s
 JOIN Stage_Latest_View sv ON (s.stage_id = sv.stage_id AND s.revision = sv.revision)
 WHERE s.delete_time IS NULL;
+
+CREATE OR REPLACE VIEW Member_View AS
+SELECT m.member_id
+     , m.member_name
+     , t.team_id
+     , t.team_name
+     , b.from_date
+     , b.to_date
+     , t.sort_order AS order1
+     , m.sort_order AS order2
+FROM Member m
+JOIN Belonging b ON (m.member_id = b.member_id)
+JOIN Team t ON (t.team_id = b.team_id)
+ORDER BY t.sort_order, m.sort_order
+;
