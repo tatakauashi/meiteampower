@@ -7,6 +7,13 @@
  * @since Twenty Fourteen 1.0
  */
 namespace MEIMEI;
+
+// 404を返す。
+if (!headers_sent()) {
+//	http_response_code(404);
+	header("HTTP/1.1 404 Not Found");
+}
+
 include_once('inc/meimei_libs.php');
 loadXML("ja");
 ?>
