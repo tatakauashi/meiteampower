@@ -89,3 +89,32 @@ JOIN Belonging b ON (m.member_id = b.member_id)
 JOIN Team t ON (t.team_id = b.team_id)
 ORDER BY t.sort_order, m.sort_order
 ;
+
+-- 2016年1月11日 18:50:14
+INSERT INTO Member (member_id, member_name, sort_order, regist_time, regist_user, delete_time)
+VALUES
+ (10064, '稲垣ほなみ', 'いなかきほなみGGOGGGG', NOW(), 'tatakauashi', NULL)
+,(10065, '尾関きはる', 'おせききはるGOGGGG', NOW(), 'tatakauashi', NULL)
+,(10066, '柴木愛子', 'しはきあいこGOGGGG', NOW(), 'tatakauashi', NULL)
+,(10067, '橋本あゆみ', 'はしもとあゆみGGGGGGG', NOW(), 'tatakauashi', NULL)
+,(10068, '前川愛佳', 'まえかわあいかGGGGGGG', NOW(), 'tatakauashi', NULL)
+;
+
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+VALUES 
+ (10064, 4,   '2008-10-05', '2009-04-30', NOW(), 'tatakauashi', NULL)
+,(10064, 100, '2009-05-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10065, 4,   '2008-10-05', '2009-04-30', NOW(), 'tatakauashi', NULL)
+,(10065, 100, '2009-05-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10066, 4,   '2008-10-05', '2009-07-31', NOW(), 'tatakauashi', NULL)
+,(10066, 100, '2009-08-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10067, 4,   '2009-05-12', '2009-11-30', NOW(), 'tatakauashi', NULL)
+,(10067, 100, '2009-12-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10068, 4,   '2008-10-05', '2009-09-30', NOW(), 'tatakauashi', NULL)
+,(10068, 100, '2009-10-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+;
+
+-- 2016年2月10日 22:52:47 きょんちゃん卒業
+update Belonging set to_date = '2016-01-31' where belonging_id = 142;
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+values (37, 100, '2016-02-01', '9999-12-31', NOW(), 'tatakauashi', NULL);
