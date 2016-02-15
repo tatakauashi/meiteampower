@@ -286,6 +286,69 @@ function registerStage($registerInfo)
 	return $stageId;
 }
 
+function getSimpleStageInfo($condition, $param)
+{
+	$query =  " SELECT s.stage_id "
+			. " , s.program_id "
+			. " , s.team_id "
+			. " , s.stage_date "
+			. " , s.stage_time "
+			. " , s.is_shuffled + 0 AS is_shuffled "
+			. " , s.is_unofficial + 0 AS is_unofficial "
+			. " , p.program_name "
+			. " , t.team_name "
+			. " FROM Stage_View s "
+			. " JOIN Program p ON (s.program_id = p.program_id) "
+			. " JOIN Team t ON (s.team_id = t.team_id) "
+			. $condition;
+
+	global $wpdb;
+	$wpdb->show_errors();
+	$query = $wpdb->prepare($query, $param);
+	$result = $wpdb->get_results($query);
+	if ($result == null || count($result) <= 0)
+	{
+		return null;
+	}
+	return $result[0];
+}
+
+function getPreviousStage($stageId, $stageDate)
+{
+	$condition = " ";
+	$param = array();
+	if ($stageId > 0)
+	{
+		$condition .= " WHERE s.stage_id < %d ";
+		$param[] = $stageId;
+	}
+	else {
+		$condition .= " WHERE s.stage_date < %s ";
+		$param[] = $stageDate;
+	}
+	$condition .= " ORDER BY s.stage_id DESC LIMIT 1 ";
+
+	return getSimpleStageInfo($condition, $param);
+}
+
+function getNextStage($stageId, $stageDate)
+{
+	$condition = " ";
+	$param = array();
+	if ($stageId > 0)
+	{
+		$condition .= " WHERE s.stage_id > %d ";
+		$param[] = $stageId;
+	}
+	else {
+		$condition .= " WHERE s.stage_date > %s ";
+		$param[] = $stageDate;
+	}
+	$condition .= " ORDER BY s.stage_id LIMIT 1 ";
+
+	return getSimpleStageInfo($condition, $param);
+}
+
 // 「・」で区切られたメンバー名の文字列から、それぞれのメンバーのIDを配列で取得する。
 function getMemberIds($stageMembersString)
 {

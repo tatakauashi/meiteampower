@@ -18,6 +18,7 @@
 </header><!-- .entry-header -->
 	<form name="form1" action="<?php echo get_permalink(); ?>" method="post">
 <article class="main">
+	<div style="text-align: right;"><a href="/stage">公演を登録するっ！</a></div>
 	<div class="formarea">
 		<p>
 			<dl>

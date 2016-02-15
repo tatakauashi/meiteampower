@@ -603,9 +603,28 @@ function category_display_one_articles( $wp_query ) {
         if ( $wp_query->is_main_query() && $wp_query->is_category('17') ) { // メインのクエリーでカテゴリーIDが17(perform)の時
             $wp_query->set( 'posts_per_page', 1 ); // 表示件数は1件
         }
+        
+        // 選対のみ
+        if (!is_user_logged_in()) {
+            $wp_query->set( 'tag__not_in', array( 20, 21 ) );
+        }
     }
 }
 add_action( 'pre_get_posts', 'category_display_one_articles' );
+
+function for_single_article( $wp_query )
+{
+    if (!is_admin())
+    {
+    	if (is_single() && !is_user_logged_in() && hasTagSlug('sentaionly'))
+    	{
+//     		include_once("404.php");
+//     		exit;
+    	}
+    }
+    
+}
+add_action( 'parse_query', 'for_single_article' );
 
 // [caption]ショートコードのオーバーライド。
 function img_caption_shortcode_custom( $attr, $content = null ) {

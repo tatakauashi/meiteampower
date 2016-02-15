@@ -35,59 +35,6 @@ function main()
 			// 入力チェックの結果NG。画面再表示
 			$display = $received;
 		} else {
-	// 		// 日付
-	// 		$stageDate = $_POST["stage_date"];
-		
-	// 		// チーム
-	// 		$teamId = $_POST["stage_team"];
-		
-	// 		// シャッフル？
-	// 		$isShuffled = 0;
-	// 		if (isset($_POST["stage_shuffled"]))
-	// 		{
-	// 			$isShuffled = 1;
-	// 		}
-			
-	// 		// 非公式情報か
-	// 		$isUnofficial = 0;
-	// 		if (isset($_POST["stage_unofficial"]))
-	// 		{
-	// 			$isUnofficial = 1;
-	// 		}
-			
-	// 		// 公演名
-	// 		$programId = $_POST["stage_program"];
-				
-	// 		// 出演メンバー
-	// 		$memberIds = getMemberIds($_POST["stage_members"]);
-			
-	// 		// リンク
-	// 		$links = explode("\n", $_POST["stage_links"]);
-	// 		$links = array_map('trim', $links);
-	// 		$links = array_filter($links, 'strlen');
-		
-	// 		// 何回目
-	// 		$stageTimes = $_POST["stage_time"];
-		
-	// 		// イベント
-	// 		$eventIds = array();
-	// 		$eventMemberIds = array();
-	// 		for ($i = 1; $i <= 3; $i++) {
-	// 			if (isset($_POST["stage_event" . $i]) && isset($_POST["stage_event_member" . $i])
-	// 					&& $_POST["stage_event" . $i] != "0"
-	// 	// 				&& $_POST["stage_event_member" . $i] != "0") {
-	// 					) {
-	// 				$eventIds[] = intval($_POST["stage_event" . $i]);
-	// 				$eventMemberIds[] = intval($_POST["stage_event_member" . $i]);
-	// 			}
-	// 		}
-			
-	// 		// コメント
-	// 		$stageComment = "";
-	// 		if (isset($_POST["stage_comment"]) && $_POST["stage_comment"] != null) {
-	// 			$stageComment = $_POST["stage_comment"];
-	// 		}
-		
 			// 公演を登録する
 			$stageId = registerStage($received);
 		
@@ -113,6 +60,8 @@ function main()
 			if ($stageInfos != null && count($stageInfos) > 0)
 			{
 				$stageInfo = $stageInfos[0];
+				$display->stage_id = $stageInfo->stage_id;
+
 				// 公演日
 				$display->stage_date = $stageInfo->stage_date;
 		
@@ -177,15 +126,30 @@ function main()
 				$display->error_message = "該当する公演が見つかりません。";
 			}
 		}
-		else if (isset($_GET["stage_date"]) && $_GET["stage_date"] != "")
-		{
-			$display = (object) array();
-			$display->stage_date = $_GET["stage_date"];
+		else {
+			// 入力画面初期表示
+			
+			// 日付が指定されていた場合は、その日の編集を行う
+			if (isset($_GET["stage_date"]) && $_GET["stage_date"] != "")
+			{
+				$display = (object) array();
+				$display->stage_date = $_GET["stage_date"];
+			}
+			
+			// デフォルトで、ダブルチェックが必要である旨のチェックをつけておく
+			$display->stage_unofficial = true;
 		}
 	}
-	
+
+	// 前後の公演
+	$display->previousStage = getPreviousStage(
+			!empty($display->stage_id) ? $display->stage_id : 0, $display->stage_date);
+	$display->nextStage = getNextStage(
+			!empty($display->stage_id) ? $display->stage_id : 0, $display->stage_date);
+
 	// イベントリスト
 	$display->eventInfoList = getEvents();
+
 	// メンバーリスト
 	$display->memberInfoList = getMembers($display->stage_date);
 	return $display;

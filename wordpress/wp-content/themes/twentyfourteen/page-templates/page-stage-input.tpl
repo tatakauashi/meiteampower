@@ -8,6 +8,7 @@
 <meta name="robots" content="noindex">
 <?php wp_head(); ?>
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/page-message.css?<?php echo date('YmdHis'); ?>" />
+<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/page-stage.css?<?php echo date('YmdHis'); ?>" />
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/js/page-stage-input.js?<?php echo date('YmdHis'); ?>"></script>
 <?php
 // 変更画面か
@@ -74,7 +75,15 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 <?php if (isset($display->error_message)) { ?>
 	<p style="color:red; text-decoration: bold; text-align:center;"><?php printHtml($display->error_message) ?></p>
 <?php } ?>
-	<div class="formarea">
+	<div class="stage-navi">
+		<div><?php if (!empty($display->previousStage)) {
+			echo "<a href=\"" . get_permalink() . "?stage_id=" . $display->previousStage->stage_id . "\">" . "<< " . $display->previousStage->stage_date . " " . $display->previousStage->stage_time . "回目 " . $display->previousStage->program_name . "</a>";
+		} ?></div>
+		<div><?php if (!empty($display->nextStage)) {
+			echo "<a href=\"" . get_permalink() . "?stage_id=" . $display->nextStage->stage_id . "\">" . ">> " . $display->nextStage->stage_date . " " . $display->nextStage->stage_time . "回目 " . $display->nextStage->program_name . "</a>";
+		} ?></div>
+	</div>
+	<div class="formarea" style="clear:both;">
 		<p><label>
 			日付：<br>
 			<input type="date" id="stage_date" name="stage_date" value="<?php echo $display->stage_date ?>" <?php echo $inputReadOnly ?> required> <span id="stageDay"></span>
@@ -98,7 +107,7 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 			</select>
 		</label></p>
 		<p><label>シャッフル？ <input type="checkbox" name="stage_shuffled"<?php echo isset($display->stage_shuffled) && $display->stage_shuffled ? " checked" : "" ?>></label></p>
-		<p><label>公式情報不十分 <input type="checkbox" name="stage_unofficial" <?php echo isset($display->stage_unofficial) && $display->stage_unofficial ? " checked" : "" ?>></label></p>
+		<p><label>ダブルチェックが必要？ <input type="checkbox" name="stage_unofficial" <?php echo isset($display->stage_unofficial) && $display->stage_unofficial ? " checked" : "" ?>></label></p>
 		<p>
 		<label>公演名：<br>
 			<select id="stage_program" name="stage_program" required>
@@ -120,7 +129,7 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 		</p>
 
 		<p><label>出演メンバー：<?php isset($display->memberNameList) ? printHtml("（" . count($display->memberNameList) . "名）") : "" ?><br>
-		<textarea name="stage_members" rows="4"><?php printHtml(isset($display->memberNameList) ? implode("・", $display->memberNameList)
+		<textarea name="stage_members" rows="6"><?php printHtml(isset($display->memberNameList) ? implode("・", $display->memberNameList)
 			: (isset($display->stage_member) ? $display->stage_member : "")) ?></textarea>
 		</label></p>
 		
@@ -128,7 +137,7 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 		<?php if (isset($display->linkStringList)) { foreach ($display->linkStringList as $linkString) { ?>
 			<a href="<?php printHtml($linkString) ?>" target="_blank"><?php printHtml($linkString) ?></a><br>
 		<?php } } ?>
-		<textarea name="stage_links" rows="2"><?php printHtml(isset($display->linkStringList) ? implode("\n", $display->linkStringList)
+		<textarea name="stage_links" rows="4"><?php printHtml(isset($display->linkStringList) ? implode("\n", $display->linkStringList)
 			: (isset($display->stage_links) ? $display->stage_links : "")) ?></textarea>
 		</label></p>
 
