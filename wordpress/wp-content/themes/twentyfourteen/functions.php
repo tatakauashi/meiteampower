@@ -606,7 +606,18 @@ function category_display_one_articles( $wp_query ) {
         
         // 選対のみ
         if (!is_user_logged_in()) {
-            $wp_query->set( 'tag__not_in', array( 20, 21 ) );
+//         	if (is_single() && hasTagSlug('sentaionly')) {
+//         		$wp_query->set_404();
+//         	}
+        	
+        	// タグ直接指定対応。「みつかりません」ではなく 404 を表示するため。
+        	if ($wp_query->query_vars['tag'] == 'sentaionly') {
+        		$wp_query->query_vars['tag'] = 'safjklsadjfklsjafks';
+        		$wp_query->query_vars['tag_slug__in'] = array( 'safjklsadjfklsjafks' );
+        	}
+
+        	// 選対のみの記事を検索結果から除外する対応
+        	$wp_query->set( 'tag__not_in', array( 20, 21 ) );
         }
     }
 }
@@ -616,10 +627,9 @@ function for_single_article( $wp_query )
 {
     if (!is_admin())
     {
-    	if (is_single() && !is_user_logged_in() && hasTagSlug('sentaionly'))
+    	if (is_single() && !is_user_logged_in() && hasAnySlug($wp_query, array( 'sentaionly' ) ) )
     	{
-//     		include_once("404.php");
-//     		exit;
+    		$wp_query->set_404();
     	}
     }
     
@@ -643,6 +653,7 @@ function img_caption_shortcode_custom( $attr, $content = null ) {
 }
 add_shortcode('caption', 'img_caption_shortcode_custom');
 
+// すでにロードされている記事に対して、その記事に指定したタグスラッグが紐づいているか調べる。
 function hasTagSlug($tagSlug)
 {
 	$posttags = get_the_tags();
@@ -654,6 +665,37 @@ function hasTagSlug($tagSlug)
 		endif;
 	endforeach; endif;
 	return $result;
+}
+
+// 記事IDを指定して、その記事に引数のカテゴリ・タグのスラッグが１件でも紐づいているか調べる。
+function hasAnySlug($wp_query, $slugs)
+{
+	if (!isset($wp_query->query['p']) || $wp_query->query['p'] <= 0 || $slugs == null || count($slugs) <= 0) {
+		return false;
+	}
+	$post_id = $wp_query->query['p'];
+
+	global $wpdb;
+	$query = 
+		  " SELECT 'x' "
+		. " FROM wp_term_relationships rel "
+		. " JOIN wp_term_taxonomy tx ON (tx.term_taxonomy_id = rel.term_taxonomy_id) "
+		. " JOIN wp_terms tm ON (tm.term_id = tx.term_id) "
+		. " WHERE rel.object_id = %d AND tm.slug IN ( 'NOT_EXITS' ";
+	$param = array();
+	$param[] = $post_id;
+	if ($slugs) : foreach($slugs as $slug) :
+		$query .= ",%s";
+		$param[] = $slug;
+	endforeach; endif;
+	$query .= ") ";
+	$query = $wpdb->prepare($query, $param);
+	$result = $wpdb->get_results($query);
+	if ($result != null && count($result) > 0)
+	{
+		return true;
+	}
+	return false;
 }
 
 function my_login_redirect($url, $request, $user)

@@ -2,8 +2,6 @@
 /*
 Template Name: message-list
 */
-?>
-<?php
 namespace MEIMEI;
 	session_start();
 

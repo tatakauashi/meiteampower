@@ -2,8 +2,6 @@
 /*
 Template Name: message-thanks
 */
-?>
-<?php
 namespace MEIMEI;
 	session_start();
 
