@@ -21,7 +21,7 @@ loadXML("ja");
 <html>
 <head>
 <meta charset="utf-8">
-<title>SKE48酒井萌衣 生誕メッセージ代筆フォーム | SKE48酒井萌衣応援サイト めいちむぱわー</title>
+<title>SKE48酒井萌衣応援サイト めいちむぱわー</title>
 <meta name="viewport" content="width=device-width">
 <meta name="robots" content="noindex">
 <?php wp_head(); ?>
@@ -30,8 +30,8 @@ loadXML("ja");
 <script>
 </script>
 </head>
-<body class="ja">
-<p class="thumbnail"><?php the_post_thumbnail(); ?></p>
+<body class="ja"><?php /*
+<p class="thumbnail"><?php the_post_thumbnail(); ?></p>*/ ?>
 <header class="entry-header"><h2 id="headerTitle" class="entry-title"><span class="orange nowrap">SKE48酒井萌衣応援サイト</span> <span class="yellow nowrap">めいちむぱわー</span></h2>
 </header><!-- .entry-header -->
 <article class="main">
@@ -42,7 +42,6 @@ loadXML("ja");
 ページが見つかりませんでした。<br>
 URLをご確認いただくか、こちらよりどうぞ。
 <dl style="margin-left: 8px;">
-<?php /*<dd>生誕メッセージ代筆フォームは <a href="/message" class="nowrap">こちら</a></dd>*/ ?>
 <dd>めいちむぱわーは <a href="/" class="nowrap">こちら</a></dd>
 <dd>酒井萌衣オフィシャルプロフィールは <a href="http://spn.ske48.co.jp/profile/index.php?id=sakai_mei" class="nowrap">こちら</a></dd>
 </dl>
@@ -51,7 +50,6 @@ URLをご確認いただくか、こちらよりどうぞ。
 Requested page is not found.<br>
 Check your request or choose the links.
 <dl style="margin-left: 8px;">
-<?php /*<dd>Birthday message to Mei SAKAI is <a href="/message" class="nowrap">here.</a></dd>*/ ?>
 <dd>Mei SAKAI&apos;s supporting site &apos;Meiteam Power&apos; is <a href="/" class="nowrap">here.</a></dd>
 <dd>Official profile is <a href="http://spn.ske48.co.jp/profile/index.php?id=sakai_mei" class="nowrap">here.</a></dd>
 </dl>

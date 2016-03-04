@@ -598,30 +598,30 @@ function closeCaptionSkip( $attr, $content = null ) {
 }
 add_shortcode("close_caption_skip", "closeCaptionSkip");
 
-function category_display_one_articles( $wp_query ) {
-    if (!is_admin()) { //管理画面以外で
-        if ( $wp_query->is_main_query() && $wp_query->is_category('17') ) { // メインのクエリーでカテゴリーIDが17(perform)の時
-            $wp_query->set( 'posts_per_page', 1 ); // 表示件数は1件
-        }
+// function category_display_one_articles( $wp_query ) {
+//     if (!is_admin()) { //管理画面以外で
+//         if ( $wp_query->is_main_query() && $wp_query->is_category('17') ) { // メインのクエリーでカテゴリーIDが17(perform)の時
+//             $wp_query->set( 'posts_per_page', 1 ); // 表示件数は1件
+//         }
         
-        // 選対のみ
-        if (!is_user_logged_in()) {
-//         	if (is_single() && hasTagSlug('sentaionly')) {
-//         		$wp_query->set_404();
-//         	}
+//         // 選対のみ
+//         if (!is_user_logged_in()) {
+// //         	if (is_single() && hasTagSlug('sentaionly')) {
+// //         		$wp_query->set_404();
+// //         	}
         	
-        	// タグ直接指定対応。「みつかりません」ではなく 404 を表示するため。
-        	if ($wp_query->query_vars['tag'] == 'sentaionly') {
-        		$wp_query->query_vars['tag'] = 'safjklsadjfklsjafks';
-        		$wp_query->query_vars['tag_slug__in'] = array( 'safjklsadjfklsjafks' );
-        	}
+//         	// タグ直接指定対応。「みつかりません」ではなく 404 を表示するため。
+//         	if ($wp_query->query_vars['tag'] == 'sentaionly') {
+//         		$wp_query->query_vars['tag'] = 'safjklsadjfklsjafks';
+//         		$wp_query->query_vars['tag_slug__in'] = array( 'safjklsadjfklsjafks' );
+//         	}
 
-        	// 選対のみの記事を検索結果から除外する対応
-        	$wp_query->set( 'tag__not_in', array( 20, 21 ) );
-        }
-    }
-}
-add_action( 'pre_get_posts', 'category_display_one_articles' );
+//         	// 選対のみの記事を検索結果から除外する対応
+//         	$wp_query->set( 'tag__not_in', array( 20, 21 ) );
+//         }
+//     }
+// }
+// add_action( 'pre_get_posts', 'category_display_one_articles' );
 
 function for_single_article( $wp_query )
 {
@@ -710,3 +710,114 @@ function my_login_redirect($url, $request, $user)
 	return $url;
 }
 add_filter('login_redirect', 'my_login_redirect', 10, 3);
+
+// function add_realestate_type() {
+// 	$args = array(
+// 		'label' => 'めいちむ選挙対策ボード',
+// 		'labels' => array(
+// 			'singular_name' => 'めいちむ選挙対策ボード',
+// 			'add_new_item' => '投稿する',
+// 			'add_new' => '投稿する',
+// 			'new_item' => '新規投稿',
+// 			'edit_item' => '投稿を編集',
+// 			'view_item' => '投稿を表示',
+// 			'not_found' => '投稿は見つかりませんでした',
+// 			'not_found_in_trash' => 'ゴミ箱に投稿はありません。',
+// 			'search_items' => '投稿を検索',
+// 		),
+// 		'public' => true,
+// 		'show_ui' => true,
+// 		'query_var' => true,
+// 		'capability_type' => 'post',
+// 		'hierarchical' => true,
+// 		'menu_position' => 5,
+// 		'supports' => array('title','editor','author','thumbnail',
+// 			'excerpt','comments','custom-fields')
+// 	);
+// 	register_post_type('MeiteamBoard', $args);
+// }
+// add_realestate_type();
+add_action( 'init', 'register_cpt_senkyoboard' );
+
+function register_cpt_senkyoboard() {
+
+	$labels = array(
+					'name' => __( 'めいちむ選対ボード', 'senkyoboard' ),
+					'singular_name' => __( 'めいちむ選対ボード', 'senkyoboard' ),
+					'add_new' => __( '新規投稿', 'senkyoboard' ),
+					'add_new_item' => __( '新しく投稿します', 'senkyoboard' ),
+					'edit_item' => __( '投稿を編集', 'senkyoboard' ),
+					'new_item' => __( '新しい投稿', 'senkyoboard' ),
+					'view_item' => __( 'ボードを見る', 'senkyoboard' ),
+					'search_items' => __( 'ボードを検索', 'senkyoboard' ),
+					'not_found' => __( '投稿が見つかりません', 'senkyoboard' ),
+					'not_found_in_trash' => __( 'ゴミ箱に投稿はありません', 'senkyoboard' ),
+					'parent_item_colon' => __( '親の投稿', 'senkyoboard' ),
+					'menu_name' => __( '選対ボード', 'senkyoboard' ),
+	);
+
+	$args = array(
+					'labels' => $labels,
+					'hierarchical' => false,
+					'description' => '酒井萌衣さんの選挙対策チーム内部の情報共有・相談のボードです。選対メンバーのみ閲覧・投稿ができます。',
+					'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'comments', 'revisions' ),
+					'taxonomies' => array( 'category', 'post_tag' ),
+					'public' => false,
+					'show_ui' => true,//false,
+					'menu_position' => 5,
+					'show_in_nav_menus' => true,
+					'publicly_queryable' => true,
+					'exclude_from_search' => true,
+					'has_archive' => true,
+					'query_var' => true,
+					'can_export' => true,
+					'rewrite' => true,
+					'capability_type' => 'post'
+	);
+
+	register_post_type( 'senkyoboard', $args );
+
+	
+	
+	
+	$labels = array(
+					'name' => __( 'plural', 'posttypekey' ),
+					'singular_name' => __( 'singular', 'posttypekey' ),
+					'add_new' => __( 'Add New Labelだよ', 'posttypekey' ),
+					'add_new_item' => __( 'Add New Item Labelだよ', 'posttypekey' ),
+					'edit_item' => __( 'Edit Item Labelだよ', 'posttypekey' ),
+					'new_item' => __( 'New Item Labelだよ', 'posttypekey' ),
+					'view_item' => __( 'View Item Labelだよ', 'posttypekey' ),
+					'search_items' => __( 'Search Items Labelだよ', 'posttypekey' ),
+					'not_found' => __( 'Not Found Labelだよ', 'posttypekey' ),
+					'not_found_in_trash' => __( 'Not Found In Trash Labelだよ', 'posttypekey' ),
+					'parent_item_colon' => __( 'Parent Text Labelだよ', 'posttypekey' ),
+					'menu_name' => __( 'Menu Textだよ', 'posttypekey' ),
+	);
+	
+	$args = array(
+					'labels' => $labels,
+					'hierarchical' => false,
+					'description' => 'DescriptionDescriptionDescriptionDescriptionDescription',
+					'supports' => array( 'editor', 'author', 'thumbnail', 'comments', 'revisions' ),
+					'taxonomies' => array( 'category', 'post_tag' ),
+					'public' => false,
+					'show_ui' => true,
+					'show_in_menu' => true,
+					'menu_position' => 10,
+					'show_in_nav_menus' => true,
+					'publicly_queryable' => true,
+					'exclude_from_search' => true,
+					'has_archive' => true,
+					'query_var' => true,
+					'can_export' => true,
+					'rewrite' => true,
+					'capability_type' => 'post'
+	);
+	
+	register_post_type( 'posttypekey', $args );
+}
+
+// // サムネイルの登録を可能にする。
+// add_theme_support( 'post-thumbnails', array( 'senkyoboard' ) );
+// set_post_thumbnail_size( 150, 150, true );
