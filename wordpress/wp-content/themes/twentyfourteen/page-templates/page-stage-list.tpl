@@ -61,7 +61,7 @@
 		<p><label><input type="submit" name="stage_period" value=" 検 索 "></label></p>
 
 		<p>表示公演数：<?php echo count($rows) ?><br>
-			<table>
+			<table style="margin-bottom:0;">
 				<tr>
 					<th>日付</th>
 					<th>公演名</th>
@@ -72,11 +72,12 @@
 				<tr>
 					<td><a href="/stage?stage_id=<?php echo $stage->stage_id ?>"><?php echo $stage->stage_date ?> (<?php echo $stage->stage_time ?>)</a></td>
 					<td><?php echo $stage->program_name ?></td>
-					<td><?php echo $stage->team_name . ($stage->is_shuffled ? "（シャッフル）" : "") ?>
+					<td><?php echo $stage->team_name . ($stage->is_shuffled ? "(シ)" : "") ?></td>
 					<td><?php echo $stage->CNT ?> 名</td>
 				</tr>
 				<?php } ?>
 			</table>
+			(シ)：シャッフル公演
 		</p>
 	</div>
 <footer>

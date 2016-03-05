@@ -127,3 +127,12 @@ values (40, 100, '2016-03-01', '9999-12-31', NOW(), 'tatakauashi', NULL);
 update Belonging set to_date = '2016-02-29' where belonging_id = 160;
 INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
 values (45, 100, '2016-03-01', '9999-12-31', NOW(), 'tatakauashi', NULL);
+
+-- 2016年3月5日 23:44:16 佐江ちゃん、ゆかりちゃんが卒業
+update Belonging set to_date = '2016-03-31' where belonging_id = 96;
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+values (14, 100, '2016-04-01', '9999-12-31', NOW(), 'tatakauashi', NULL);
+
+update Belonging set to_date = '2016-03-31' where belonging_id = 140;
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+values (36, 100, '2016-04-01', '9999-12-31', NOW(), 'tatakauashi', NULL);
