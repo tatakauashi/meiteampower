@@ -6,6 +6,7 @@
 <title>SKE48公演登録フォーム</title>
 <meta name="viewport" content="width=device-width">
 <meta name="robots" content="noindex">
+<?php /* wp_enqueue_script("jquery-effects-core"); */ ?>
 <?php wp_head(); ?>
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/page-message.css?<?php echo date('YmdHis'); ?>" />
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/page-stage.css?<?php echo date('YmdHis'); ?>" />
@@ -141,8 +142,9 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 			: (isset($display->stage_links) ? $display->stage_links : "")) ?></textarea>
 		</label></p>
 
+		<p>
 		<div id="stage_event_register_header">イベント登録 開く</div>
-		<div id="stage_event_register_area">
+		<div id="stage_event_register_area" style="display:<?php echo (!empty($display->stage_events) ? 'block' : 'none'); ?>;">
 
 			<div>
 				<p><label>イベント1<br>
@@ -202,13 +204,14 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 			</div>
 
 		</div>
+		</p>
 		
-		<div>
+		<p>
 			<p><label>
 				コメント・メモ：<br>
 				<textarea name="stage_comment" rows="4"><?php printHtml(isset($display->stage_comment) && count($display->stage_comment) > 0 ? $display->stage_comment[0]->comment : "") ?></textarea>
 			</label></p>
-		</div>
+		</p>
 		
 		<p><label>
 			<input type="submit" name="stage_register" value=" 登 録 " style="width:70%; display:block; margin:auto;">
