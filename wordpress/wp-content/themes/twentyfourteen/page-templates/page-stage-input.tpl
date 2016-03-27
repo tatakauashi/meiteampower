@@ -125,6 +125,7 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 				<option value="10"<?php echo isset($display->stage_program) && $display->stage_program == 10 ? " selected" : "" ?>>僕の太陽</option>
 				<option value="11"<?php echo isset($display->stage_program) && $display->stage_program == 11 ? " selected" : "" ?>>アップカミング</option>
 				<option value="12"<?php echo isset($display->stage_program) && $display->stage_program == 12 ? " selected" : "" ?>>ミッドナイト</option>
+				<option value="51"<?php echo isset($display->stage_program) && $display->stage_program == 51 ? " selected" : "" ?>>特別公演</option>
 			</select>
 		</label>
 		</p>

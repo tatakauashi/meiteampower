@@ -15,6 +15,12 @@ if (!is_user_logged_in()) {
 	exit;
 }
 
+// 日付指定方法
+$stageDateSpecify = "1";
+if (isset($_POST["stage_date_specify"]) && $_POST["stage_date_specify"] != "")
+{
+	$stageDateSpecify = $_POST["stage_date_specify"];
+}
 $stageDateFrom = "";
 //if (isset($_POST["stage_date_from"]) && $_POST["stage_date_from"] != "")
 if (isset($_POST["stage_date_from"]))
@@ -27,6 +33,18 @@ $stageDateTo = "";
 if (isset($_POST["stage_date_to"]) && $_POST["stage_date_to"] != "")
 {
 	$stageDateTo = $_POST["stage_date_to"];
+}
+$stageDateOneDay = "";
+if (isset($_POST["stage_date_one_day"]) && $_POST["stage_date_one_day"] != "")
+{
+	$stageDateOneDay = $_POST["stage_date_one_day"];
+}
+
+// 出演回数指定
+$stageCount = 0;
+if (isset($_POST["stage_count"]) && $_POST["stage_count"] != "" && ctype_digit($_POST["stage_count"]) && intval($_POST["stage_count"]) > 0)
+{
+	$stageCount = intval($_POST["stage_count"]);
 }
 
 $rows = array();
@@ -75,20 +93,36 @@ if (!isset($_POST["stage_register"])) {
 	$param = array();
 	$needPreparedStatement = 0;
 //	if (isset($_POST["stage_date_from"]) && $_POST["stage_date_from"] != "")
-	if ($stageDateFrom != "")
+	// 期間、または日付指定で絞込み
+	if ($stageDateSpecify == "1")
 	{
-		$query .= $condition . " s.stage_date >= %s ";
-		$condition = " AND ";
-		$param[] = $stageDateFrom;
-		$needPreparedStatement = 1;
+		if ($stageDateFrom != "")
+		{
+			$query .= $condition . " s.stage_date >= %s ";
+			$condition = " AND ";
+			$param[] = $stageDateFrom;
+			$needPreparedStatement = 1;
+		}
+		if (isset($_POST["stage_date_to"]) && $_POST["stage_date_to"] != "")
+		{
+			$query .= $condition .  " s.stage_date <= %s ";
+			$condition = " AND ";
+			$param[] = $_POST["stage_date_to"];
+			$needPreparedStatement = 1;
+		}
 	}
-	if (isset($_POST["stage_date_to"]) && $_POST["stage_date_to"] != "")
+	else if ($stageDateSpecify == "2")
 	{
-		$query .= $condition .  " s.stage_date <= %s ";
-		$condition = " AND ";
-		$param[] = $_POST["stage_date_to"];
-		$needPreparedStatement = 1;
+		if ($stageDateOneDay != "")
+		{
+			$query .= $condition . " s.stage_date = %s ";
+			$condition = " AND ";
+			$param[] = $stageDateOneDay;
+			$needPreparedStatement = 1;
+		}
 	}
+
+	// 公演名で絞込み
 	$programIds = array();
 	if (isset($_POST["stage_programs"]) && count($_POST["stage_programs"]) > 0 && $_POST["stage_programs"][0] != 0)
 	{
@@ -103,6 +137,13 @@ if (!isset($_POST["stage_register"])) {
 	
 	$query .= $condition . " s.delete_time IS NULL ";
 	$query .= " ORDER BY s.stage_id ";
+
+	// 出演回数指定
+	if ($stageCount > 0)
+	{
+		$query .= " limit %d ";
+		$param[] = $stageCount;
+	}
 
 	if ($needPreparedStatement != 0)
 	{

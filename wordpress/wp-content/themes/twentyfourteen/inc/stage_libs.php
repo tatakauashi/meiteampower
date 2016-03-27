@@ -358,6 +358,7 @@ function getMemberIds($stageMembersString)
 	$stageMembersString = str_replace("高寺", "髙寺", $stageMembersString);
 	$stageMembersString = str_replace("高塚", "髙塚", $stageMembersString);
 	$stageMembersString = str_replace("高畑", "髙畑", $stageMembersString);
+	$stageMembersString = str_replace("木崎ゆりあ", "木﨑ゆりあ", $stageMembersString);
 	$stageMembersString = str_replace("、", "・", $stageMembersString);
 	$stageMembers = explode("・", $stageMembersString);
 	$stageMembers = array_map('trim', $stageMembers);

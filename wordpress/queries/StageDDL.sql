@@ -66,6 +66,7 @@ CREATE TABLE Stage_Member (
 	stage_id int not null,
 	member_id int not null,
 	revision int not null default 1,
+	is_partial bit not null default false,
 	regist_time datetime not null,			-- 登録日時
 	regist_user varchar(20) NOT NULL,
 	delete_time datetime,					-- 削除日時

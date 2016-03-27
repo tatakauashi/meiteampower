@@ -136,3 +136,99 @@ values (14, 100, '2016-04-01', '9999-12-31', NOW(), 'tatakauashi', NULL);
 update Belonging set to_date = '2016-03-31' where belonging_id = 140;
 INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
 values (36, 100, '2016-04-01', '9999-12-31', NOW(), 'tatakauashi', NULL);
+
+
+-- 2016年3月12日 11:32:11 東日本大震災復興支援公演
+INSERT INTO Program VALUES
+(51, '特別公演', now(), 'tatakauashi', null)
+;
+INSERT INTO Event (event_id, event_name, regist_time, regist_user)
+VALUES
+(71, '東日本大震災復興支援公演', NOW(), 'tatakauashi')
+;
+INSERT INTO Event (event_id, event_name, regist_time, regist_user)
+VALUES
+(50, '元旦公演', NOW(), 'tatakauashi')
+;
+
+
+-- Stage_Memberテーブルに「一部出演か」のフラグを追加する
+ALTER TABLE Stage_Member
+  ADD COLUMN is_partial bit not null default false AFTER revision;
+
+
+-- 半田礼音さん追加
+INSERT INTO Member (member_id, member_name, sort_order, regist_time, regist_user, delete_time)
+VALUES
+ (10069, '半田礼音', 'はんたあやねGGOGGG', NOW(), 'tatakauashi', NULL)
+;
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+VALUES 
+ (10069, 4,   '2009-11-14', '2010-05-08', NOW(), 'tatakauashi', NULL)
+,(10069, 100, '2010-05-09', '9999-12-31', NOW(), 'tatakauashi', NULL)
+;
+
+-- 伊藤茜さん追加
+INSERT INTO Member (member_id, member_name, sort_order, regist_time, regist_user, delete_time)
+VALUES
+ (10070, '伊藤茜', 'いとうあかねGGGGGG', NOW(), 'tatakauashi', NULL)
+;
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+VALUES 
+ (10070, 4,   '2013-01-01', '2013-05-09', NOW(), 'tatakauashi', NULL)
+,(10070, 100, '2013-05-10', '9999-12-31', NOW(), 'tatakauashi', NULL)
+;
+
+-- 宮脇理子さん追加
+INSERT INTO Member (member_id, member_name, sort_order, regist_time, regist_user, delete_time)
+VALUES
+ (10071, '宮脇理子', 'みやわきりこGGGGGG', NOW(), 'tatakauashi', NULL)
+;
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+VALUES 
+ (10071, 4,   '2013-01-01', '2013-03-11', NOW(), 'tatakauashi', NULL)
+,(10071, 100, '2013-03-12', '9999-12-31', NOW(), 'tatakauashi', NULL)
+;
+
+-- 旧劇場最終公演での昇格発表より、所属日を修正。昇格発表の翌日から昇格先チーム所属に。
+update Belonging set from_date='2012-08-30' WHERE from_date='2012-08-29' and member_id = 10016;
+update Belonging set from_date='2012-08-30' WHERE from_date='2012-08-29' and member_id = 10025;
+update Belonging set from_date='2012-08-30' WHERE from_date='2012-08-29' and member_id = 10003;
+update Belonging set from_date='2012-08-30' WHERE from_date='2012-08-29' and member_id = 22;
+update Belonging set from_date='2012-08-30' WHERE from_date='2012-08-29' and member_id = 47;
+update Belonging set from_date='2012-08-30' WHERE from_date='2012-08-29' and member_id = 34;
+
+update Belonging set to_date='2012-08-29' WHERE to_date='2012-08-28' and member_id = 10016;
+update Belonging set to_date='2012-08-29' WHERE to_date='2012-08-28' and member_id = 10025;
+update Belonging set to_date='2012-08-29' WHERE to_date='2012-08-28' and member_id = 10003;
+update Belonging set to_date='2012-08-29' WHERE to_date='2012-08-28' and member_id = 22;
+update Belonging set to_date='2012-08-29' WHERE to_date='2012-08-28' and member_id = 47;
+update Belonging set to_date='2012-08-29' WHERE to_date='2012-08-28' and member_id = 34;
+
+-- 2016年3月27日14:43:44 山田菜々さん追加
+INSERT INTO Member (member_id, member_name, sort_order, regist_time, regist_user, delete_time)
+VALUES
+ (10072, '山田菜々', 'やまたななGGOGG', NOW(), 'tatakauashi', NULL)
+;
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+VALUES 
+ (10072, 2,   '2014-04-30', '2015-03-30', NOW(), 'tatakauashi', NULL)
+,(10072, 100, '2015-04-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+;
+
+-- 2016年3月27日15:04:37 「元旦公演」を「元日公演」に修正
+update Event set event_name = '元日公演' where event_id = 50;
+
+-- 2016年3月27日 15:09:21 ゆりあちゃんの苗字を変更
+UPDATE Member SET member_name = '木﨑ゆりあ' WHERE member_id = 10014;
+
+-- 2016年3月27日14:43:44 野々山茉琳さん追加
+INSERT INTO Member (member_id, member_name, sort_order, regist_time, regist_user, delete_time)
+VALUES
+ (10073, '野々山茉琳', 'ののやままりんGGGGGGG', NOW(), 'tatakauashi', NULL)
+;
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+VALUES 
+ (10073, 4,   '2010-12-06', '2011-02-23', NOW(), 'tatakauashi', NULL)
+,(10073, 100, '2011-02-24', '9999-12-31', NOW(), 'tatakauashi', NULL)
+;

@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex">
 <?php wp_head(); ?>
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/page-message.css?<?php echo date('YmdHis'); ?>" />
-<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/js/page-message.js?<?php echo date('YmdHis'); ?>"></script>
+<script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/js/page-stage-list.js?<?php echo date('YmdHis'); ?>"></script>
 <script>
 </script>
 </head>
@@ -22,9 +22,14 @@
 	<div class="formarea">
 		<p>
 			<dl>
-			<dt>期間：</dt>
-			<dd><label>FROM:<br><input type="date" name="stage_date_from" value="<?php echo $stageDateFrom ?>"></label></dd>
-			<dd><label>To:<br><input type="date" name="stage_date_to" value="<?php echo $stageDateTo ?>"></label></dd>
+			<dt><label><input type="radio" id="stage_date_specify_duration" name="stage_date_specify" value="1" <?php echo isset($stageDateSpecify) && ($stageDateSpecify != "1") ? "" : "checked" ?>>期間：</label></dt>
+			<dd><label>FROM:<br><input type="date" id="stage_date_from" name="stage_date_from" value="<?php echo $stageDateFrom ?>"></label></dd>
+			<dd><label>To:<br><input type="date" id="stage_date_to" name="stage_date_to" value="<?php echo $stageDateTo ?>"></label></dd>
+			</dl>
+
+			<dl>
+			<dt><label><input type="radio" id="stage_date_specify_one_day" name="stage_date_specify" value="2" <?php echo isset($stageDateSpecify) && ($stageDateSpecify == "2") ? "checked" : "" ?>>日付指定：</label></dt>
+			<dd><label><input type="date" id="stage_date_one_day" name="stage_date_one_day" value="<?php echo $stageDateOneDay ?>"></label></dd>
 			</dl>
 		</p>
 
@@ -57,6 +62,13 @@
 <?php } ?>
 			</select>
 		</label></p>
+
+		<p>
+			<dl>
+			<dt>出演回数指定：</label></dt>
+			<dd><label><input type="number" name="stage_count" value="<?php echo $stageCount ?>"></label></dd>
+			</dl>
+		</p>
 
 		<p><label><input type="submit" name="stage_period" value=" 検 索 "></label></p>
 
