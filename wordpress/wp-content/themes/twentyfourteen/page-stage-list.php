@@ -47,6 +47,13 @@ if (isset($_POST["stage_count"]) && $_POST["stage_count"] != "" && ctype_digit($
 	$stageCount = intval($_POST["stage_count"]);
 }
 
+// レギュラー・シャッフル
+$stageRegularShuffle = 0;
+if (isset($_POST["stage_regular_shuffle"]) && ($_POST["stage_regular_shuffle"] == "0" || $_POST["stage_regular_shuffle"] == "1" || $_POST["stage_regular_shuffle"] == "2"))
+{
+	$stageRegularShuffle = intval($_POST["stage_regular_shuffle"]);
+}
+
 $rows = array();
 if (!isset($_POST["stage_register"])) {
 	// 一覧取得
@@ -134,7 +141,21 @@ if (!isset($_POST["stage_register"])) {
 		// 画面表示用の公演名のリスト
 		$programNameList = getProgramNameList($programIds);
 	}
-	
+
+	// レギュラー公演かシャッフル公演で絞込み
+	if ($stageRegularShuffle != 0) {
+		if ($stageRegularShuffle == 1) {
+			// レギュラー公演のみ
+			$query .= $condition .  " s.is_shuffled = b'0' ";
+			$condition = " AND ";
+		}
+		else {
+			// シャッフル公演のみ
+			$query .= $condition .  " s.is_shuffled = b'1' ";
+			$condition = " AND ";
+		}
+	}
+
 	$query .= $condition . " s.delete_time IS NULL ";
 	$query .= " ORDER BY s.stage_id ";
 
