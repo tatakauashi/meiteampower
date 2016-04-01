@@ -65,3 +65,46 @@ select s1.* FROM Stage_View s1 WHERE s1.stage_id < 2016011101 order by stage_id 
 UNION
 select s2.* FROM Stage_View s2 WHERE s2.stage_id > 2016011101 order by stage_id limit 1
 ;
+
+
+-- 2016年3月31日23:00:32 シャッフル公演調査。メインチームとそれ以外のメンバーをわけで出力する。
+SELECT  t.stage_id
+      , t.is_shuffled
+--      , count(*) as all
+--      , count(case when t.regular = 0 then 1 end) AS regular
+      , count(t.regular_name) AS regular
+--      , count(case when t.regular = 1 then 1 end) as helper
+      , count(t.helper_name) AS helper
+--      , count(case when t.regular = 2 then 1 end) as trainee
+      , count(t.trainee_name) AS trainee
+      , group_concat(t.regular_name order by t.order1, t.order2 separator '・') as regular_name
+      , group_concat(t.helper_name order by t.order1, t.order2 separator '・') as helper_name
+      , group_concat(t.trainee_name order by t.order1, t.order2 separator '・') as trainee_name
+from (
+select
+    s.stage_id
+  , s.stage_date
+--  , s.stage_time
+  , s.program_id
+  , s.is_shuffled + '' AS is_shuffled
+--  , s.revision
+--  , m.member_id
+  , m.member_name
+  , m.team_id
+  , m.order1
+  , m.order2
+--  , CASE WHEN (s.program_id = 4 AND m.team_id = 1) OR (s.program_id = 2 AND m.team_id = 3) OR (s.program_id = 6 AND m.team_id = 2) THEN 0
+--         WHEN m.team_id = 4 THEN 2 ELSE 1 END AS regular
+--  , CASE WHEN regular = 0 THEN m.member_name ELSE null END AS regular_name
+  , CASE WHEN (s.program_id = 4 AND m.team_id = 1) OR (s.program_id = 2 AND m.team_id = 3) OR (s.program_id = 6 AND m.team_id = 2) THEN m.member_name ELSE null END AS regular_name
+--  , CASE WHEN regular = 1 THEN m.member_name ELSE null END AS helper_name
+  , CASE WHEN m.team_id != 4 AND ((s.program_id = 4 AND m.team_id != 1) OR (s.program_id = 2 AND m.team_id != 3) OR (s.program_id = 6 AND m.team_id != 2)) THEN m.member_name ELSE null END AS helper_name
+--  , CASE WHEN regular = 2 THEN m.member_name ELSE null END AS trainee_name
+  , CASE WHEN m.team_id = 4 THEN m.member_name ELSE null END AS trainee_name
+from Stage_View s
+JOIN Stage_Member sm ON (sm.stage_id = s.stage_id AND sm.revision = s.revision)
+JOIN Member_View m ON (m.member_id = sm.member_id and m.from_date <= s.stage_date AND m.to_date >= s.stage_date)
+) t
+WHERE t.stage_date BETWEEN '2015-01-01' AND '2016-12-31' and t.program_id in (2, 4, 6)
+group by t.stage_id, t.is_shuffled
+;

@@ -446,7 +446,7 @@ function getEventNameList($eventIdList)
 function getMembers($specificialDate = null)
 {
 	if ($specificialDate == null) {
-		$specificialDate = getSqlNowDateTime();
+		$specificialDate = getSqlNowDate();
 	}
 	global $wpdb;
 	$wpdb->show_errors();
@@ -522,7 +522,8 @@ function getCurrentRevision($stageId)
 function getSqlNowDateTime()
 {
 // 	return date("Y-m-d H:i:s TO", time() + 9 * 60 * 60);
-	return date("Y-m-d H:i:s", time() + 9 * 60 * 60);
+ 	return date("Y-m-d H:i:s", time() + 9 * 60 * 60);
+//	return date("Y-m-d 00:00:00", time() + 9 * 60 * 60);
 }
 
 // SQL用に現在日（日本時間）を取得する。

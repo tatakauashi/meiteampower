@@ -54,6 +54,13 @@ if (isset($_POST["stage_regular_shuffle"]) && ($_POST["stage_regular_shuffle"] =
 	$stageRegularShuffle = intval($_POST["stage_regular_shuffle"]);
 }
 
+// 特別公演を含むか
+$inclSpecialStage = 1;
+if (isset($_POST["stage_include_special"]) && ($_POST["stage_include_special"] == "0" || $_POST["stage_include_special"] == "1" || $_POST["stage_include_special"] == "2"))
+{
+	$inclSpecialStage = intval($_POST["stage_include_special"]);
+}
+
 $rows = array();
 if (!isset($_POST["stage_register"])) {
 	// 一覧取得
@@ -152,6 +159,20 @@ if (!isset($_POST["stage_register"])) {
 		else {
 			// シャッフル公演のみ
 			$query .= $condition .  " s.is_shuffled = b'1' ";
+			$condition = " AND ";
+		}
+	}
+
+	// 特別公演を含むかどうかのフィルタ
+	if ($inclSpecialStage != 0) {
+		if ($inclSpecialStage == 1) {
+			// 特別公演を含まない
+			$query .= $condition .  " s.program_id != 51 ";
+			$condition = " AND ";
+		}
+		else {
+			// 特別公演のみ
+			$query .= $condition .  " s.program_id = 51 ";
 			$condition = " AND ";
 		}
 	}

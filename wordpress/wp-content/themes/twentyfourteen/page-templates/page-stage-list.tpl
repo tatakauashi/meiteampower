@@ -52,12 +52,19 @@
 <?php } ?>
 			</select>
 		</label></p>
-		
+
 		<p>
 			シャッフル公演を含む？<br>
 			<label><input type="radio" name="stage_regular_shuffle" value="0" <?php echo isset($stageRegularShuffle) && ($stageRegularShuffle == 0) ? "checked" : "" ?>> すべて</label>　
 			<label><input type="radio" name="stage_regular_shuffle" value="1" <?php echo isset($stageRegularShuffle) && ($stageRegularShuffle == 1) ? "checked" : "" ?>> 含まない</label>　
 			<label><input type="radio" name="stage_regular_shuffle" value="2" <?php echo isset($stageRegularShuffle) && ($stageRegularShuffle == 2) ? "checked" : "" ?>> シャッフルのみ</label>
+		</p>
+
+		<p>
+			特別公演を含む？<br>
+			<label><input type="radio" name="stage_include_special" value="0" <?php echo isset($inclSpecialStage) && ($inclSpecialStage == 0) ? "checked" : "" ?>> すべて</label>　
+			<label><input type="radio" name="stage_include_special" value="1" <?php echo isset($inclSpecialStage) && ($inclSpecialStage == 1) ? "checked" : "" ?>> 含まない</label>　
+			<label><input type="radio" name="stage_include_special" value="2" <?php echo isset($inclSpecialStage) && ($inclSpecialStage == 2) ? "checked" : "" ?>> 特別公演のみ</label>
 		</p>
 
 		<p><label>
