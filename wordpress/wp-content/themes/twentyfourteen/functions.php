@@ -604,6 +604,8 @@ function category_display_one_articles( $wp_query ) {
     if (!is_admin()) { //管理画面以外で
         if ( $wp_query->is_main_query() && $wp_query->is_category('17') ) { // メインのクエリーでカテゴリーIDが17(perform)の時
             $wp_query->set( 'posts_per_page', 1 ); // 表示件数は1件
+        } else if ( $wp_query->is_main_query() && $wp_query->is_category('4') ) { // メインのクエリーでカテゴリーIDが4(応援ポスター)の時
+            $wp_query->set( 'posts_per_page', 20 ); // 表示件数は20件
         }
         
         // 選対のみ
