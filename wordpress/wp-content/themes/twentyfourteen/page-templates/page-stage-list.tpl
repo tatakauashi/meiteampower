@@ -67,6 +67,10 @@
 			<label><input type="radio" name="stage_include_special" value="2" <?php echo isset($inclSpecialStage) && ($inclSpecialStage == 2) ? "checked" : "" ?>> 特別公演のみ</label>
 		</p>
 
+		<p>
+			<label><input type="checkbox" name="stage_not_double_checked_only" value="1" <?php echo isset($notDoubleCheckedOnly) && $notDoubleCheckedOnly ? "checked" : "" ?>> ダブルチェックが必要な公演のみ</label>
+		</p>
+
 		<p><label>
 			イベント：<?php echo isset($eventNameList) && count($eventNameList) > 0 ? implode("・", $eventNameList) : "" ?><br>
 			<select name="stage_events[]" multiple>

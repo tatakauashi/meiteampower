@@ -61,6 +61,13 @@ if (isset($_POST["stage_include_special"]) && ($_POST["stage_include_special"] =
 	$inclSpecialStage = intval($_POST["stage_include_special"]);
 }
 
+// ダブルチェックが必要なもののみ
+$notDoubleCheckedOnly = false;
+if (isset($_POST["stage_not_double_checked_only"]) && $_POST["stage_not_double_checked_only"] == "1")
+{
+	$notDoubleCheckedOnly = intval($_POST["stage_not_double_checked_only"]) == 1;
+}
+
 $rows = array();
 if (!isset($_POST["stage_register"])) {
 	// 一覧取得
@@ -177,6 +184,12 @@ if (!isset($_POST["stage_register"])) {
 		}
 	}
 
+	// ダブルチェックが必要な公演のみか
+	if ($notDoubleCheckedOnly) {
+		$query .= $condition .  " s.is_unofficial = b'1' ";
+		$condition = " AND ";
+	}
+	
 	$query .= $condition . " s.delete_time IS NULL ";
 	$query .= " ORDER BY s.stage_id ";
 
