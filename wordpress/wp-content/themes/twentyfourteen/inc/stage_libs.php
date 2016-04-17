@@ -4,17 +4,25 @@ namespace MEIMEI;
 
 $htmlEncode = "UTF-8";
 
-function getStageDetail($stageId)
+function getStageDetail($stageId, $specifiedRevision)
 {
 	// 公演情報取得
 	global $wpdb;
 	$wpdb->show_errors();
-	$revision = getCurrentRevision($stageId);
+
+	$revision = 0;
+	if (isset($specifiedRevision) && $specifiedRevision > 0) {
+		$revision = $specifiedRevision;
+	}
+	else {
+		$revision = getCurrentRevision($stageId);
+	}
 	if ($revision <= 0) {
 		return null;
 	}
 
 	$query =  " SELECT s.stage_id "
+				. " , s.revision "
 				. " , s.program_id "
 				. " , s.team_id "
 				. " , s.stage_date "
@@ -114,14 +122,21 @@ function registerStage($registerInfo)
 	foreach ($registerInfo->stage_time as $stageTime)
 	{
 		$stageId = getStageId($registerInfo->stage_date, $stageTime);
-		$revision = getCurrentRevision($stageId) + 1;
+
+		// リビジョンチェック
+		$currentRevision = getCurrentRevision($stageId);
+		if ($currentRevision != $registerInfo->revision) {
+			$results[] = false;
+			break;
+		}
+		$newRevision = $currentRevision + 1;
 
 		// 公演の登録
 		$results[] = $wpdb->insert(
 			'Stage',
 			array(
 				'stage_id' => $stageId,
-				'revision' => $revision,
+				'revision' => $newRevision,
 				'program_id' => $registerInfo->stage_program,
 				'team_id' => $registerInfo->stage_team,
 				'stage_date' => $registerInfo->stage_date,
@@ -153,7 +168,7 @@ function registerStage($registerInfo)
 				array(
 					'stage_id' => $stageId,
 					'member_id' => $memberId,
-					'revision' => $revision,
+					'revision' => $newRevision,
 					'regist_time' => $nowDateTime,
 					'regist_user' => $userLogin
 				),
@@ -174,7 +189,7 @@ function registerStage($registerInfo)
 				'Related_Link',
 				array(
 					'stage_id' => $stageId,
-					'revision' => $revision,
+					'revision' => $newRevision,
 					'link' => $link,
 					'regist_time' => $nowDateTime,
 					'regist_user' => $userLogin
@@ -203,7 +218,7 @@ function registerStage($registerInfo)
 					array(
 						'stage_id' => $stageId,
 						'event_id' => $eventId,
-						'revision' => $revision,
+						'revision' => $newRevision,
 						'regist_time' => $nowDateTime,
 						'regist_user' => $userLogin
 					),
@@ -228,7 +243,7 @@ function registerStage($registerInfo)
 						'stage_id' => $stageId,
 						'event_id' => $eventId,
 						'member_id' => $memberId,
-						'revision' => $revision,
+						'revision' => $newRevision,
 						'regist_time' => $nowDateTime,
 						'regist_user' => $userLogin
 					),
@@ -251,7 +266,7 @@ function registerStage($registerInfo)
 				array(
 					'stage_id' => $stageId,
 					'branch_no' => 1,
-					'revision' => $revision,
+					'revision' => $newRevision,
 					'comment' => $registerInfo->stage_comment,
 					'regist_time' => $nowDateTime,
 					'regist_user' => $userLogin

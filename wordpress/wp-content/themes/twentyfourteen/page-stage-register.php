@@ -30,7 +30,7 @@ function main()
 	//$stageDate = null;
 	if (isset($received->stage_register)) {
 		// 登録ボタン押下
-		
+
 		if (!$received->stage_register) {
 			// 入力チェックの結果NG。画面再表示
 			$display = $received;
@@ -43,8 +43,9 @@ function main()
 				return;
 			} else {
 				$display = $received;
-				include_once('page-templates/page-stage-input.tpl');
-				return;
+				$display->error_message = "現在、登録ができません。";
+// 				include_once('page-templates/page-stage-input.tpl');
+// 				return;
 			}
 		}
 	}
@@ -55,12 +56,19 @@ function main()
 			$display->is_update = true;	// 変更画面であることを示す
 			$stageId = $_GET["stage_id"];
 		
+			// リビジョンを指定する
+			$revision = -1;
+			if (isset($_GET['revision']) && is_numeric($_GET['revision'])) {
+				$revision = intval($_GET['revision']);
+			}
+
 			// 公演情報取得
-			$stageInfos = getStageDetail($stageId);
+			$stageInfos = getStageDetail($stageId, $revision);
 			if ($stageInfos != null && count($stageInfos) > 0)
 			{
 				$stageInfo = $stageInfos[0];
 				$display->stage_id = $stageInfo->stage_id;
+				$display->revision = $stageInfo->revision;
 
 				// 公演日
 				$display->stage_date = $stageInfo->stage_date;
@@ -114,30 +122,37 @@ function main()
 				}
 				
 				// コメント
-				$display->stage_comment = array();
-				foreach ($stageInfo->commentList as $comment) {
-					if ($comment != "") {
-						$display->stage_comment[] = $comment;
-					}
+// 				$display->stage_comment = array();
+				$display->stage_comment = "";
+// 				foreach ($stageInfo->commentList as $comment) {
+// 					if ($comment != "") {
+// 						$display->stage_comment[] = $comment;
+// 					}
+// 				}
+				if (count($stageInfo->commentList) > 0) {
+					$display->stage_comment = $stageInfo->commentList[0]->comment;
 				}
 			}
 			else {
 				$display->stage_date = getSqlNowDate();
+				$display->revision = 0;
 				$display->error_message = "該当する公演が見つかりません。";
 			}
 		}
 		else {
 			// 入力画面初期表示
 			
-			// 日付が指定されていた場合は、その日の編集を行う
-			if (isset($_GET["stage_date"]) && $_GET["stage_date"] != "")
-			{
-				$display = (object) array();
-				$display->stage_date = $_GET["stage_date"];
-			}
+// 			// 日付が指定されていた場合は、その日の編集を行う
+// 			if (isset($_GET["stage_date"]) && $_GET["stage_date"] != "")
+// 			{
+// 				$display = (object) array();
+// 				$display->stage_date = $_GET["stage_date"];
+// 			}
 			
 			// デフォルトで、ダブルチェックが必要である旨のチェックをつけておく
 			$display->stage_unofficial = true;
+			$display->revision = 0;
+			$display->stage_time[] = 1;
 		}
 	}
 
@@ -162,6 +177,7 @@ function getReceivedParameter()
 		// 登録ボタン押下時
 
 		$obj = (object) array(
+			'revision' => isset($_POST["revision"]) && is_numeric($_POST["revision"]) ? intval($_POST["revision"]) : 0,
 			'stage_date' => isset($_POST["stage_date"]) && preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST["stage_date"]) == 1 ? $_POST["stage_date"] : "",
 			'stage_time' => isset($_POST["stage_time"]) && is_array($_POST["stage_time"])
 				? $_POST["stage_time"] : array(),
@@ -215,7 +231,9 @@ function getReceivedParameter()
 		
 		// チェック
 		$obj->stage_register = false;
-		if ($obj->stage_date == "") {
+		if (!isset($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'meimei_stage_register')) {
+			$obj->error_message = "正しい入力を行ってください。";
+		} else if ($obj->stage_date == "") {
 			$obj->error_message = "公演日を指定してください。";
 		} else if (count($obj->stage_time) <= 0) {
 			$obj->error_message = "公演日の回数を指定してください。";
@@ -229,12 +247,14 @@ function getReceivedParameter()
 			
 		}
 
-	} else if (isset($_GET["stage_id"]) && preg_match('/^\d{10}$/', $_GET["stage_id"])) {
+	}
+	else if (isset($_GET["stage_id"]) && preg_match('/^\d{10}$/', $_GET["stage_id"])) {
 		// 公演情報表示
 		$obj = (object) array('stage_id' => $_GET["stage_id"]);
-	} else if (isset($_POST["stage_date"]) && preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST["stage_date"]) == 1) {
+		// 	} else if (isset($_POST["stage_date"]) && preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST["stage_date"]) == 1) {
+	} else if (isset($_REQUEST["stage_date"]) && preg_match('/^\d{4}-\d{2}-\d{2}$/', $_REQUEST["stage_date"]) == 1) {
 		// 登録画面を、日付を設定した状態で初期化
-		$obj = (object) array('stage_date' => $_POST["stage_date"]);
+		$obj = (object) array('stage_date' => $_REQUEST["stage_date"]);
 	}
 	return $obj;
 }

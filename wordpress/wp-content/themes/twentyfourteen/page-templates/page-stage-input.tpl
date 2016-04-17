@@ -72,6 +72,8 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 <header class="entry-header"><h2 id="headerTitle" class="entry-title"><a href="<?php echo get_permalink() ?><?php printHtml((!isset($display->stage_date) || $display->stage_date == "") ? "" : "?stage_date=$display->stage_date") ?>"><?php the_title(); ?></a></h2>
 </header><!-- .entry-header -->
 	<form name="form1" action="<?php echo get_permalink(); ?>" method="post">
+		<?php wp_nonce_field('meimei_stage_register'); ?>
+		<input type="hidden" name="revision" value="<?php printHtml($display->revision) ?>">
 <article class="main">
 <?php if (isset($display->error_message)) { ?>
 	<p style="color:red; text-decoration: bold; text-align:center;"><?php printHtml($display->error_message) ?></p>
@@ -140,7 +142,7 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 			<a href="<?php printHtml($linkString) ?>" target="_blank"><?php printHtml($linkString) ?></a><br>
 		<?php } } ?>
 		<textarea name="stage_links" rows="4"><?php printHtml(isset($display->linkStringList) ? implode("\n", $display->linkStringList)
-			: (isset($display->stage_links) ? $display->stage_links : "")) ?></textarea>
+			: (isset($display->stage_links) ? (is_array($display->stage_links) ? implode($display->stage_links) : $display->stage_links) : "")) ?></textarea>
 		</label></p>
 
 		<p>
@@ -210,7 +212,7 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 		<p>
 			<p><label>
 				コメント・メモ：<br>
-				<textarea name="stage_comment" rows="4"><?php printHtml(isset($display->stage_comment) && count($display->stage_comment) > 0 ? $display->stage_comment[0]->comment : "") ?></textarea>
+				<textarea name="stage_comment" rows="4"><?php printHtml(isset($display->stage_comment) ? $display->stage_comment : "") ?></textarea>
 			</label></p>
 		</p>
 		
