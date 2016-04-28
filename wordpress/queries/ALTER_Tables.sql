@@ -232,3 +232,8 @@ VALUES
  (10073, 4,   '2010-12-06', '2011-02-23', NOW(), 'tatakauashi', NULL)
 ,(10073, 100, '2011-02-24', '9999-12-31', NOW(), 'tatakauashi', NULL)
 ;
+
+-- イベントに「その他特別公演」を追加
+INSERT INTO Event VALUES
+(6, 'その他出張公演', now(), 'tatakauashi', null)
+;

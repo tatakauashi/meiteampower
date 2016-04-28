@@ -108,3 +108,14 @@ JOIN Member_View m ON (m.member_id = sm.member_id and m.from_date <= s.stage_dat
 WHERE t.stage_date BETWEEN '2015-01-01' AND '2016-12-31' and t.program_id in (2, 4, 6)
 group by t.stage_id, t.is_shuffled
 ;
+
+REM SQLをコマンドプロンプトから実行する
+>mysql -uroot -p db_wordpress < C:\Users\kie\git\wordpress\queries\Ins.sql > C:\Users\kie\git\wordpress\dump\stage_list_20160428.sql
+
+-- 公演リスト
+select s.stage_date, s.stage_time, p.program_name, group_concat(rl.link SEPARATOR '\t') as links
+from Stage_View s 
+JOIN Program p ON (s.program_id = p.program_id) 
+JOIN Stage_Member sm ON (s.stage_id = sm.stage_id AND s.revision = sm.revision AND sm.member_id = 48)
+JOIN Related_Link rl ON (s.stage_id = rl.stage_id AND s.revision = rl.revision AND rl.link NOT LIKE 'http://music.geocities.jp/%')
+group by s.stage_date, s.stage_time, p.program_name;
