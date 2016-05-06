@@ -16,7 +16,7 @@ jQuery(function($) {
                 p.val(1);
                 break;
         };
-    });//堅忍
+    });
 
     $("#stage_event_register_header").click(function() {
         $("#stage_event_register_area").toggle('hold', '', 500);
@@ -39,4 +39,8 @@ jQuery(function($) {
         changeStageDate();
     });
     changeStageDate();
+
+    if ($('#revision').val() == '0') {
+    	$('#stage_team').change();
+    }
 });

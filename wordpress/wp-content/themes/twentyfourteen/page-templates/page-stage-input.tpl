@@ -73,7 +73,7 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 </header><!-- .entry-header -->
 	<form name="form1" action="<?php echo get_permalink(); ?>" method="post">
 		<?php wp_nonce_field('meimei_stage_register'); ?>
-		<input type="hidden" name="revision" value="<?php printHtml($display->revision) ?>">
+		<input type="hidden" id="revision" name="revision" value="<?php printHtml($display->revision) ?>">
 <article class="main">
 <?php if (isset($display->error_message)) { ?>
 	<p style="color:red; text-decoration: bold; text-align:center;"><?php printHtml($display->error_message) ?></p>
