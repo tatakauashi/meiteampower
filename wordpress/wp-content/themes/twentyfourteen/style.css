@@ -4532,3 +4532,36 @@ body.single .go_detail_for_hidden {
 .clear_balloon{
   clear: both;
 }
+
+/* toggle 定義 */
+.toggle-header {
+    display: table;
+    margin-bottom: 0.5em;
+    padding: 0.5em 1em 0.5em 0.5em;
+    /*border-left: 2px solid rgba(255, 222, 0, 0.5);
+    border-right: 2px solid rgba(255, 222, 0, 0.5);*/
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+/*    background-color: rgba(255, 222, 0, 0.5);*/
+    text-align: center;
+}
+.toggle-header span {
+    display: table-cell;
+    color: #000066;
+    text-decoration: underline;
+}
+.toggle-header .icon {
+    color: goldenRod;
+    text-decoration: none;
+    font-family: Meiriyo;
+    font-weight: bold;
+    /*padding-right: 0.5em;*/
+}
+.toggle-body {
+    display: none;
+    width: 90%;
+    overflow: hidden;
+    padding: 0.5em;
+    border: 2px dotted lightgray;
+}

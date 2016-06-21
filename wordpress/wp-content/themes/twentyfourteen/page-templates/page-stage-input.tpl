@@ -127,6 +127,8 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 				<option value="10"<?php echo isset($display->stage_program) && $display->stage_program == 10 ? " selected" : "" ?>>僕の太陽</option>
 				<option value="11"<?php echo isset($display->stage_program) && $display->stage_program == 11 ? " selected" : "" ?>>アップカミング</option>
 				<option value="12"<?php echo isset($display->stage_program) && $display->stage_program == 12 ? " selected" : "" ?>>ミッドナイト</option>
+				<option value="13"<?php echo isset($display->stage_program) && $display->stage_program == 13 ? " selected" : "" ?>>0start</option>
+				<option value="14"<?php echo isset($display->stage_program) && $display->stage_program == 14 ? " selected" : "" ?>>重ねた足跡</option>
 				<option value="51"<?php echo isset($display->stage_program) && $display->stage_program == 51 ? " selected" : "" ?>>特別公演</option>
 			</select>
 		</label>
@@ -146,8 +148,8 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 		</label></p>
 
 		<p>
-		<div id="stage_event_register_header">イベント登録 開く</div>
-		<div id="stage_event_register_area" style="display:<?php echo (!empty($display->stage_events) ? 'block' : 'none'); ?>;">
+		<div class="toggle-header" label="stage_event_register_area" _id="stage_event_register_header"><span>イベント登録</span></div>
+		<div class="toggle-body" id="stage_event_register_area" style="display:<?php echo (!empty($display->stage_events) ? 'block' : 'none'); ?>;">
 
 			<div>
 				<p><label>イベント1<br>

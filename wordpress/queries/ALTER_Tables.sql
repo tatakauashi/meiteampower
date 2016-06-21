@@ -237,3 +237,20 @@ VALUES
 INSERT INTO Event VALUES
 (6, 'その他出張公演', now(), 'tatakauashi', null)
 ;
+
+
+-- 加藤るみさん卒業
+update Belonging set to_date = '2016-05-31' where member_id = 41 AND to_date = '9999-12-31';
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+values (41, 100, '2016-06-01', '9999-12-31', NOW(), 'tatakauashi', NULL);
+
+
+-- 2016年6月4日 21:20:04 TeamKⅡ新公演「0start」公演
+INSERT INTO Program VALUES
+(13, '0start', now(), 'tatakauashi', null)
+;
+
+-- 2016年6月21日 22:29:16 TeamS新公演「重ねた足跡」公演
+INSERT INTO Program VALUES
+(14, '重ねた足跡', now(), 'tatakauashi', null)
+;

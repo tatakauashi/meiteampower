@@ -4,10 +4,10 @@ jQuery(function($) {
         var teamId = parseInt($(this).val());
         switch (teamId) {
             case 1:
-                p.val(4);
+                p.val(14);
                 break;
             case 2:
-                p.val(6);
+                p.val(13);
                 break;
             case 3:
                 p.val(2);
