@@ -1,0 +1,62 @@
+@CHARSET "UTF-8";
+
+.normal {
+	font-size: 100%;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+h1, h2, h3, h4 {
+	margin-top: 1em;
+}
+
+dt {
+	margin-bottom: 0.5em;
+}
+
+.banner {
+	max-width: 100%;
+	display: block;
+	margin: auto;
+	margin-bottom: 1em;
+}
+
+section.detail section {
+	max-width: 85%;
+	margin: auto;
+}
+
+.blinking {
+	-webkit-animation:blink 0.8s ease-in-out infinite alternate;
+	-moz-animation:blink 0.8s ease-in-out infinite alternate;
+	animation:blink 0.8s ease-in-out infinite alternate;
+}
+@-webkit-keyframes blink{
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
+@-moz-keyframes blink{
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
+@keyframes blink{
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
+
+
+.red {
+	color: red;
+}
+.pink {
+	color: hotpink;
+}
+
+/* === スマートフォン用の設定 ===*/
+@media only screen and (max-width: 599px) {
+	body {
+		font-size: smaller;
+	}
+}
