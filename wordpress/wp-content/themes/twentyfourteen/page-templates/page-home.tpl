@@ -12,14 +12,30 @@
 <script>
 </script>
 </head>
-<body><?php /* ?>
+<body id="page-top"><?php /* ?>
 <p class="thumbnail"><?php the_post_thumbnail(); ?></p>
 <header class="entry-header"><h2 id="headerTitle" class="entry-title"><?php the_title(); ?></h2>
 </header><!-- .entry-header --><?php */ ?>
-<article id="kobetsu20th">
+<section class="news-titles">
+	<section>
+		<h3><span class="nowrap">SKE48『金の愛、銀の愛』</span>
+<span class="nowrap">個別握手会</span></h3>
+		4次販売開始！
+		<a href="#kobetsu20th">くわしく！</a>
+	</section>
+	<section>
+		<h3>雑誌</h3>
+		<dl>
+			<dt>7/28(木)</dt>
+			<dd><a href="#onebiggirls34th">BIG ONE GIRLS No.34</a></dd>
+		</dl>
+	</section>
+</section>
 <section class="detail">
-<div style="text-align: center;"><img style="max-width: 100%;" src="http://sakaimei-senkyo.net/wp-content/uploads/2016/07/CnJiXfkUMAAhy24.jpg" alt="SKE48 20th Single 個別握手会『金の愛、銀の愛』"></div>
+<article id="kobetsu20th">
 <section>
+<div style="text-align: center;"><img style="max-width: 100%;" src="http://sakaimei-senkyo.net/wp-content/uploads/2016/07/CnJiXfkUMAAhy24.jpg" alt="SKE48 20th Single 個別握手会『金の愛、銀の愛』"></div>
+<section class="content">
 <div>
 <h3><span class="nowrap">SKE48『金の愛、銀の愛』</span>
 <span class="nowrap">個別握手会</span></h3>
@@ -27,12 +43,12 @@
 <a href="http://shop.mu-mo.net/st/special/ske48_1606/" target="_blank"><img class="banner" src="http://sakaimei-senkyo.net/wp-content/uploads/2016/07/header_x9yp.jpg" alt="SKE48 20thシングル「金の愛、銀の愛」劇場盤販売サイト"></a>
 </div>
 <?php if ($sellingFinished) { ?>
-<p>3次抽選まで終了しました。<br>4次以降の抽選の情報が入り次第、お知らせいたします。</p>
+<p>4次抽選まで終了しました。<br>以降の抽選の情報が入り次第、お知らせいたします。</p>
 <?php } else { ?>
-<h2>まもなく締め切りです！！</h2>
+<?php /* ?><h2>まもなく締め切りです！！</h2><?php */ ?>
 <dl>
-<dt>★3次抽選:7/14(木)15:00～<span class="blinking red">7/15(金)12:00(正午)</span></dt>
-<dd>結果通知:7/15(金)13:00～順次メールにて</dd>
+<dt>★4次抽選:7/22(金)15:00～<span class="">7/25(月)12:00(正午)</span></dt>
+<dd>結果通知:7/25(月)13:00～順次メールにて</dd>
 </dl>
 <?php } ?>
 <dl lining="8em">
@@ -54,9 +70,18 @@
 </section>
 </section>
 </article>
+<article id="onebiggirls34th">
+<section>
+<section class="content">
+<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">【BOG告知】<br>『BIG ONE GIRLS No.34』は10日間後の7月28日発売。<br><br>表紙＆巻頭は、SKE48（北川綾巴ちゃん、江籠裕奈ちゃん、高柳明音ちゃん、古畑奈和ちゃん、熊崎晴香ちゃん、須田亜香里ちゃん）です！！ <a href="https://t.co/Q4b0qHGmjN">pic.twitter.com/Q4b0qHGmjN</a></p>&mdash; BIG ONE GIRLS編集部 (@BIGONEGIRLS) <a href="https://twitter.com/BIGONEGIRLS/status/755031527201779712">2016年7月18日</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+</section>
+</section>
+</article>
+</section>
 <footer>
 <small>
-<span class="nowrap">SKE48酒井萌衣応援サイト めいちむぱわー</span> 
+<span class="nowrap separate">SKE48酒井萌衣応援サイト めいちむぱわー</span> 
 <span class="nowrap">リニューアル中です！</span>
 </small>
 </footer>

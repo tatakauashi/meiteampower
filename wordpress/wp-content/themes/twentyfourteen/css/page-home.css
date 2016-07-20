@@ -31,7 +31,25 @@ dt {
 	margin-bottom: 1em;
 }
 
-section.detail section {
+section.news-titles section h1,
+section.news-titles section h2,
+section.news-titles section h3,
+section.news-titles section h4 {
+	margin-top: 0em;
+}
+
+section.news-titles {
+	margin-bottom: 1em;
+}
+
+section.news-titles section {
+	border-radius: 6px;
+	padding: 10px;
+	margin: 0 8px 8px 0;
+	background-color: lightyellow;
+}
+
+section.detail section.content {
 	max-width: 85%;
 	margin: auto;
 }
@@ -94,9 +112,40 @@ footer {
 	color: hotpink;
 }
 
+/* === PC用の設定 ===*/
+@media only screen and (min-width: 600px) {
+	section.news-titles {
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	section.news-titles section {
+		float: left;
+		width: 45%;
+	}
+	
+	section.detail {
+		clear: both;
+	}
+}
+
 /* === スマートフォン用の設定 ===*/
 @media only screen and (max-width: 599px) {
 	body {
 		font-size: 80%;
+	}
+	
+	section.news-titles section {
+		width: 85%;
+		margin: 0 auto 0.5em auto;
+	}
+
+	section.news-titles section:nth-of-type(even) {
+		background-color: pink;
+	}
+
+	section.news-titles section dl {
+		margin-bottom: 0.5em;
 	}
 }
