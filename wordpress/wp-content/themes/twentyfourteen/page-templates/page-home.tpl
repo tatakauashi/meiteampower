@@ -24,6 +24,18 @@
 		<a href="#kobetsu20th">くわしく！</a>
 	</section>
 	<section>
+		<h3>「サヨナラが美しくて」MV（special edit ver.）が公開</h3>
+		酒井萌衣さんも参加しています、４期生が歌う、 <span class="nowrap">柴田阿弥さん</span>の卒業ソングです。<br>
+		8/17発売20th.Single「金の愛、銀の愛」のTYPE-Cに収録されます。<br>
+		<a href="http://www.youtube.com/watch?v=vyd3EVKUM_M" target="_blank">YouTube</a>
+	</section>
+	<section>
+		<h3><span class="nowrap">劇場公演400回まで</span> <span class="nowrap">あと１回！</span></h3>
+		7/21(木)のチームE『手をつなぎながら』公演で、 <span class="nowrap">酒井萌衣</span>さんは<strong>399回目</strong>の公演でした。<br>
+		いよいよ、次の出演で<strong class="blinking pink">400回</strong>を迎えます！<br>
+		酒井萌衣さんの公演の履歴は<a href="https://docs.google.com/spreadsheets/d/1_LVaQ3tf2JXhd8dYr3qF3bD0aKPc480966-ehnY2XGA/edit?usp=sharing" target="_blank">こちら</a>です。
+	</section>
+	<section>
 		<h3>雑誌</h3>
 		<dl>
 			<dt>7/28(木)</dt>

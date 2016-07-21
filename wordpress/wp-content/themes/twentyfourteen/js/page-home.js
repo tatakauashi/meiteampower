@@ -13,12 +13,13 @@ jQuery(function($) {
     	});
     });
 
-    $('section.detail section.content').append("<div style='text-align: right;'><a href='#page-top'>トップに戻る</a></div>");
+    // トップへ移動するボタン
+    $('section.detail section.content').after("<div class='go-top'><span>↑ページトップへ</span></div>");
 
     // スクロールのオフセット値
     var offsetY = -10;
     // スクロールにかかる時間
-    var time = 500;
+    var moveAnimateTime = 500;
 
     // ページ内リンクのみを取得
     $('a[href^=#]').click(function() {
@@ -28,10 +29,15 @@ jQuery(function($) {
       // 移動先となる値
       var targetY = target.offset().top+offsetY;
       // スクロールアニメーション
-      $('html,body').animate({scrollTop: targetY}, time, 'swing');
+      $('html,body').animate({scrollTop: targetY}, moveAnimateTime, 'swing');
       // ハッシュ書き換えとく
       window.history.pushState(null, null, this.hash);
       // デフォルトの処理はキャンセル
       return false;
+    });
+
+    // トップへ移動するボタン
+    $('.go-top').click(function() {
+    	$('html,body').animate({scrollTop: 0}, moveAnimateTime, 'swing');
     });
 });

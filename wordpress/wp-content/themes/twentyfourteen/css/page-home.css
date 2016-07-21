@@ -54,36 +54,30 @@ section.detail section.content {
 	margin: auto;
 }
 
+.go-top {
+	display: table;
+	margin: 0.5rem 5% 1rem auto;
+	padding: 0px;
+	width: 130px;
+	height: 2.5rem;
+	text-align: center;
+	background-color: FloralWhite;
+	box-shadow: 0px 0px 4px 0px Cornsilk;
+	border-radius: 0.5rem;
+	font-size: 0.8rem;
+	cursor: pointer;
+}
+
+.go-top span {
+	display: table-cell;
+	vertical-align: middle;
+}
+
 footer {
 	background-color: Gold;/*PeachPuff;*/
 	color: Snow;
 	text-align: center;
 	font-family: Meiryo,"メイリオ"
-}
-
-.inlinewidth8em {
-	display: inline-block;
-	width: 8em;
-}
-
-.inlinewidth6em {
-	display: inline-block;
-	width: 6em;
-}
-
-.inlinewidth5em {
-	display: inline-block;
-	width: 5em;
-}
-
-.inlinewidth45em {
-	display: inline-block;
-	width: 4.5em;
-}
-
-.inlinewidth4em {
-	display: inline-block;
-	width: 4em;
 }
 
 .blinking {
@@ -142,7 +136,7 @@ footer {
 	}
 
 	section.news-titles section:nth-of-type(even) {
-		background-color: pink;
+		background-color: MistyRose/*pink;*/
 	}
 
 	section.news-titles section dl {
