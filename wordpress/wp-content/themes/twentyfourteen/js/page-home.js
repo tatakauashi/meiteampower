@@ -13,8 +13,11 @@ jQuery(function($) {
     	});
     });
 
-    // トップへ移動するボタン
-    $('section.detail section.content').after("<div class='go-top'><span>↑ページトップへ</span></div>");
+    if (!navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+    	// iPod/iPhone/iPadでは上手く動作しないため、それ以外の場合にのみトップへ移動するボタンを配置する
+	    // トップへ移動するボタン
+	    $('section.detail section.content').append("<div class='go-top'><span>↑ページトップへ</span></div>");
+    }
 
     // スクロールのオフセット値
     var offsetY = -10;

@@ -12,10 +12,12 @@
 <script>
 </script>
 </head>
-<body id="page-top"><?php /* ?>
+<body><?php /* ?>
 <p class="thumbnail"><?php the_post_thumbnail(); ?></p>
 <header class="entry-header"><h2 id="headerTitle" class="entry-title"><?php the_title(); ?></h2>
 </header><!-- .entry-header --><?php */ ?>
+<header class="renewing"><span class="nowrap">SKE48酒井萌衣応援サイト めいちむぱわー</span> 
+<span class="nowrap">リニューアル中です！</span></header>
 <section class="news-titles">
 	<section>
 		<h3><span class="nowrap">SKE48『金の愛、銀の愛』</span>
@@ -24,22 +26,23 @@
 		<a href="#kobetsu20th">くわしく！</a>
 	</section>
 	<section>
+		<h3><span class="nowrap">劇場公演400回まで</span> <span class="nowrap">あと１回！</span></h3>
+		<span class="checkit">7/26(火)</span>のチームE『手をつなぎながら』公演で、 <span class="nowrap">酒井萌衣</span>さんは劇場公演<strong class="blinking pink larger">400回</strong>を迎えます！<br>
+		酒井萌衣さんの公演の履歴は<a href="https://docs.google.com/spreadsheets/d/1_LVaQ3tf2JXhd8dYr3qF3bD0aKPc480966-ehnY2XGA/edit?usp=sharing" target="_blank">こちら</a>です。
+	</section>
+	<section>
 		<h3>「サヨナラが美しくて」MV（special edit ver.）が公開</h3>
 		酒井萌衣さんも参加しています、４期生が歌う、 <span class="nowrap">柴田阿弥さん</span>の卒業ソングです。<br>
 		8/17発売20th.Single「金の愛、銀の愛」のTYPE-Cに収録されます。<br>
 		<a href="http://www.youtube.com/watch?v=vyd3EVKUM_M" target="_blank">YouTube</a>
 	</section>
 	<section>
-		<h3><span class="nowrap">劇場公演400回まで</span> <span class="nowrap">あと１回！</span></h3>
-		7/21(木)のチームE『手をつなぎながら』公演で、 <span class="nowrap">酒井萌衣</span>さんは<strong>399回目</strong>の公演でした。<br>
-		いよいよ、次の出演で<strong class="blinking pink">400回</strong>を迎えます！<br>
-		酒井萌衣さんの公演の履歴は<a href="https://docs.google.com/spreadsheets/d/1_LVaQ3tf2JXhd8dYr3qF3bD0aKPc480966-ehnY2XGA/edit?usp=sharing" target="_blank">こちら</a>です。
-	</section>
-	<section>
 		<h3>雑誌</h3>
 		<dl>
 			<dt>7/28(木)</dt>
-			<dd><a href="#onebiggirls34th">BIG ONE GIRLS No.34</a></dd>
+			<dd><a href="#bigonegirls34th">BIG ONE GIRLS No.34</a><br>
+			酒井萌衣さん、竹内彩姫さん、江籠裕奈さん、日高優月さんと
+			「総選挙リベンジ組」として掲載。</dd>
 		</dl>
 	</section>
 </section>
@@ -82,9 +85,10 @@
 </section>
 </section>
 </article>
-<article id="onebiggirls34th">
+<article id="bigonegirls34th">
 <section>
 <section class="content">
+<h3><span class="nowrap">BIG ONE GIRLS No.34</h3>
 <blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">【BOG告知】<br>『BIG ONE GIRLS No.34』は10日間後の7月28日発売。<br><br>表紙＆巻頭は、SKE48（北川綾巴ちゃん、江籠裕奈ちゃん、高柳明音ちゃん、古畑奈和ちゃん、熊崎晴香ちゃん、須田亜香里ちゃん）です！！ <a href="https://t.co/Q4b0qHGmjN">pic.twitter.com/Q4b0qHGmjN</a></p>&mdash; BIG ONE GIRLS編集部 (@BIGONEGIRLS) <a href="https://twitter.com/BIGONEGIRLS/status/755031527201779712">2016年7月18日</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 </section>
@@ -93,7 +97,7 @@
 </section>
 <footer>
 <small>
-<span class="nowrap separate">SKE48酒井萌衣応援サイト めいちむぱわー</span> 
+<span class="nowrap">SKE48酒井萌衣応援サイト めいちむぱわー</span> 
 <span class="nowrap">リニューアル中です！</span>
 </small>
 </footer>
