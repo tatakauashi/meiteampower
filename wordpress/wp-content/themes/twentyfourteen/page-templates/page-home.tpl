@@ -20,15 +20,18 @@
 <span class="nowrap">リニューアル中です！</span></header>
 <section class="news-titles">
 	<section>
-		<h3><span class="nowrap">SKE48『金の愛、銀の愛』</span>
-<span class="nowrap">個別握手会</span></h3>
-		4次販売開始！
+		<a href="http://shop.mu-mo.net/st/special/ske48_1606/" target="_blank"><img class="banner" src="/wp-content/uploads/2016/07/header_42qb.jpg" alt="SKE48 20thシングル「金の愛、銀の愛」劇場盤販売サイト"></a>
+<?php if ($sellingFinished) { ?>
+		4次販売は終了しました。
+<?php } else { ?>
+		4次販売中！<span class="red">7/25(月)12:00(正午)</span>まで！
+<?php } ?>
 		<a href="#kobetsu20th">くわしく！</a>
 	</section>
 	<section>
-		<h3><span class="nowrap">劇場公演400回まで</span> <span class="nowrap">あと１回！</span></h3>
-		<span class="checkit">7/26(火)</span>のチームE『手をつなぎながら』公演で、 <span class="nowrap">酒井萌衣</span>さんは劇場公演<strong class="blinking pink larger">400回</strong>を迎えます！<br>
-		酒井萌衣さんの公演の履歴は<a href="https://docs.google.com/spreadsheets/d/1_LVaQ3tf2JXhd8dYr3qF3bD0aKPc480966-ehnY2XGA/edit?usp=sharing" target="_blank">こちら</a>です。
+		<h3><span class="checkit">7/26(火)</span>で<span class="nowrap">劇場公演400回！</span></h3>
+		7/26(火)のチームE『手をつなぎながら』公演で、 <span class="nowrap">酒井萌衣</span>さんは劇場公演<strong class="blinking pink larger">400回</strong>を迎えます！<br>
+		公演履歴は<a href="https://docs.google.com/spreadsheets/d/1_LVaQ3tf2JXhd8dYr3qF3bD0aKPc480966-ehnY2XGA/edit?usp=sharing" target="_blank">こちら</a>です。
 	</section>
 	<section>
 		<h3>「サヨナラが美しくて」MV（special edit ver.）が公開</h3>
@@ -55,14 +58,14 @@
 <h3><span class="nowrap">SKE48『金の愛、銀の愛』</span>
 <span class="nowrap">個別握手会</span></h3>
 お申込みはこちらから！<br>
-<a href="http://shop.mu-mo.net/st/special/ske48_1606/" target="_blank"><img class="banner" src="http://sakaimei-senkyo.net/wp-content/uploads/2016/07/header_x9yp.jpg" alt="SKE48 20thシングル「金の愛、銀の愛」劇場盤販売サイト"></a>
+<a href="http://shop.mu-mo.net/st/special/ske48_1606/" target="_blank"><img class="banner" src="/wp-content/uploads/2016/07/header_42qb.jpg" alt="SKE48 20thシングル「金の愛、銀の愛」劇場盤販売サイト"></a>
 </div>
 <?php if ($sellingFinished) { ?>
 <p>4次抽選まで終了しました。<br>以降の抽選の情報が入り次第、お知らせいたします。</p>
 <?php } else { ?>
-<?php /* ?><h2>まもなく締め切りです！！</h2><?php */ ?>
+<h4>まもなく締め切りです！！</h4>
 <dl>
-<dt>★4次抽選:7/22(金)15:00～<span class="">7/25(月)12:00(正午)</span></dt>
+<dt>★4次抽選:7/22(金)15:00～<span class="blinking red">7/25(月)12:00(正午)</span></dt>
 <dd>結果通知:7/25(月)13:00～順次メールにて</dd>
 </dl>
 <?php } ?>
