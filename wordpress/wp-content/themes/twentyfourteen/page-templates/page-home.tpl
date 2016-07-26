@@ -29,15 +29,20 @@
 		<a href="#kobetsu20th">くわしく！</a>
 	</section>
 	<section>
-		<h3><span class="checkit">7/26(火)</span>で<span class="nowrap">劇場公演400回！</span></h3>
-		7/26(火)のチームE『手をつなぎながら』公演で、 <span class="nowrap">酒井萌衣</span>さんは劇場公演<strong class="blinking pink larger">400回</strong>を迎えます！<br>
+		<h3><span class="nowrap">劇場公演400回！</span></h3>
+		7/26(火)のチームE『手をつなぎながら』公演で、 <span class="nowrap">酒井萌衣</span>さんは劇場公演<strong class="blinking pink larger">400回</strong>を迎えました！<br>
+		おめでとうございます！！<br>
 		公演履歴は<a href="https://docs.google.com/spreadsheets/d/1_LVaQ3tf2JXhd8dYr3qF3bD0aKPc480966-ehnY2XGA/edit?usp=sharing" target="_blank">こちら</a>です。
 	</section>
 	<section>
-		<h3>「サヨナラが美しくて」MV（special edit ver.）が公開</h3>
-		酒井萌衣さんも参加しています、４期生が歌う、 <span class="nowrap">柴田阿弥さん</span>の卒業ソングです。<br>
-		8/17発売20th.Single「金の愛、銀の愛」のTYPE-Cに収録されます。<br>
-		<a href="http://www.youtube.com/watch?v=vyd3EVKUM_M" target="_blank">YouTube</a>
+		<h3>東海テレビ「まるナツ2016謎解きクイズで美浜海遊祭盛り上げますSP」</h3>
+		<dl>
+			<dt>7/25(月)</dt>
+			<dt>8/1(月)</dt>
+			<dt>8/8(月)</dt>
+			<dd>放送局／東海テレビ<br>
+			放送時間／24:50～</dd>
+		</dl>
 	</section>
 	<section>
 		<h3>雑誌</h3>
@@ -46,7 +51,17 @@
 			<dd><a href="#bigonegirls34th">BIG ONE GIRLS No.34</a><br>
 			酒井萌衣さん、竹内彩姫さん、江籠裕奈さん、日高優月さんと
 			「総選挙リベンジ組」として掲載。</dd>
+			<dt>7/29(金)</dt>
+			<dd>FLASHスペシャル グラビアBEST2016盛夏号 <a href="https://www.amazon.co.jp/FLASH%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AB-%E3%82%B0%E3%83%A9%E3%83%93%E3%82%A2BEST2016%E7%9B%9B%E5%A4%8F%E5%8F%B7-FLASH%E5%A2%97%E5%88%8A-%E5%85%89%E6%96%87%E7%A4%BE%E3%82%A8%E3%83%B3%E3%82%BF%E3%83%86%E3%82%A4%E3%83%B3%E3%83%A1%E3%83%B3%E3%83%88%E7%B7%A8%E9%9B%86%E9%83%A8/dp/B01G7I3XFW" target="_blank">(アマゾン)</a></dd>
+			<dt>7/30(土)</dt>
+			<dd>BUBKA <a href="https://www.amazon.co.jp/BUBKA-ブブカ-2016年09月号/dp/B01G7I3TLA/" target="_blank">(アマゾン)</a></dd>
 		</dl>
+	</section>
+	<section>
+		<h3>「サヨナラが美しくて」MV（special edit ver.）が公開</h3>
+		酒井萌衣さんも参加しています、４期生が歌う、 <span class="nowrap">柴田阿弥さん</span>の卒業ソングです。<br>
+		8/17発売20th.Single「金の愛、銀の愛」のTYPE-Cに収録されます。<br>
+		<a href="http://www.youtube.com/watch?v=vyd3EVKUM_M" target="_blank">YouTube</a>
 	</section>
 </section>
 <section class="detail">
