@@ -7,6 +7,8 @@
 <meta name="viewport" content="width=device-width">
 <?php include_once('common-meta.tpl'); ?>
 <?php wp_head(); ?>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/lightbox.js"></script>
+<link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/lightbox.css">
 <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/page-home.css?<?php echo date('YmdHis'); ?>" />
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri(); ?>/js/page-home.js?<?php echo date('YmdHis'); ?>"></script>
 <script>
@@ -28,6 +30,23 @@
 <?php } ?>
 		<a href="#kobetsu20th">くわしく！</a>
 	</section>
+	<section style="background-color: white;">
+		<h3>個別生写真発売中！</h3>
+		<ul class="photo">
+			<li>
+				<a href="/wp-content/uploads/2016/07/SK-126-1607-21574_p04_500_.jpg" data-lightbox="popup" data-title="New 7月度 ベースボール"><img src="/wp-content/uploads/2016/07/SK-126-1607-21574_p04_500_.jpg"></a><br>
+				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=43772&ske48" target="_blank"><span class="new-post">New</span> 7月度<br>ベースボール</a>
+			</li>
+			<li>
+				<a href="/wp-content/uploads/2016/07/SK-126-1607-20968_p01_500_.jpg" data-lightbox="popup" data-title="7月度 ドームストライプ"><img src="/wp-content/uploads/2016/07/SK-126-1607-20968_p01_500_.jpg"></a><br>
+				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=43451&ske48" target="_blank">7月度<br>ドームストライプ</a>
+			</li>
+			<li>
+				<a href="/wp-content/uploads/2016/07/SK-126-1607-20836_p02_500_.jpg" data-lightbox="popup" data-title="6月度 マリンスタイル"><img src="/wp-content/uploads/2016/07/SK-126-1607-20836_p02_500_.jpg"></a><br>
+				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=42974&ske48" target="_blank">6月度<br>マリンスタイル</a>
+			</li>
+		</ul>
+	</section>
 	<section>
 		<h3><span class="nowrap">劇場公演400回！</span></h3>
 		7/26(火)のチームE『手をつなぎながら』公演で、 <span class="nowrap">酒井萌衣</span>さんは劇場公演<strong class="blinking pink larger">400回</strong>を迎えました！<br>
@@ -37,9 +56,7 @@
 	<section>
 		<h3>東海テレビ「まるナツ2016謎解きクイズで美浜海遊祭盛り上げますSP」</h3>
 		<dl>
-			<dt>7/25(月)</dt>
-			<dt>8/1(月)</dt>
-			<dt>8/8(月)</dt>
+			<dt>7/25(月)　8/1(月)　8/8(月)</dt>
 			<dd>放送局／東海テレビ<br>
 			放送時間／24:50～</dd>
 		</dl>
@@ -52,9 +69,11 @@
 			酒井萌衣さん、竹内彩姫さん、江籠裕奈さん、日高優月さんと
 			「総選挙リベンジ組」として掲載。</dd>
 			<dt>7/29(金)</dt>
-			<dd>FLASHスペシャル グラビアBEST2016盛夏号 <a href="https://www.amazon.co.jp/FLASH%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AB-%E3%82%B0%E3%83%A9%E3%83%93%E3%82%A2BEST2016%E7%9B%9B%E5%A4%8F%E5%8F%B7-FLASH%E5%A2%97%E5%88%8A-%E5%85%89%E6%96%87%E7%A4%BE%E3%82%A8%E3%83%B3%E3%82%BF%E3%83%86%E3%82%A4%E3%83%B3%E3%83%A1%E3%83%B3%E3%83%88%E7%B7%A8%E9%9B%86%E9%83%A8/dp/B01G7I3XFW" target="_blank">(アマゾン)</a></dd>
+			<dd>FLASHスペシャル グラビアBEST2016盛夏号 (<a href="https://www.amazon.co.jp/FLASH%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AB-%E3%82%B0%E3%83%A9%E3%83%93%E3%82%A2BEST2016%E7%9B%9B%E5%A4%8F%E5%8F%B7-FLASH%E5%A2%97%E5%88%8A-%E5%85%89%E6%96%87%E7%A4%BE%E3%82%A8%E3%83%B3%E3%82%BF%E3%83%86%E3%82%A4%E3%83%B3%E3%83%A1%E3%83%B3%E3%83%88%E7%B7%A8%E9%9B%86%E9%83%A8/dp/B01G7I3XFW" target="_blank">アマゾン</a>)</dd>
 			<dt>7/30(土)</dt>
-			<dd>BUBKA <a href="https://www.amazon.co.jp/BUBKA-ブブカ-2016年09月号/dp/B01G7I3TLA/" target="_blank">(アマゾン)</a></dd>
+			<dd>BUBKA (<a href="https://www.amazon.co.jp/BUBKA-ブブカ-2016年09月号/dp/B01G7I3TLA/" target="_blank">アマゾン</a>)</dd>
+			<dt>8/3(水)</dt>
+			<dd><span class="pink blinking">水着サプライズ</span> (<a href="https://www.amazon.co.jp/AKB48%E7%B7%8F%E9%81%B8%E6%8C%99-%E6%B0%B4%E7%9D%80%E3%82%B5%E3%83%97%E3%83%A9%E3%82%A4%E3%82%BA%E7%99%BA%E8%A1%A82016-%E9%9B%86%E8%8B%B1%E7%A4%BE%E3%83%A0%E3%83%83%E3%82%AF-%E9%80%B1%E5%88%8A%E3%83%97%E3%83%AC%E3%82%A4%E3%83%9C%E3%83%BC%E3%82%A4%E7%B7%A8%E9%9B%86%E9%83%A8/dp/4081022194" target="_blank">アマゾン</a>)</dd>
 		</dl>
 	</section>
 	<section>
