@@ -62,6 +62,32 @@ section.news-titles dd {
 	margin-bottom: 0;
 }
 
+div.magazine::after {
+	display: block;
+	content: "";
+	clear: both;
+}
+
+div.magazine>*:nth-child(1) {
+	display: block;
+	float: left;
+	margin-right: 4px;
+}
+
+div.magazine>*:nth-child(2) {
+	display: block;
+	margin-left: auto;
+}
+
+div.magazine p {
+	margin: 0;
+	max-width: 65%;
+}
+
+div.magazine img {
+	max-width: 30%;
+}
+
 ul.photo {
 	list-style: none outside none;
 	margin: 0;
