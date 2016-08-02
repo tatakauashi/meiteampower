@@ -129,6 +129,7 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 				<option value="12"<?php echo isset($display->stage_program) && $display->stage_program == 12 ? " selected" : "" ?>>ミッドナイト</option>
 				<option value="13"<?php echo isset($display->stage_program) && $display->stage_program == 13 ? " selected" : "" ?>>0start</option>
 				<option value="14"<?php echo isset($display->stage_program) && $display->stage_program == 14 ? " selected" : "" ?>>重ねた足跡</option>
+				<option value="50"<?php echo isset($display->stage_program) && $display->stage_program == 50 ? " selected" : "" ?>>兼任先の公演</option>
 				<option value="51"<?php echo isset($display->stage_program) && $display->stage_program == 51 ? " selected" : "" ?>>特別公演</option>
 			</select>
 		</label>

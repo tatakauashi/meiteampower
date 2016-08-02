@@ -119,3 +119,17 @@ JOIN Program p ON (s.program_id = p.program_id)
 JOIN Stage_Member sm ON (s.stage_id = sm.stage_id AND s.revision = sm.revision AND sm.member_id = 48)
 JOIN Related_Link rl ON (s.stage_id = rl.stage_id AND s.revision = rl.revision AND rl.link NOT LIKE 'http://music.geocities.jp/%')
 group by s.stage_date, s.stage_time, p.program_name;
+
+
+
+-- 2016年8月2日 22:47:21 特定の回数まであとわずか、なメンバーを一覧する。
+SELECT -- t.member_id, 
+       m.member_name AS `メンバー名`, FLOOR(t.cnt / 100) * 100 + 100 AS `区切りの回数`, 100 - (t.cnt % 100) AS `残り公演数` FROM (
+	SELECT sm.member_id, count(*) AS cnt FROM Stage_View s JOIN Stage_Member sm ON (sm.stage_id = s.stage_id AND sm.revision = s.revision)
+	WHERE NOT EXISTS (SELECT 'x' FROM Program p WHERE p.program_id = s.program_id AND p.program_id = 51)
+	  AND s.stage_date <= '2016-08-02'  -- NOW()
+	GROUP BY sm.member_id
+) t
+JOIN Member m ON (m.member_id = t.member_id) JOIN Belonging b ON (b.member_id = m.member_id)
+WHERE b.from_date <= NOW() AND b.to_date >= NOW() AND b.team_id <> 100
+ORDER BY `残り公演数`, `区切りの回数` DESC, b.team_id, m.sort_order;

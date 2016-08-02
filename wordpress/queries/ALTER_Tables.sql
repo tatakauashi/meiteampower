@@ -254,3 +254,24 @@ INSERT INTO Program VALUES
 INSERT INTO Program VALUES
 (14, '重ねた足跡', now(), 'tatakauashi', null)
 ;
+
+
+-- 2016年8月2日 22:43:34 間違えて追加した7/9の公演を削除
+UPDATE Stage SET delete_time = NOW() WHERE stage_id = 2016070901 AND REVISION = 2;
+
+
+-- 2016年8月2日 23:49:42 兼任先の公演
+INSERT INTO Program (
+   program_id
+  ,program_name
+  ,regist_time
+  ,regist_user
+  ,delete_time
+)
+values (
+   50  -- program_id
+  ,'兼任先の公演'  -- program_name
+  ,NOW()  -- regist_time
+  ,'tatakauashi'  -- regist_user
+  ,NULL  -- delete_time
+);
