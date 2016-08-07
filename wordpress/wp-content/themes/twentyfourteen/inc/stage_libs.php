@@ -8,6 +8,7 @@ function getStageDetail($stageId, $specifiedRevision)
 {
 	// 公演情報取得
 	global $wpdb;
+	global $isLogined;
 	$wpdb->show_errors();
 
 	$revision = 0;
@@ -66,12 +67,21 @@ function getStageDetail($stageId, $specifiedRevision)
 	$result[0]->memberList = $rows;
 	
 	// 関連リンクを取得
+	$notIncludeCondition = "%music.geocities.jp/wild_turkey_gamma%";
+	if ($isLogined) {
+		$notIncludeCondition = "";
+	}
 	$query = " SELECT l.related_link_id "
 			. " , l.link "
 			. " FROM Related_Link l "
 			. " WHERE l.stage_id = %d AND l.revision = %d "
+			. " AND l.link NOT LIKE %s "
 			. " ORDER BY l.related_link_id ";
-	$query = $wpdb->prepare($query, $param);
+	$paramLink = array();
+	$paramLink[] = $stageId;
+	$paramLink[] = $revision;
+	$paramLink[] = $notIncludeCondition;
+	$query = $wpdb->prepare($query, $paramLink);
 	$rows = $wpdb->get_results($query);
 	$result[0]->linkList = $rows;
 

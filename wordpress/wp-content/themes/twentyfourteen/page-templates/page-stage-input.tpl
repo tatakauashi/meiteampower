@@ -69,7 +69,15 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 </head>
 <body>
 <p class="thumbnail"><?php the_post_thumbnail(); ?></p>
-<header class="entry-header"><h2 id="headerTitle" class="entry-title"><a href="<?php echo get_permalink() ?><?php printHtml((!isset($display->stage_date) || $display->stage_date == "") ? "" : "?stage_date=$display->stage_date") ?>"><?php the_title(); ?></a></h2>
+<header class="entry-header"><h2 id="headerTitle" class="entry-title">
+<?php if ($isLogined) { ?>
+<a href="<?php echo get_permalink() ?><?php printHtml((!isset($display->stage_date) || $display->stage_date == "") ? "" : "?stage_date=$display->stage_date") ?>">
+<?php } ?>
+<?php the_title(); ?>
+<?php if ($isLogined) { ?>
+</a>
+<?php } ?>
+</h2>
 </header><!-- .entry-header -->
 	<form name="form1" action="<?php echo get_permalink(); ?>" method="post">
 		<?php wp_nonce_field('meimei_stage_register'); ?>
@@ -129,7 +137,7 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 				<option value="12"<?php echo isset($display->stage_program) && $display->stage_program == 12 ? " selected" : "" ?>>ミッドナイト</option>
 				<option value="13"<?php echo isset($display->stage_program) && $display->stage_program == 13 ? " selected" : "" ?>>0start</option>
 				<option value="14"<?php echo isset($display->stage_program) && $display->stage_program == 14 ? " selected" : "" ?>>重ねた足跡</option>
-				<option value="50"<?php echo isset($display->stage_program) && $display->stage_program == 50 ? " selected" : "" ?>>兼任先の公演</option>
+				<option value="50"<?php echo isset($display->stage_program) && $display->stage_program == 50 ? " selected" : "" ?>>兼任先等の公演</option>
 				<option value="51"<?php echo isset($display->stage_program) && $display->stage_program == 51 ? " selected" : "" ?>>特別公演</option>
 			</select>
 		</label>
@@ -219,9 +227,11 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 			</label></p>
 		</p>
 		
+<?php if ($isLogined) { ?>
 		<p><label>
 			<input type="submit" name="stage_register" value=" 登 録 " style="width:70%; display:block; margin:auto;">
 		</label></p>
+<?php } ?>
 		
 		<p><label>
 			<a href="/stage/stagelist">リストへ</a>

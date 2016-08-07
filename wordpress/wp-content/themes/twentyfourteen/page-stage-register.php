@@ -9,10 +9,13 @@ include_once('inc/meimei_libs.php');
 include_once('inc/stage_libs.php');
 
 // ログインの確認
+$isLogined = false;
 if (!is_user_logged_in()) {
 	//header("Location: /message");
-	include_once("404.php");
-	exit;
+// 	include_once("404.php");
+// 	exit;
+} else {
+	$isLogined = true;
 }
 
 $display = main();
@@ -21,6 +24,8 @@ return;
 
 function main()
 {
+	global $isLogined;
+
 	// チェック済みのパラメータを取得する。
 	$received = getReceivedParameter();
 	// 公演詳細画面表示内容
@@ -28,7 +33,7 @@ function main()
 	$display->stage_date = isset($received->stage_date) ? $received->stage_date : getSqlNowDate();
 
 	//$stageDate = null;
-	if (isset($received->stage_register)) {
+	if (isset($received->stage_register) && $isLogined) {
 		// 登録ボタン押下
 
 		if (!$received->stage_register) {
@@ -153,6 +158,10 @@ function main()
 			$display->stage_unofficial = true;
 			$display->revision = 0;
 			$display->stage_time[] = 1;
+			
+			if (!$isLogined) {
+				$display->error_message = "現在、公演の登録・更新にはログインが必要です。";
+			}
 		}
 	}
 

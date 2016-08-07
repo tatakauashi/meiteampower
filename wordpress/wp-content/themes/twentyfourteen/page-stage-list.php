@@ -9,10 +9,13 @@ include_once('inc/meimei_libs.php');
 include_once('inc/stage_libs.php');
 
 // ログインの確認
+$isLogined = false;
 if (!is_user_logged_in()) {
 	//header("Location: /message");
-	include_once("404.php");
-	exit;
+// 	include_once("404.php");
+// 	exit;
+} else {
+	$isLogined = true;
 }
 
 // 日付指定方法

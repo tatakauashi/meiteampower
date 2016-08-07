@@ -275,3 +275,6 @@ values (
   ,'tatakauashi'  -- regist_user
   ,NULL  -- delete_time
 );
+
+-- 2016年8月7日 23:20:39 兼任先「等」の公演
+UPDATE Program SET program_name = '兼任先等の公演' WHERE program_id = 50;
