@@ -23,10 +23,10 @@
 <section class="news-titles">
 	<section>
 		<a href="http://shop.mu-mo.net/st/special/ske48_1606/" target="_blank"><img class="banner" src="/wp-content/uploads/2016/07/header_42qb.jpg" alt="SKE48 20thシングル「金の愛、銀の愛」劇場盤販売サイト"></a>
-<?php if ($sellingFinished) { ?>
-		4次販売は終了しました。
+<?php if ($sellingStarted) { ?>
+		5次販売中！<?php /* ?><span class="red">7/25(月)12:00(正午)</span>まで！<?php */ ?>
 <?php } else { ?>
-		4次販売中！<span class="red">7/25(月)12:00(正午)</span>まで！
+		5次販売が始まります！！
 <?php } ?>
 		<a href="#kobetsu20th">くわしく！</a>
 	</section>
@@ -120,15 +120,23 @@
 お申込みはこちらから！<br>
 <a href="http://shop.mu-mo.net/st/special/ske48_1606/" target="_blank"><img class="banner" src="/wp-content/uploads/2016/07/header_42qb.jpg" alt="SKE48 20thシングル「金の愛、銀の愛」劇場盤販売サイト"></a>
 </div>
-<?php if ($sellingFinished) { ?>
-<p>4次抽選まで終了しました。<br>以降の抽選の情報が入り次第、お知らせいたします。</p>
+<?php if ($sellingStarted) { ?>
+<p>5次先着販売中です！。</p>
 <?php } else { ?>
-<h4>まもなく締め切りです！！</h4>
-<dl>
-<dt>★4次抽選:7/22(金)15:00～<span class="blinking red">7/25(月)12:00(正午)</span></dt>
-<dd>結果通知:7/25(月)13:00～順次メールにて</dd>
-</dl>
+<h4>5次先着販売がまもなく8月8日(月)19:00～スタートです！！</h4>
 <?php } ?>
+<dl>
+<dt>会場ごとに販売期間が異なりますのでご注意ください。</dt>
+<dt>9月4日(日)パシフィコ横浜分</dt>
+<dd>販売期間: 8月8日(月)19:00～8月26日(金)12:00(正午)</dd>
+<dt>9月10日(土)ポートメッセなごや、9月11日(日)ポートメッセなごや分</dt>
+<dd>販売期間: 8月8日(月)19:00～9月1日(木)12:00(正午)</dd>
+<dt>9月22日(木・祝)さいたまスーパーアリーナ コミュニティアリーナ、
+9月24日(土)インテックス大阪、9月25日(日)インテックス大阪分</dt>
+<dd>販売期間: 8月8日(月)19:00～9月12日(月)12:00(正午)</dd>
+<dt>11月23日(水・祝)ポートメッセなごや分</dt>
+<dd>販売期間: 8月8日(月)19:00～11月14日(月)12:00(正午)</dd>
+</dl>
 <dl lining="8em">
 <dt>握手会の日程はこちら</dt>
 <dd>9/4(<span class="sun">日</span>)	パシフィコ横浜<span class="blinking pink normal">&hearts;</span></dd>
