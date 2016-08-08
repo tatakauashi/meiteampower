@@ -112,7 +112,7 @@
 <section class="detail">
 <article id="kobetsu20th">
 <section>
-<div style="text-align: center;"><img style="max-width: 100%;" src="http://sakaimei-senkyo.net/wp-content/uploads/2016/07/CnJiXfkUMAAhy24.jpg" alt="SKE48 20th Single 個別握手会『金の愛、銀の愛』"></div>
+<div style="text-align: center;"><img style="max-width: 100%;" src="/wp-content/uploads/2016/08/20160808_KinGin5ji.jpg" alt="SKE48 20th Single 個別握手会『金の愛、銀の愛』"></div>
 <section class="content">
 <div>
 <h3><span class="nowrap">SKE48『金の愛、銀の愛』</span>
@@ -121,7 +121,7 @@
 <a href="http://shop.mu-mo.net/st/special/ske48_1606/" target="_blank"><img class="banner" src="/wp-content/uploads/2016/07/header_42qb.jpg" alt="SKE48 20thシングル「金の愛、銀の愛」劇場盤販売サイト"></a>
 </div>
 <?php if ($sellingStarted) { ?>
-<p>5次先着販売中です！。</p>
+<p>5次先着販売中です！</p>
 <?php } else { ?>
 <h4>5次先着販売がまもなく8月8日(月)19:00～スタートです！！</h4>
 <?php } ?>
@@ -151,7 +151,7 @@
 <dl lining="4em">
 <dt>酒井萌衣さんの時間</dt>
 <dd>昼の部	14:00～15:10（14:50レーン締め切り）</dd>
-<dd>B5部	16:00～17:10（16:50レーン締め切り）</dd>
+<dd>B5部	16:10～17:10（16:50レーン締め切り）</dd>
 </dl>
 </section>
 </section>

@@ -148,16 +148,18 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 			: (isset($display->stage_member) ? $display->stage_member : "")) ?></textarea>
 		</label></p>
 		
-		<p><label>関連リンク：<br>
+		<p><label>関連リンク：
+		<div style="word-wrap: break-word;">
 		<?php if (isset($display->linkStringList)) { foreach ($display->linkStringList as $linkString) { ?>
 			<a href="<?php printHtml($linkString) ?>" target="_blank"><?php printHtml($linkString) ?></a><br>
 		<?php } } ?>
+		</div>
 		<textarea name="stage_links" rows="4"><?php printHtml(isset($display->linkStringList) ? implode("\n", $display->linkStringList)
 			: (isset($display->stage_links) ? (is_array($display->stage_links) ? implode($display->stage_links) : $display->stage_links) : "")) ?></textarea>
 		</label></p>
 
 		<p>
-		<div class="toggle-header" label="stage_event_register_area" _id="stage_event_register_header"><span>イベント登録</span></div>
+		<div class="toggle-header" label="stage_event_register_area"><span>イベント登録</span></div>
 		<div class="toggle-body" id="stage_event_register_area" style="display:<?php echo (!empty($display->stage_events) ? 'block' : 'none'); ?>;">
 
 			<div>
