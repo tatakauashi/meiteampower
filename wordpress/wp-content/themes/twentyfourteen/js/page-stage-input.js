@@ -18,10 +18,6 @@ jQuery(function($) {
         };
     });
 
-    $("#stage_event_register_header").click(function() {
-        $("#stage_event_register_area").toggle('hold', '', 500);
-    });
-
     function changeStageDate()
     {
         var stageDate = $('#stage_date');

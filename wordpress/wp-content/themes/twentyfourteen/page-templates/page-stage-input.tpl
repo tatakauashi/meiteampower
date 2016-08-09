@@ -67,7 +67,7 @@ $memberInfoList;
 if (!isset($memberInfoList)) $memberInfoList = "";
 ?>
 </head>
-<body>
+<body class="stage-input-body">
 <p class="thumbnail"><?php the_post_thumbnail(); ?></p>
 <header class="entry-header"><h2 id="headerTitle" class="entry-title">
 <?php if ($isLogined) { ?>
@@ -95,19 +95,19 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 		} ?></div>
 	</div>
 	<div class="formarea" style="clear:both;">
-		<p><label>
+		<section><label>
 			日付：<br>
 			<input type="date" id="stage_date" name="stage_date" value="<?php echo $display->stage_date ?>" <?php echo $inputReadOnly ?> required> <span id="stageDay"></span>
-		</label></p>
-		<p><label>
+		</label></section>
+		<section><label>
 			何回目：<br>
 			<select name="stage_time[]" multiple required>
 <?php $days = array(1 => "１", 2 => "２", 3 => "３", 4 =>"４", 5 => "５"); for ($i = 1; $i <= 5; $i++) { ?>
 				<option value="<?php echo $i ?>"<?php echo isset($display->stage_time) && in_array($i, $display->stage_time) ? " selected" : $inputDisabled ?>><?php echo $days[$i] ?>回目</option>
 <?php } ?>
 			</select>
-		</label></p>
-		<p><label>
+		</label></section>
+		<section><label>
 			チーム：<br>
 			<select id="stage_team" name="stage_team" required>
 				<option value="1"<?php echo isset($display->stage_team) && $display->stage_team == 1 ? " selected" : "" ?>>チームＳ</option>
@@ -116,10 +116,10 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 				<option value="4"<?php echo isset($display->stage_team) && $display->stage_team == 4 ? " selected" : "" ?>>研究生</option>
 				<option value="99"<?php echo isset($display->stage_team) && $display->stage_team == 99 ? " selected" : "" ?>>その他</option>
 			</select>
-		</label></p>
-		<p><label>シャッフル？ <input type="checkbox" name="stage_shuffled"<?php echo isset($display->stage_shuffled) && $display->stage_shuffled ? " checked" : "" ?>></label></p>
-		<p><label>ダブルチェックが必要？ <input type="checkbox" name="stage_unofficial" <?php echo isset($display->stage_unofficial) && $display->stage_unofficial ? " checked" : "" ?>></label></p>
-		<p>
+		</label></section>
+		<section><label>シャッフル？ <input type="checkbox" name="stage_shuffled"<?php echo isset($display->stage_shuffled) && $display->stage_shuffled ? " checked" : "" ?>></label></section>
+		<section><label>ダブルチェックが必要？ <input type="checkbox" name="stage_unofficial" <?php echo isset($display->stage_unofficial) && $display->stage_unofficial ? " checked" : "" ?>></label></section>
+		<section>
 		<label>公演名：<br>
 			<select id="stage_program" name="stage_program" required>
 				<option value="0">選択してください</option>
@@ -141,14 +141,15 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 				<option value="51"<?php echo isset($display->stage_program) && $display->stage_program == 51 ? " selected" : "" ?>>特別公演</option>
 			</select>
 		</label>
-		</p>
+		</section>
 
-		<p><label>出演メンバー：<?php isset($display->memberNameList) ? printHtml("（" . count($display->memberNameList) . "名）") : "" ?><br>
+		<section><label>出演メンバー：<?php isset($display->memberNameList) ? printHtml("（" . count($display->memberNameList) . "名）") : "" ?><br>
 		<textarea name="stage_members" rows="6"><?php printHtml(isset($display->memberNameList) ? implode("・", $display->memberNameList)
 			: (isset($display->stage_member) ? $display->stage_member : "")) ?></textarea>
-		</label></p>
-		
-		<p><label>関連リンク：
+		</label></section>
+
+		<section>
+		<label>関連リンク：
 		<div style="word-wrap: break-word;">
 		<?php if (isset($display->linkStringList)) { foreach ($display->linkStringList as $linkString) { ?>
 			<a href="<?php printHtml($linkString) ?>" target="_blank"><?php printHtml($linkString) ?></a><br>
@@ -156,88 +157,88 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 		</div>
 		<textarea name="stage_links" rows="4"><?php printHtml(isset($display->linkStringList) ? implode("\n", $display->linkStringList)
 			: (isset($display->stage_links) ? (is_array($display->stage_links) ? implode($display->stage_links) : $display->stage_links) : "")) ?></textarea>
-		</label></p>
+		</label></section>
 
-		<p>
-		<div class="toggle-header" label="stage_event_register_area"><span>イベント登録</span></div>
-		<div class="toggle-body" id="stage_event_register_area" style="display:<?php echo (!empty($display->stage_events) ? 'block' : 'none'); ?>;">
+		<section>
+		<div class="toggle-header"><span><span class="icon"></span>イベント登録</span></div>
+		<div class="toggle-body <?php echo (!empty($display->stage_events) ? '' : 'closed'); ?>">
 
 			<div>
-				<p><label>イベント1<br>
+				<section><label>イベント1<br>
 					<select name="stage_event1">
 						<option value="0">なし</option>
 <?php foreach ($display->eventInfoList as $event) { ?>
 						<option value="<?php printHtml($event->event_id) ?>"<?php echo isset($display->stage_events) && count($display->stage_events) > 0 && $display->stage_events[0]->event_id == $event->event_id ? " selected" : "" ?>><?php printHtml($event->event_name) ?></option>
 <?php } ?>
 					</select>
-				</label></p>
-				<p><label>関連メンバー<br>
+				</label></section>
+				<section><label>関連メンバー<br>
 					<select name="stage_event_member1">
 						<option value="0">なし</option>
 <?php foreach ($display->memberInfoList as $member) { ?>
 						<option value="<?php echo $member->member_id ?>"<?php echo isset($display->stage_events) && count($display->stage_events) > 0 && $display->stage_events[0]->member_id == $member->member_id ? " selected" : "" ?>><?php printHtml($member->member_name) ?></option>
 <?php } ?>
 					</select>
-				</label></p>
+				</label></section>
 			</div>
 
 			<div>
-				<p><label>イベント2<br>
+				<section><label>イベント2<br>
 					<select name="stage_event2">
 						<option value="0">なし</option>
 <?php foreach ($display->eventInfoList as $event) { ?>
 						<option value="<?php printHtml($event->event_id) ?>"<?php echo isset($display->stage_events) && count($display->stage_events) > 1 && $display->stage_events[1]->event_id == $event->event_id ? " selected" : "" ?>><?php printHtml($event->event_name) ?></option>
 <?php } ?>
 					</select>
-				</label></p>
-				<p><label>関連メンバー<br>
+				</label></section>
+				<section><label>関連メンバー<br>
 					<select name="stage_event_member2">
 						<option value="0">なし</option>
 <?php foreach ($display->memberInfoList as $member) { ?>
 						<option value="<?php echo $member->member_id ?>"<?php echo isset($display->stage_events) && count($display->stage_events) > 1 && $display->stage_events[1]->member_id == $member->member_id ? " selected" : "" ?>><?php printHtml($member->member_name) ?></option>
 <?php } ?>
 					</select>
-				</label></p>
+				</label></section>
 			</div>
 
 			<div>
-				<p><label>イベント3<br>
+				<section><label>イベント3<br>
 					<select name="stage_event3">
 						<option value="0">なし</option>
 <?php foreach ($display->eventInfoList as $event) { ?>
 						<option value="<?php printHtml($event->event_id) ?>"<?php echo isset($display->stage_events) && count($display->stage_events) > 2 && $display->stage_events[2]->event_id == $event->event_id ? " selected" : "" ?>><?php printHtml($event->event_name) ?></option>
 <?php } ?>
 					</select>
-				</label></p>
-				<p><label>関連メンバー<br>
+				</label></section>
+				<section><label>関連メンバー<br>
 					<select name="stage_event_member3">
 						<option value="0">なし</option>
 <?php foreach ($display->memberInfoList as $member) { ?>
 						<option value="<?php echo $member->member_id ?>"<?php echo isset($display->stage_events) && count($display->stage_events) > 2 && $display->stage_events[2]->member_id == $member->member_id ? " selected" : "" ?>><?php printHtml($member->member_name) ?></option>
 <?php } ?>
 					</select>
-				</label></p>
+				</label></section>
 			</div>
 
 		</div>
-		</p>
+		</section>
 		
-		<p>
-			<p><label>
+		<section>
+			<label>
 				コメント・メモ：<br>
 				<textarea name="stage_comment" rows="4"><?php printHtml(isset($display->stage_comment) ? $display->stage_comment : "") ?></textarea>
-			</label></p>
-		</p>
+			</label>
+		</section>
 		
 <?php if ($isLogined) { ?>
-		<p><label>
+		<section><label>
 			<input type="submit" name="stage_register" value=" 登 録 " style="width:70%; display:block; margin:auto;">
-		</label></p>
+		</label></section>
 <?php } ?>
 		
-		<p><label>
+		<section><label>
 			<a href="/stage/stagelist">リストへ</a>
-		</label></p>
+		</label></section>
 	</div>
 <footer>
 <small>

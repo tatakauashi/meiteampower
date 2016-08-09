@@ -18,3 +18,7 @@ div.stage-navi + div {
 	clear: both;
 	margin-top: 0.5em;
 }
+
+.stage-input-body section {
+	margin-bottom: 24px;
+}

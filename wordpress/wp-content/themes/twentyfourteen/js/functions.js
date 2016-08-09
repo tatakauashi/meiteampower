@@ -132,41 +132,10 @@
 		}
 	} );
 
+    $('.toggle-header.closed').next('.toggle-body').hide();
     $('.toggle-header').click(function() {
         var toggleHeader = $(this);
-        var id = toggleHeader.attr('label');
-        if (id !== undefined) {
-            var bodyId = '#' + id;
-            $(bodyId).toggle(
-                500,
-                'swing',
-                function() {
-                    if (!toggleHeader.children('.icon')) return;
-
-                    var toggleBody = $(this);
-                    var toggleIcon = toggleHeader.children('.icon').first();
-                    if (toggleBody.css('display') != 'none') {
-                        toggleIcon.html('↑');
-                    }
-                    else {
-                        toggleIcon.html('↓');
-                    }
-                }
-            );
-        }
-    });
-    
-    $('.toggle-header').each(function() {
-    	var id = $(this).attr('label');
-    	if (id !== undefined && $('#' + id) !== undefined) {
-    		var toggleBody = $('#' + id);
-    		var elem = "";
-    		if (toggleBody.css('display') == 'none') {
-    			elem = $('<span class="icon">↓</span>');
-    		} else {
-    			elem = $('<span class="icon">↑</span>');
-    		}
-	        $(this).children('span').first().before(elem);
-    	}
+        toggleHeader.next('.toggle-body').slideToggle('fast');
+        toggleHeader.toggleClass('closed');
     });
 } )( jQuery );

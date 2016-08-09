@@ -4537,31 +4537,37 @@ body.single .go_detail_for_hidden {
 .toggle-header {
     display: table;
     margin-bottom: 0.5em;
-    padding: 0.5em 1em 0.5em 0.5em;
-    /*border-left: 2px solid rgba(255, 222, 0, 0.5);
-    border-right: 2px solid rgba(255, 222, 0, 0.5);*/
+    /*padding: 0.5em 1em 0.5em 0.5em;*/
     border-radius: 8px;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
-/*    background-color: rgba(255, 222, 0, 0.5);*/
     text-align: center;
+    /*background:url(img/arrow_7.gif) no-repeat;
+    background-position:right -16px;*/
+    cursor:pointer;
 }
-.toggle-header span {
+.toggle-header>span {
     display: table-cell;
     color: #000066;
     text-decoration: underline;
 }
+.toggle-header.closed {
+    /*background-position:right 10px;*/
+}
 .toggle-header .icon {
-    color: goldenRod;
-    text-decoration: none;
-    font-family: Meiriyo;
-    font-weight: bold;
-    /*padding-right: 0.5em;*/
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5em;
+    background:url(img/arrow_7.gif) no-repeat;
+    background-position:right -21px;
+}
+.toggle-header.closed .icon {
+    background-position:right 0px;
 }
 .toggle-body {
-    display: none;
-    width: 90%;
+    /*width: 90%;
     overflow: hidden;
     padding: 0.5em;
-    border: 2px dotted lightgray;
+    border: 2px dotted lightgray;*/
 }
