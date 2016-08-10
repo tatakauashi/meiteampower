@@ -155,13 +155,13 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 			<a href="<?php printHtml($linkString) ?>" target="_blank"><?php printHtml($linkString) ?></a><br>
 		<?php } } ?>
 		</div>
-		<textarea name="stage_links" rows="4"><?php printHtml(isset($display->linkStringList) ? implode("\n", $display->linkStringList)
+		<textarea name="stage_links" rows="<?php echo (isset($display->linkStringList) && count($display->linkStringList) > 2) ? (count($display->linkStringList) * 2 + 1) : 4 ?>"><?php printHtml(isset($display->linkStringList) ? implode("\n", $display->linkStringList)
 			: (isset($display->stage_links) ? (is_array($display->stage_links) ? implode($display->stage_links) : $display->stage_links) : "")) ?></textarea>
 		</label></section>
 
 		<section>
-		<div class="toggle-header"><span><span class="icon"></span>イベント登録</span></div>
-		<div class="toggle-body <?php echo (!empty($display->stage_events) ? '' : 'closed'); ?>">
+		<div class="toggle-header <?php echo (!empty($display->stage_events) ? '' : 'closed'); ?>"><span><span class="icon"></span>イベント登録</span></div>
+		<div class="toggle-body">
 
 			<div>
 				<section><label>イベント1<br>
@@ -226,7 +226,7 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 		<section>
 			<label>
 				コメント・メモ：<br>
-				<textarea name="stage_comment" rows="4"><?php printHtml(isset($display->stage_comment) ? $display->stage_comment : "") ?></textarea>
+				<textarea name="stage_comment" rows="10"><?php printHtml(isset($display->stage_comment) ? $display->stage_comment : "") ?></textarea>
 			</label>
 		</section>
 		
