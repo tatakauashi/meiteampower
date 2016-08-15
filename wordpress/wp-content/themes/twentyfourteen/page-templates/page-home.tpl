@@ -23,12 +23,22 @@
 <section class="news-titles">
 	<section>
 		<a href="http://shop.mu-mo.net/st/special/ske48_1606/" target="_blank"><img class="banner" src="/wp-content/uploads/2016/07/header_42qb.jpg" alt="SKE48 20thシングル「金の愛、銀の愛」劇場盤販売サイト"></a>
-<?php if ($sellingStarted) { ?>
 		5次販売中！<?php /* ?><span class="red">7/25(月)12:00(正午)</span>まで！<?php */ ?>
-<?php } else { ?>
-		5次販売が始まります！！
-<?php } ?>
+		<br>9/4(日)パシフィコ横浜<span class="checkit">完売しました！</span>
 		<a href="#kobetsu20th">くわしく！</a>
+	</section>
+	<section>
+		<h3>フューチャーガールズのMVが公開</h3>
+		<dl>
+		<dt>岸が見える海から</dt>
+		<dd>総選挙フューチャーガールズ ランクインメンバーが歌います。<br>
+			8/31発売AKB48 45th.Single「LOVE TRIP／しあわせになりなさい」のTYPE-Cに収録されます。<br>
+			<div style="text-align:center; margin-bottom: 0.5em;">
+				<a href="/wp-content/uploads/2016/08/Kishiga_mieru_umikara_01.png" data-lightbox="popup" data-title="岸が見える海から"><img src="/wp-content/uploads/2016/08/Kishiga_mieru_umikara_01.png" style="max-width: 80%;"></a><br>
+				<a href="https://www.youtube.com/watch?v=-6GwQIXA_b0" target="_blank">岸が見える海から(YouTube)</a>
+			</div>
+		</dd>
+		</dl>
 	</section>
 	<section style="background-color: white;">
 		<h3>個別生写真発売中！</h3>
@@ -52,14 +62,6 @@
 		7/26(火)のチームE『手をつなぎながら』公演で、 <span class="nowrap">酒井萌衣</span>さんは劇場公演<strong class="blinking pink larger">400回</strong>を迎えました！<br>
 		おめでとうございます！！<br>
 		公演履歴は<a href="https://docs.google.com/spreadsheets/d/1_LVaQ3tf2JXhd8dYr3qF3bD0aKPc480966-ehnY2XGA/edit?usp=sharing" target="_blank">こちら</a>です。
-	</section>
-	<section>
-		<h3>東海テレビ「まるナツ2016謎解きクイズで美浜海遊祭盛り上げますSP」</h3>
-		<dl>
-			<dt>7/25(月)　8/1(月)　8/8(月)</dt>
-			<dd>放送局／東海テレビ<br>
-			放送時間／24:50～</dd>
-		</dl>
 	</section>
 	<section>
 		<h3>雑誌</h3>
@@ -128,7 +130,7 @@
 <dl>
 <dt>会場ごとに販売期間が異なりますのでご注意ください。</dt>
 <dt>9月4日(日)パシフィコ横浜分</dt>
-<dd>販売期間: 8月8日(月)19:00～8月26日(金)12:00(正午)</dd>
+<dd><span class="pink bold">２部とも完売しました。</span></dd>
 <dt>9月10日(土)ポートメッセなごや、9月11日(日)ポートメッセなごや分</dt>
 <dd>販売期間: 8月8日(月)19:00～9月1日(木)12:00(正午)</dd>
 <dt>9月22日(木・祝)さいたまスーパーアリーナ コミュニティアリーナ、

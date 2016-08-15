@@ -150,6 +150,9 @@ footer {
 	font-family: Meiryo,"メイリオ"
 }
 
+/***********************
+   文字の装飾
+ ***********************/
 .blinking {
 	-webkit-animation:blink 0.8s ease-in-out infinite alternate;
 	-moz-animation:blink 0.8s ease-in-out infinite alternate;
@@ -183,6 +186,9 @@ footer {
 }
 .pink {
 	color: hotpink;
+}
+.bold {
+	font-weight: bold;
 }
 
 /* === PC用の設定 ===*/
