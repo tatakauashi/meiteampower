@@ -24,8 +24,21 @@
 	<section>
 		<a href="http://shop.mu-mo.net/st/special/ske48_1606/" target="_blank"><img class="banner" src="/wp-content/uploads/2016/07/header_42qb.jpg" alt="SKE48 20thシングル「金の愛、銀の愛」劇場盤販売サイト"></a>
 		5次販売中！<?php /* ?><span class="red">7/25(月)12:00(正午)</span>まで！<?php */ ?>
-		<br>9/4(日)パシフィコ横浜<span class="checkit">完売しました！</span>
+		<br>完売も出てきました。
 		<a href="#kobetsu20th">くわしく！</a>
+	</section>
+	<section>
+		<h3>LINE LIVE 朗読ソフレ</h3>
+		<dl>
+		<dt>アーカイブ配信中</dt>
+		<dd>酒井萌衣さんの朗読、しぐさ、雰囲気、とても好評でした。<br>
+		ただいま、アーカイブ配信中です。ぜひご覧ください。
+			<div style="text-align:center; margin-bottom: 0.5em;">
+				<a href="/wp-content/uploads/2016/08/IMG_20160824_002047.jpg" data-lightbox="popup" data-title="朗読ソフレ"><img src="/wp-content/uploads/2016/08/IMG_20160824_002047.jpg" style="max-width: 80%;"></a><br>
+				<a href="https://live.line.me/r/channels/89/broadcast/20290" target="_blank">LINE LIVE</a>
+			</div>
+		</dd>
+		</dl>
 	</section>
 	<section>
 		<h3>フューチャーガールズのMVが公開</h3>
@@ -44,16 +57,16 @@
 		<h3>個別生写真発売中！</h3>
 		<ul class="photo">
 			<li>
-				<a href="/wp-content/uploads/2016/07/SK-126-1607-21574_p04_500_.jpg" data-lightbox="popup" data-title="New 7月度 ベースボール"><img src="/wp-content/uploads/2016/07/SK-126-1607-21574_p04_500_.jpg"></a><br>
-				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=43772&ske48" target="_blank"><span class="new-post">New</span> 7月度<br>ベースボール</a>
+				<a href="/wp-content/uploads/2016/08/SK-126-1608-22476_p01_500_.jpg" data-lightbox="popup" data-title="New 8月度 夏祭り"><img src="/wp-content/uploads/2016/08/SK-126-1608-22476_p01_500_.jpg"></a><br>
+				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=45546&ske48" target="_blank"><span class="new-post">New</span> 8月度<br>夏祭り</a>
 			</li>
 			<li>
-				<a href="/wp-content/uploads/2016/07/SK-126-1607-20968_p01_500_.jpg" data-lightbox="popup" data-title="7月度 ドームストライプ"><img src="/wp-content/uploads/2016/07/SK-126-1607-20968_p01_500_.jpg"></a><br>
-				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=43451&ske48" target="_blank">7月度<br>ドームストライプ</a>
+				<a href="/wp-content/uploads/2016/08/SK-126-1608-22304_p01_500_.jpg" data-lightbox="popup" data-title="New 8月度 浴衣"><img src="/wp-content/uploads/2016/08/SK-126-1608-22304_p01_500_.jpg"></a><br>
+				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=45196&ske48" target="_blank"><span class="new-post">New</span> 8月度<br>浴衣</a>
 			</li>
 			<li>
-				<a href="/wp-content/uploads/2016/07/SK-126-1607-20836_p02_500_.jpg" data-lightbox="popup" data-title="6月度 マリンスタイル"><img src="/wp-content/uploads/2016/07/SK-126-1607-20836_p02_500_.jpg"></a><br>
-				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=42974&ske48" target="_blank">6月度<br>マリンスタイル</a>
+				<a href="/wp-content/uploads/2016/07/SK-126-1607-21574_p04_500_.jpg" data-lightbox="popup" data-title="7月度 ベースボール"><img src="/wp-content/uploads/2016/07/SK-126-1607-21574_p04_500_.jpg"></a><br>
+				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=43772&ske48" target="_blank">7月度<br>ベースボール</a>
 			</li>
 		</ul>
 	</section>
@@ -63,6 +76,7 @@
 		おめでとうございます！！<br>
 		公演履歴は<a href="https://docs.google.com/spreadsheets/d/1_LVaQ3tf2JXhd8dYr3qF3bD0aKPc480966-ehnY2XGA/edit?usp=sharing" target="_blank">こちら</a>です。
 	</section>
+	<?php /* ?>
 	<section>
 		<h3>雑誌</h3>
 		<dl>
@@ -89,27 +103,7 @@
 			<dd><span class="pink blinking">水着サプライズ</span> (<a href="https://www.amazon.co.jp/AKB48%E7%B7%8F%E9%81%B8%E6%8C%99-%E6%B0%B4%E7%9D%80%E3%82%B5%E3%83%97%E3%83%A9%E3%82%A4%E3%82%BA%E7%99%BA%E8%A1%A82016-%E9%9B%86%E8%8B%B1%E7%A4%BE%E3%83%A0%E3%83%83%E3%82%AF-%E9%80%B1%E5%88%8A%E3%83%97%E3%83%AC%E3%82%A4%E3%83%9C%E3%83%BC%E3%82%A4%E7%B7%A8%E9%9B%86%E9%83%A8/dp/4081022194" target="_blank">アマゾン</a>)</dd>
 		</dl>
 	</section>
-	<section>
-		<h3>カップリング２曲のMVが公開</h3>
-		<dl>
-		<dt>ハッピーランキング</dt>
-		<dd>総選挙ランクインメンバー20人が歌います。<br>
-			8/17発売20th.Single「金の愛、銀の愛」のTYPE-Aに収録されます。<br>
-			<div style="text-align:center; margin-bottom: 0.5em;">
-				<a href="/wp-content/uploads/2016/07/CoQY5AXUMAAt8Jc_cut.jpg" data-lightbox="popup" data-title="ハッピーランキング"><img src="/wp-content/uploads/2016/07/CoQY5AXUMAAt8Jc_cut.jpg" style="max-width: 80%;"></a><br>
-				<a href="http://www.youtube.com/watch?v=MIIQormZF6A" target="_blank">ハッピーランキング(YouTube)</a>
-			</div>
-		</dd>
-		<dt>サヨナラが美しくて</dt>
-		<dd>４期生が歌う、 <span class="nowrap">柴田阿弥さん</span>の卒業ソングです。<br>
-			8/17発売20th.Single「金の愛、銀の愛」のTYPE-Cに収録されます。<br>
-			<div style="text-align:center;">
-				<a href="/wp-content/uploads/2016/07/IMG_8300.jpg" data-lightbox="popup" data-title="サヨナラが美しくて"><img src="/wp-content/uploads/2016/07/IMG_8300.jpg" style="max-width: 80%;"></a><br>
-				<a href="http://www.youtube.com/watch?v=vyd3EVKUM_M" target="_blank">サヨナラが美しくて(YouTube)</a>
-			</div>
-		</dd>
-		</dl>
-	</section>
+	<?php */ ?>
 </section>
 <section class="detail">
 <article id="kobetsu20th">
@@ -132,7 +126,8 @@
 <dt>9月4日(日)パシフィコ横浜分</dt>
 <dd><span class="pink bold">２部とも完売しました。</span></dd>
 <dt>9月10日(土)ポートメッセなごや、9月11日(日)ポートメッセなごや分</dt>
-<dd>販売期間: 8月8日(月)19:00～9月1日(木)12:00(正午)</dd>
+<dd>販売期間: 8月8日(月)19:00～9月1日(木)12:00(正午)<br>
+<span class="pink">9月11日(日)は完売しました。</span></dd>
 <dt>9月22日(木・祝)さいたまスーパーアリーナ コミュニティアリーナ、
 9月24日(土)インテックス大阪、9月25日(日)インテックス大阪分</dt>
 <dd>販売期間: 8月8日(月)19:00～9月12日(月)12:00(正午)</dd>
@@ -141,12 +136,12 @@
 </dl>
 <dl lining="8em">
 <dt>握手会の日程はこちら</dt>
-<dd>9/4(<span class="sun">日</span>)	パシフィコ横浜<span class="blinking pink normal">&hearts;</span></dd>
-<dd>9/10(<span class="sat">土</span>)	ポートメッセなごや</dd>
-<dd>9/11(<span class="sun">日</span>)	ポートメッセなごや<span class="blinking pink normal">&hearts;</span></dd>
-<dd>9/22(<span class="bold">木・</span><span class="sun">祝</span>)	さいたまスーパーアリーナ</dd>
+<dd>9/4(<span class="sun">日</span>)	パシフィコ横浜 <span class="red bold">SOLD OUT</span></dd>
+<dd>9/10(<span class="sat">土</span>)	ポートメッセなごや<span class="blinking pink normal">&hearts;</span></dd>
+<dd>9/11(<span class="sun">日</span>)	ポートメッセなごや <span class="red bold">SOLD OUT</span></dd>
+<dd>9/22(<span class="bold">木・</span><span class="sun">祝</span>)	さいたまスーパーアリーナ<span class="blinking pink normal">&hearts;</span></dd>
 <dd>9/24(<span class="sat">土</span>)	インテックス大阪</dd>
-<dd>9/25(<span class="sun">日</span>)	インテックス大阪</dd>
+<dd>9/25(<span class="sun">日</span>)	インテックス大阪<span class="blinking pink normal">&hearts;</span></dd>
 <dd>11/23(<span class="bold">水・</span><span class="sun">祝</span>)	ポートメッセなごや</dd>
 </dl>
 
@@ -158,6 +153,7 @@
 </section>
 </section>
 </article>
+	<?php /* ?>
 <article id="bigonegirls34th">
 <section>
 <section class="content">
@@ -167,6 +163,7 @@
 </section>
 </section>
 </article>
+	<?php */ ?>
 </section>
 <footer>
 <small>
