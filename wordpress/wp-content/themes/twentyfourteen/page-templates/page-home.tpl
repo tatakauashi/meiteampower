@@ -35,7 +35,7 @@
 		ただいま、アーカイブ配信中です。ぜひご覧ください。
 			<div style="text-align:center; margin-bottom: 0.5em;">
 				<a href="/wp-content/uploads/2016/08/IMG_20160824_002047.jpg" data-lightbox="popup" data-title="朗読ソフレ"><img src="/wp-content/uploads/2016/08/IMG_20160824_002047.jpg" style="max-width: 80%;"></a><br>
-				<a href="https://live.line.me/r/channels/89/broadcast/20290" target="_blank">LINE LIVE</a>
+				<a href="https://live.line.me/r/channels/89/broadcast/20290" target="_blank">LINE LIVE(サイトへ)</a>
 			</div>
 		</dd>
 		</dl>
@@ -48,7 +48,7 @@
 			8/31発売AKB48 45th.Single「LOVE TRIP／しあわせになりなさい」のTYPE-Cに収録されます。<br>
 			<div style="text-align:center; margin-bottom: 0.5em;">
 				<a href="/wp-content/uploads/2016/08/Kishiga_mieru_umikara_01.png" data-lightbox="popup" data-title="岸が見える海から"><img src="/wp-content/uploads/2016/08/Kishiga_mieru_umikara_01.png" style="max-width: 80%;"></a><br>
-				<a href="https://www.youtube.com/watch?v=-6GwQIXA_b0" target="_blank">岸が見える海から(YouTube)</a>
+				<a href="https://www.youtube.com/watch?v=-6GwQIXA_b0" target="_blank">岸が見える海から(YouTubeへ)</a>
 			</div>
 		</dd>
 		</dl>
@@ -57,16 +57,16 @@
 		<h3>個別生写真発売中！</h3>
 		<ul class="photo">
 			<li>
-				<a href="/wp-content/uploads/2016/08/SK-126-1608-22476_p01_500_.jpg" data-lightbox="popup" data-title="New 8月度 夏祭り"><img src="/wp-content/uploads/2016/08/SK-126-1608-22476_p01_500_.jpg"></a><br>
-				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=45546&ske48" target="_blank"><span class="new-post">New</span> 8月度<br>夏祭り</a>
+				<a href="/wp-content/uploads/2016/08/SK-126-1608-23009_p02_500_.jpg" data-lightbox="popup" data-title="New 8月度 サマーバケーション"><img src="/wp-content/uploads/2016/08/SK-126-1608-23009_p02_500_.jpg"></a><br>
+				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=46118&ske48" target="_blank"><span class="new-post">New</span> 8月度<br>サマーバケーション</a>
 			</li>
 			<li>
-				<a href="/wp-content/uploads/2016/08/SK-126-1608-22304_p01_500_.jpg" data-lightbox="popup" data-title="New 8月度 浴衣"><img src="/wp-content/uploads/2016/08/SK-126-1608-22304_p01_500_.jpg"></a><br>
-				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=45196&ske48" target="_blank"><span class="new-post">New</span> 8月度<br>浴衣</a>
+				<a href="/wp-content/uploads/2016/08/SK-126-1608-22476_p01_500_.jpg" data-lightbox="popup" data-title="8月度 夏祭り"><img src="/wp-content/uploads/2016/08/SK-126-1608-22476_p01_500_.jpg"></a><br>
+				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=45546&ske48" target="_blank">8月度 夏祭り</a>
 			</li>
 			<li>
-				<a href="/wp-content/uploads/2016/07/SK-126-1607-21574_p04_500_.jpg" data-lightbox="popup" data-title="7月度 ベースボール"><img src="/wp-content/uploads/2016/07/SK-126-1607-21574_p04_500_.jpg"></a><br>
-				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=43772&ske48" target="_blank">7月度<br>ベースボール</a>
+				<a href="/wp-content/uploads/2016/08/SK-126-1608-22304_p01_500_.jpg" data-lightbox="popup" data-title="8月度 浴衣"><img src="/wp-content/uploads/2016/08/SK-126-1608-22304_p01_500_.jpg"></a><br>
+				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=45196&ske48" target="_blank">8月度 浴衣</a>
 			</li>
 		</ul>
 	</section>
