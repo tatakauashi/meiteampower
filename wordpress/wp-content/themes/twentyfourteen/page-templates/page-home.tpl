@@ -41,13 +41,13 @@
 		</dl>
 	</section>
 	<section>
-		<h3>フューチャーガールズのMVが公開</h3>
+		<h3 class="skyblue">岸が見える海から</h3>
 		<dl>
-		<dt>岸が見える海から</dt>
-		<dd>総選挙フューチャーガールズ ランクインメンバーが歌います。<br>
-			8/31発売AKB48 45th.Single「LOVE TRIP／しあわせになりなさい」のTYPE-Cに収録されます。<br>
+		<dt>LOVE TRIP／しあわせを分けなさい Type-C</dt>
+		<dd>酒井萌衣さんも参加している、総選挙フューチャーガールズ ランクインメンバーが歌う
+			「岸が見える海から」が収録されています。<br>
 			<div style="text-align:center; margin-bottom: 0.5em;">
-				<a href="/wp-content/uploads/2016/08/Kishiga_mieru_umikara_01.png" data-lightbox="popup" data-title="岸が見える海から"><img src="/wp-content/uploads/2016/08/Kishiga_mieru_umikara_01.png" style="max-width: 80%;"></a><br>
+				<a href="/wp-content/uploads/2016/09/20160901225524.png" data-lightbox="popup" data-title="岸が見える海から"><img src="/wp-content/uploads/2016/09/20160901225524.png" style="max-width: 80%;"></a><br>
 				<a href="https://www.youtube.com/watch?v=-6GwQIXA_b0" target="_blank">岸が見える海から(YouTubeへ)</a>
 			</div>
 		</dd>
@@ -124,10 +124,9 @@
 <dl>
 <dt>会場ごとに販売期間が異なりますのでご注意ください。</dt>
 <dt>9月4日(日)パシフィコ横浜分</dt>
-<dd><span class="pink bold">２部とも完売しました。</span></dd>
+<dd><span class="">販売は終了しました。</span></dd>
 <dt>9月10日(土)ポートメッセなごや、9月11日(日)ポートメッセなごや分</dt>
-<dd>販売期間: 8月8日(月)19:00～9月1日(木)12:00(正午)<br>
-<span class="pink">9月11日(日)は完売しました。</span></dd>
+<dd>販売は終了しました。</dd>
 <dt>9月22日(木・祝)さいたまスーパーアリーナ コミュニティアリーナ、
 9月24日(土)インテックス大阪、9月25日(日)インテックス大阪分</dt>
 <dd>販売期間: 8月8日(月)19:00～9月12日(月)12:00(正午)</dd>
