@@ -143,6 +143,10 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 		</label>
 		</section>
 
+		<?php /* Androidでtextareaが長くなると下部が切れる対応 ?>
+		<div style="height: 3000px; display: none;"></div>
+		<?php  */ ?>
+
 		<section><label>出演メンバー：<?php isset($display->memberNameList) ? printHtml("（" . count($display->memberNameList) . "名）") : "" ?><br>
 		<textarea name="stage_members" rows="6"><?php printHtml(isset($display->memberNameList) ? implode("・", $display->memberNameList)
 			: (isset($display->stage_member) ? $display->stage_member : "")) ?></textarea>
@@ -229,7 +233,7 @@ if (!isset($memberInfoList)) $memberInfoList = "";
 				<textarea name="stage_comment" rows="10"><?php printHtml(isset($display->stage_comment) ? $display->stage_comment : "") ?></textarea>
 			</label>
 		</section>
-		
+
 <?php if ($isLogined) { ?>
 		<section><label>
 			<input type="submit" name="stage_register" value=" 登 録 " style="width:70%; display:block; margin:auto;">
