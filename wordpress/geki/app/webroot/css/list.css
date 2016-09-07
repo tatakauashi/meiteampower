@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+h2, h3 {
+	color: black;
+}
+
+.name {
+	color: red;
+}
+
+span.count_label {
+    width: 5.5em;
+    display: block;
+    margin-right: 4px;
+    float: left;
+}
+
+input[type="number"] {
+	font-size:90%;
+	width:5em;
+	text-align: right;
+}
+
+section {
+	padding: 2px 4px 2px 4px;
+	margin-bottom: 1em;
+}
+
+section:nth-of-type(odd) {
+	background-color: #ffc;
+}
+
+section:nth-of-type(even) {
+	background-color: #fff;
+}

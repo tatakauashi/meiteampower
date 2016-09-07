@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+.tab{
+	overflow: hidden;
+	list-style:none;
+}
+
+.tab li {
+	background: #ccc;
+	padding: 5px 10px;
+	float: left;
+	/*margin-right: 1px;*/
+	margin: 0 4px 0 0;
+	font-size: smaller;
+}
+
+.tab li.select {
+	background: #eee;
+}
+
+div.tab_content {
+	margin-bottom: 0;
+}
+
+.tab_content div {
+	background: #eee;
+	padding: 10px;
+	margin-bottom: 0;
+}
+
+.hide {
+	display: none;
+}
+
+@media only screen and (max-width: 399px) {
+.tab li {
+	background: #ccc;
+	padding: 5px 5px;
+	float: left;
+	margin-right: 2px;
+}
