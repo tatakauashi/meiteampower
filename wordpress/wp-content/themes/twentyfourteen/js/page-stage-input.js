@@ -39,4 +39,11 @@ jQuery(function($) {
     if ($('#revision').val() == '0') {
     	$('#stage_team').change();
     }
+
+    $('textarea').keydown(function(e) {
+        if (e.keyCode == 13) {
+            var thiz = $(this);
+            thiz.attr('rows', parseInt(thiz.attr('rows')) + 2);
+        }
+    });
 });

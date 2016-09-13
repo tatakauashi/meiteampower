@@ -57,16 +57,16 @@
 		<h3>個別生写真発売中！</h3>
 		<ul class="photo">
 			<li>
+				<a href="/wp-content/uploads/2016/09/SK-126-1609-23136_p03_500_.jpg" data-lightbox="popup" data-title="New 8月度 パレオはエメラルド"><img src="/wp-content/uploads/2016/09/SK-126-1609-23136_p03_500_.jpg"></a><br>
+				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=46570&ske48" target="_blank"><span class="new-post">New</span> 9月度<br>パレオはエメラルド</a>
+			</li>
+			<li>
 				<a href="/wp-content/uploads/2016/08/SK-126-1608-23009_p02_500_.jpg" data-lightbox="popup" data-title="New 8月度 サマーバケーション"><img src="/wp-content/uploads/2016/08/SK-126-1608-23009_p02_500_.jpg"></a><br>
 				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=46118&ske48" target="_blank"><span class="new-post">New</span> 8月度<br>サマーバケーション</a>
 			</li>
 			<li>
 				<a href="/wp-content/uploads/2016/08/SK-126-1608-22476_p01_500_.jpg" data-lightbox="popup" data-title="8月度 夏祭り"><img src="/wp-content/uploads/2016/08/SK-126-1608-22476_p01_500_.jpg"></a><br>
 				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=45546&ske48" target="_blank">8月度 夏祭り</a>
-			</li>
-			<li>
-				<a href="/wp-content/uploads/2016/08/SK-126-1608-22304_p01_500_.jpg" data-lightbox="popup" data-title="8月度 浴衣"><img src="/wp-content/uploads/2016/08/SK-126-1608-22304_p01_500_.jpg"></a><br>
-				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=45196&ske48" target="_blank">8月度 浴衣</a>
 			</li>
 		</ul>
 	</section>
@@ -129,7 +129,7 @@
 <dd>販売は終了しました。</dd>
 <dt>9月22日(木・祝)さいたまスーパーアリーナ コミュニティアリーナ、
 9月24日(土)インテックス大阪、9月25日(日)インテックス大阪分</dt>
-<dd>販売期間: 8月8日(月)19:00～9月12日(月)12:00(正午)</dd>
+<dd>販売は終了しました。</dd>
 <dt>11月23日(水・祝)ポートメッセなごや分</dt>
 <dd>販売期間: 8月8日(月)19:00～11月14日(月)12:00(正午)</dd>
 </dl>
