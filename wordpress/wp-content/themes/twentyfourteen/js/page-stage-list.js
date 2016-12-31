@@ -30,4 +30,39 @@ jQuery(function($) {
     	$("#stage_date_to").css("background-color", durationColor);
     	$("#stage_date_one_day").css("background-color", oneDayColor);
     }
+
+    // 「出演する」に選択しているメンバーを、出演しないメンバーのSELECTボックスにコピーする。
+    $('#member_cond_copy').click(function() {
+        $('#idStageMembers option:selected').each(function() {
+            $('#idStageMembers2 option[value=' + $(this).val() + ']').prop('selected', true);
+        });
+        return false;
+    });
+    // 「出演する」に選択しているメンバーをクリアする。
+    $('#member_cond_clear').click(function() {
+        $('#idStageMembers option:selected').each(function() {
+            $(this).prop('selected', false);
+        });
+        $('#idStageMembers option:first').prop('selected', false);
+        return false;
+    });
+
+    // 「出演しない」に選択しているメンバーを、出演するメンバーのSELECTボックスにコピーする。
+    $('#member_cond2_copy').click(function() {
+        $('#idStageMembers2 option:selected').each(function() {
+            $('#idStageMembers option[value=' + $(this).val() + ']').prop('selected', true);
+        });
+        return false;
+    });
+    // 「出演しない」に選択しているメンバーをクリアする。
+    $('#member_cond2_clear').click(function() {
+        $('#idStageMembers2 option:selected').each(function() {
+            $(this).prop('selected', false);
+        });
+        $('#idStageMembers2 option:first').prop('selected', false);
+        return false;
+    });
+    //$('#idStageMembers2').change(function() {
+    //    $('#idStageMembers2 option:first').prop('selected', false);
+    //});
 });

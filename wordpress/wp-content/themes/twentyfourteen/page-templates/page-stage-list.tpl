@@ -37,13 +37,39 @@
 
 		<p><label>
 			出演・共演メンバー：<?php echo isset($stageMemberNameList) && count($stageMemberNameList) > 0 ? implode("・", $stageMemberNameList) : "" ?><br>
-			<select name="stage_members[]" multiple>
+			<select id="idStageMembers" name="stage_members[]" multiple>
 				<option value="0">指定なし</option>
 <?php foreach ($memberInfoList as $member) { ?>
 				<option value="<?php echo $member->member_id ?>"<?php echo in_array($member->member_id, $stageMemberIds) ? " selected" : "" ?>><?php echo $member->member_name ?></option>
 <?php } ?>
 			</select>
-		</label></p>
+		</label><br>
+		<label>選んだメンバーが：<br>
+		<select name="member_cond" _style="width:150px">
+			<option value="0"<?php echo isset($memberCond) && $memberCond == 0 ? " selected" : "" ?>>みんな出演する</option>
+			<option value="1"<?php echo isset($memberCond) && $memberCond == 1 ? " selected" : "" ?>>1人でも出演する</option>
+		</select></label><br>
+		出演するメンバーを：<br>
+		<button id="member_cond_copy">下にコピー</button>　<button id="member_cond_clear">クリア</button>
+		</p>
+
+		<p><label>
+			出演しないメンバー：<?php echo isset($stageMemberNameList2) && count($stageMemberNameList2) > 0 ? implode("・", $stageMemberNameList2) : "" ?><br>
+			<select id="idStageMembers2" name="stage_members2[]" multiple>
+				<option value="0">指定なし</option>
+<?php foreach ($memberInfoList as $member2) { ?>
+				<option value="<?php echo $member2->member_id ?>"<?php echo in_array($member2->member_id, $stageMemberIds2) ? " selected" : "" ?>><?php echo $member2->member_name ?></option>
+<?php } ?>
+			</select>
+		</label><br>
+		<label>選んだメンバーが：<br>
+		<select name="member_cond2" _style="width:150px">
+			<option value="0"<?php echo isset($memberCond2) && $memberCond2 == 0 ? " selected" : "" ?>>みんな出演しない</option>
+			<!--<option value="1"<?php echo isset($memberCond2) && $memberCond2 == 1 ? " selected" : "" ?>>1人でも出演しない</option>-->
+		</select></label><br>
+		出演しないメンバーを：<br>
+		<button id="member_cond2_copy">上にコピー</button>　<button id="member_cond2_clear">クリア</button>
+		</p>
 
 		<p><label>
 			公演：<?php echo isset($programNameList) && count($programNameList) > 0 ? implode("・", $programNameList) : "" ?><br>
@@ -53,7 +79,12 @@
 				<option value="<?php echo $program->program_id ?>"<?php echo in_array($program->program_id, $programIds) ? " selected" : "" ?>><?php echo $program->program_name ?></option>
 <?php } ?>
 			</select>
-		</label></p>
+		</label><br>
+		<label>選択した公演を：<br>
+		<select name="stage_cond">
+			<option value="0"<?php echo isset($stageCond) && $stageCond == 0 ? " selected" : "" ?>>含む</option>
+			<option value="1"<?php echo isset($stageCond) && $stageCond == 1 ? " selected" : "" ?>>含まない</option>
+		</select></label></p>
 
 		<p>
 			シャッフル公演を含む？<br>
@@ -95,13 +126,16 @@
 		<p>表示公演数：<?php echo count($rows) ?><br>
 			<table style="margin-bottom:0;">
 				<tr>
+					<th>No</th>
 					<th>日付</th>
 					<th>公演名</th>
 					<th>チーム</th>
 					<th>　</th>
 				</tr>
+				<?php $rowCount = 1; ?>
 				<?php foreach ($rows as $stage) { ?>
 				<tr>
+					<td style="text-align:center"><?php echo $rowCount++; ?></td>
 					<td><a href="/stage?stage_id=<?php echo $stage->stage_id ?>"><?php echo $stage->stage_date ?> (<?php echo $stage->stage_time ?>)</a></td>
 					<td><?php echo $stage->program_name ?></td>
 					<td><?php echo $stage->team_name . ($stage->is_shuffled ? "(シ)" : "") ?></td>

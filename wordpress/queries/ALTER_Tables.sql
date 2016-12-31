@@ -278,3 +278,53 @@ values (
 
 -- 2016年8月7日 23:20:39 兼任先「等」の公演
 UPDATE Program SET program_name = '兼任先等の公演' WHERE program_id = 50;
+
+
+-- 2016年8月17日 23:41:44 柴田阿弥さん卒業
+SELECT * FROM Belonging WHERE member_id = 50 AND to_date = '9999-12-31';
+UPDATE Belonging SET to_date = '2016-08-31' WHERE member_id = 50 AND to_date = '9999-12-31';
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+VALUES
+ (50, 100, '2016-09-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+;
+
+
+-- 2016年9月9日 21:50:42 TeamE新公演「SKEフェスティバル」公演
+INSERT INTO Program VALUES
+(15, 'SKEフェスティバル', now(), 'tatakauashi', null)
+;
+
+
+
+-- 2016年11月6日 23:13:40 宮前杏実さん、村井純奈さん卒業
+SELECT * FROM Belonging WHERE member_id IN (15, 64) AND to_date = '9999-12-31';
+UPDATE Belonging SET to_date = '2016-09-30' WHERE member_id IN (15, 64) AND to_date = '9999-12-31';
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+VALUES
+ (15, 100, '2016-10-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(64, 100, '2016-10-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+;
+
+
+-- 2016年11月21日 21:18:37 研究生が昇格
+SELECT * FROM Belonging WHERE member_id IN (57, 66, 58, 67, 61, 62, 63, 68) AND to_date = '9999-12-31';
+UPDATE Belonging SET to_date = '2016-11-30' WHERE member_id IN (57, 66, 58, 67, 61, 62, 63, 68) AND to_date = '9999-12-31';
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+VALUES
+ (66, 1, '2016-12-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(67, 1, '2016-12-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(63, 1, '2016-12-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(58, 2, '2016-12-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(68, 2, '2016-12-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(57, 3, '2016-12-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(61, 3, '2016-12-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(62, 3, '2016-12-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+;
+
+
+-- 2016年12月1日 21:03:35 川崎成美さんが卒業
+update Belonging set to_date = '2016-12-31' where member_id = 60;
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+VALUES
+ (60, 100, '2017-01-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
+;

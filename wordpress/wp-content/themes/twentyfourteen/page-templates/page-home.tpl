@@ -21,12 +21,40 @@
 <header class="renewing"><span class="nowrap">SKE48酒井萌衣応援サイト めいちむぱわー</span> 
 <span class="nowrap">リニューアル中です！</span></header>
 <section class="news-titles">
+	<section style="background-color: white;">
+		<h3>個別生写真発売中！</h3>
+		<ul class="photo">
+			<li>
+				<a href="/wp-content/uploads/2016/12/SK-126-1612-27758_p01_500_.jpg" data-lightbox="popup" data-title="New 12月度個別ランダム"><img src="/wp-content/uploads/2016/12/SK-126-1612-27758_p01_500_.jpg"></a><br>
+				<a href="http://shopping.akb48-group.com/selection/detail/2/51186" target="_blank"><span class="new-post">New</span> 12月度<br>個別ランダム</a>
+			</li>
+			<li>
+				<a href="/wp-content/uploads/2016/12/SK-126-1612-27065_p02_500_.jpg" data-lightbox="popup" data-title="12月度 クリスマスII"><img src="/wp-content/uploads/2016/12/SK-126-1612-27065_p02_500_.jpg"></a><br>
+				<a href="http://shopping.akb48-group.com/selection/detail/2/50500" target="_blank">12月度 クリスマスII</a>
+			</li>
+			<li>
+				<a href="/wp-content/uploads/2016/12/SK-126-1612-27278_p02_500_.jpg" data-lightbox="popup" data-title="12月度 コンサート クリスマス"><img src="/wp-content/uploads/2016/12/SK-126-1612-27278_p02_500_.jpg"></a><br>
+				<a href="http://shopping.akb48-group.com/selection/detail/2/50559" target="_blank">12月度 コンサート クリスマス</a>
+			</li>
+		</ul>
+	</section>
+<!--
 	<section>
-		<a href="http://shop.mu-mo.net/st/special/ske48_1606/" target="_blank"><img class="banner" src="/wp-content/uploads/2016/07/header_42qb.jpg" alt="SKE48 20thシングル「金の愛、銀の愛」劇場盤販売サイト"></a>
+		<a href="http://shop.mu-mo.net/st/special/ske48_1606/" target="_blank"><img style="margin-bottom: 0;" class="banner" src="/wp-content/uploads/2016/07/header_42qb.jpg" alt="SKE48 20thシングル「金の愛、銀の愛」劇場盤販売サイト"></a>
+		<span style="display: block; font-size: 0.8em; margin-bottom: 0.8em;">このバナーからどうぞ！</span>
+		<span class="bold">酒井萌衣さんは完売しました！</span><br>
 		5次販売中！<?php /* ?><span class="red">7/25(月)12:00(正午)</span>まで！<?php */ ?>
-		<br>完売も出てきました。
 		<a href="#kobetsu20th">くわしく！</a>
 	</section>
+	<section>
+		<h3>2016年 生誕委員募集中！</h3>
+		12月13日に19歳になる酒井萌衣さんのお誕生日をお祝いするための<span class="pink bold meiryo">生誕委員</span>を募集中です！<br>
+		生誕委員をしたことがない初めての方もどうぞお気軽にご参加ください！　
+		mixiコミュニティがありますので、そちらから参加申請をお願いします。<br>
+		ぜひ、みなさんで素敵な生誕祭を企画していきましょう！　たくさんのめいちむのみなさんのご参加をお待ちしています！
+		<a href="http://mixi.jp/view_community.pl?id=6291574" target="_blank" class="button bold"><span><span class="text-transform-clear">mixi 2016年酒井萌衣生誕実行委員会</span></span></a>
+	</section>
+-->
 	<section>
 		<h3>LINE LIVE 朗読ソフレ</h3>
 		<dl>
@@ -41,6 +69,36 @@
 		</dl>
 	</section>
 	<section>
+		<h3 class="skyblue"><a href="https://twitter.com/search?q=%23SKEフェスティバル公演" target="_blank">#SKEフェスティバル公演</a></h3>
+		2016年9月9日(金)にチームE新公演「SKEフェスティバル公演」が始まりました！<br>
+		<span class="toggle-header closed skyblue" style="text-decoration: underline;">セットリストはこちらです。</span>
+		<div class="toggle-body">
+			<ol style="margin: 0.5em 0 0 2.5em;">
+			<li>重力シンパシー[重01]</li>
+			<li>キミが思ってるより...[重13]</li>
+			<li>ほっぺ、ツネル[バ16]</li>
+			<li>SKEフェスティバル[重12]</li>
+			<li>お手上げララバイ(斉藤)[重08]</li>
+			<li>君のc/w(市野、C後藤楽、髙寺)[重05]</li>
+			<li>涙に沈む太陽(井田、C木本、佐藤)[重04]</li>
+			<li>ハングリーライオン(鎌田、C熊崎、髙寺、福士)[バ02]</li>
+			<li>1994年の雷鳴(井田、酒井、C須田、菅原、谷)[重06]</li>
+			<li>バラの儀式[バ12]</li>
+			<li>女神はどこで微笑む？[重16]</li>
+			<li>ハートのベクトル[重15]</li>
+			<li>キンモクセイ[重09]</li>
+			<li>恋のお縄[チームZ]</li>
+			<li>美しい狩り[バ13]</li>
+			<li>未来が目にしみる[バ01]</li>
+			</ol>
+			<div style="font-size: smaller; margin-left: 2.0em;">※重：重力シンパシー公演より、バ：バラの儀式公演より</div>
+		</div>
+		<div style="text-align:center; margin-top: 0.5em; margin-bottom: 0.5em;">
+			<a href="/wp-content/uploads/2016/09/IMG_20160909_233244.jpg" data-lightbox="popup" data-title="SKEフェスティバル公演 初日"><img src="/wp-content/uploads/2016/09/IMG_20160909_233244.jpg" style="max-width: 80%;"></a><br>
+			SKEフェスティバル公演 初日
+		</div>
+	</section>
+	<section>
 		<h3 class="skyblue">岸が見える海から</h3>
 		<dl>
 		<dt>LOVE TRIP／しあわせを分けなさい Type-C</dt>
@@ -52,23 +110,6 @@
 			</div>
 		</dd>
 		</dl>
-	</section>
-	<section style="background-color: white;">
-		<h3>個別生写真発売中！</h3>
-		<ul class="photo">
-			<li>
-				<a href="/wp-content/uploads/2016/09/SK-126-1609-23136_p03_500_.jpg" data-lightbox="popup" data-title="New 8月度 パレオはエメラルド"><img src="/wp-content/uploads/2016/09/SK-126-1609-23136_p03_500_.jpg"></a><br>
-				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=46570&ske48" target="_blank"><span class="new-post">New</span> 9月度<br>パレオはエメラルド</a>
-			</li>
-			<li>
-				<a href="/wp-content/uploads/2016/08/SK-126-1608-23009_p02_500_.jpg" data-lightbox="popup" data-title="New 8月度 サマーバケーション"><img src="/wp-content/uploads/2016/08/SK-126-1608-23009_p02_500_.jpg"></a><br>
-				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=46118&ske48" target="_blank"><span class="new-post">New</span> 8月度<br>サマーバケーション</a>
-			</li>
-			<li>
-				<a href="/wp-content/uploads/2016/08/SK-126-1608-22476_p01_500_.jpg" data-lightbox="popup" data-title="8月度 夏祭り"><img src="/wp-content/uploads/2016/08/SK-126-1608-22476_p01_500_.jpg"></a><br>
-				<a href="http://shopping.akb48-group.com/products/detail.php?product_id=45546&ske48" target="_blank">8月度 夏祭り</a>
-			</li>
-		</ul>
 	</section>
 	<section>
 		<h3><span class="nowrap">劇場公演400回！</span></h3>
@@ -106,6 +147,7 @@
 	<?php */ ?>
 </section>
 <section class="detail">
+<?php /* ?>
 <article id="kobetsu20th">
 <section>
 <div style="text-align: center;"><img style="max-width: 100%;" src="/wp-content/uploads/2016/08/20160808_KinGin5ji.jpg" alt="SKE48 20th Single 個別握手会『金の愛、銀の愛』"></div>
@@ -116,32 +158,24 @@
 お申込みはこちらから！<br>
 <a href="http://shop.mu-mo.net/st/special/ske48_1606/" target="_blank"><img class="banner" src="/wp-content/uploads/2016/07/header_42qb.jpg" alt="SKE48 20thシングル「金の愛、銀の愛」劇場盤販売サイト"></a>
 </div>
-<?php if ($sellingStarted) { ?>
-<p>5次先着販売中です！</p>
-<?php } else { ?>
-<h4>5次先着販売がまもなく8月8日(月)19:00～スタートです！！</h4>
-<?php } ?>
+<?php if (date("YmdHis", time() + 9 * 60 * 60) <= '20161114120000') { ?>
 <dl>
-<dt>会場ごとに販売期間が異なりますのでご注意ください。</dt>
-<dt>9月4日(日)パシフィコ横浜分</dt>
-<dd><span class="">販売は終了しました。</span></dd>
-<dt>9月10日(土)ポートメッセなごや、9月11日(日)ポートメッセなごや分</dt>
-<dd>販売は終了しました。</dd>
-<dt>9月22日(木・祝)さいたまスーパーアリーナ コミュニティアリーナ、
-9月24日(土)インテックス大阪、9月25日(日)インテックス大阪分</dt>
-<dd>販売は終了しました。</dd>
+<dd>5次先着販売中です！</dd>
 <dt>11月23日(水・祝)ポートメッセなごや分</dt>
-<dd>販売期間: 8月8日(月)19:00～11月14日(月)12:00(正午)</dd>
+<dd> <span class="bold">完売しました！</span></dd>
 </dl>
+<?php } else { ?>
+「金の愛、銀の愛」の販売は終了しました。
+<?php }  ?>
 <dl lining="8em">
 <dt>握手会の日程はこちら</dt>
-<dd>9/4(<span class="sun">日</span>)	パシフィコ横浜 <span class="red bold">SOLD OUT</span></dd>
-<dd>9/10(<span class="sat">土</span>)	ポートメッセなごや<span class="blinking pink normal">&hearts;</span></dd>
-<dd>9/11(<span class="sun">日</span>)	ポートメッセなごや <span class="red bold">SOLD OUT</span></dd>
-<dd>9/22(<span class="bold">木・</span><span class="sun">祝</span>)	さいたまスーパーアリーナ<span class="blinking pink normal">&hearts;</span></dd>
+<dd>9/4(<span class="sun">日</span>)	パシフィコ横浜 <span class="blinking bold">完売<span class="pink">&hearts;</span></span></dd>
+<dd>9/10(<span class="sat">土</span>)	ポートメッセなごや</dd>
+<dd>9/11(<span class="sun">日</span>)	ポートメッセなごや <span class="blinking bold">完売<span class="pink">&hearts;</span></span></dd>
+<dd>9/22(<span class="bold">木・</span><span class="sun">祝</span>)	さいたまスーパーアリーナ</dd>
 <dd>9/24(<span class="sat">土</span>)	インテックス大阪</dd>
-<dd>9/25(<span class="sun">日</span>)	インテックス大阪<span class="blinking pink normal">&hearts;</span></dd>
-<dd>11/23(<span class="bold">水・</span><span class="sun">祝</span>)	ポートメッセなごや</dd>
+<dd>9/25(<span class="sun">日</span>)	インテックス大阪</dd>
+<dd>11/23(<span class="bold">水・</span><span class="sun">祝</span>)	ポートメッセなごや <span class="blinking bold">完売<span class="pink">&hearts;</span></span></dd>
 </dl>
 
 <dl lining="4em">
@@ -149,9 +183,11 @@
 <dd>昼の部	14:00～15:10（14:50レーン締め切り）</dd>
 <dd>B5部	16:10～17:10（16:50レーン締め切り）</dd>
 </dl>
+<div style="text-align: center;"><a href="/wp-content/uploads/2016/09/1473586858851.jpg" data-lightbox="popup" data-title="酒井萌衣さん 2016年9月11日(日) ポートメッセなごやにて"><img style="max-width: 100%;" src="/wp-content/uploads/2016/09/1473586858851.jpg" alt="酒井萌衣 さかいめい さん"></a></div>
 </section>
 </section>
 </article>
+<?php */ ?>
 	<?php /* ?>
 <article id="bigonegirls34th">
 <section>

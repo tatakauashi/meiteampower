@@ -71,6 +71,22 @@ if (isset($_POST["stage_not_double_checked_only"]) && $_POST["stage_not_double_c
 	$notDoubleCheckedOnly = intval($_POST["stage_not_double_checked_only"]) == 1;
 }
 
+// 出演メンバー指定の条件
+$memberCond = 0;
+if (isset($_POST["member_cond"])) {
+	if ($_POST["member_cond"] == "1") { $memberCond = 1; }
+}
+// 出演していないメンバー指定の条件
+$memberCond2 = 0;
+if (isset($_POST["member_cond2"])) {
+	if ($_POST["member_cond2"] == "1") { $memberCond2 = 1; }
+}
+// 公演の絞り込み条件
+$stageCond = 0;
+if (isset($_POST["stage_cond"])) {
+	if ($_POST["stage_cond"] == "1") { $stageCond = 1; }
+}
+
 $rows = array();
 if (!isset($_POST["stage_register"])) {
 	// 一覧取得
@@ -87,22 +103,26 @@ if (!isset($_POST["stage_register"])) {
 
 	// 出演メンバーによる絞込み
 	$stageMemberIds = array();
-	if (isset($_POST["stage_members"]) && count($_POST["stage_members"]) > 0 && $_POST["stage_members"][0] != 0)
+	if (isset($_POST["stage_members"]) && count($_POST["stage_members"]) > 0 && $_POST["stage_members"][0] != "0")
 	{
 		$stageMemberIds = $_POST["stage_members"];
 		$stageMemberIdsString = implode(",", $stageMemberIds);
-		// メンバーのOR条件
-// 		$query .= " JOIN (SELECT selMem.stage_id, MAX(selMem.revision) AS revision FROM Stage_Member selMem WHERE selMem.member_id IN ($stageMemberIdsString) GROUP BY selMem.stage_id) selMem2 ON (s.stage_id = selMem2.stage_id AND s.revision = selMem2.revision) ";
-		// メンバーのAND条件
-		$query .= " JOIN (SELECT selMem.stage_id, selMem.revision, COUNT(*) AS CNT FROM Stage_Member selMem WHERE selMem.member_id IN ($stageMemberIdsString) GROUP BY selMem.stage_id, selMem.revision) selMem2 ON (s.stage_id = selMem2.stage_id AND s.revision = selMem2.revision AND selMem2.CNT = " . count($stageMemberIds) . ") ";
+
+		// 出演メンバーの条件 0. AND
+		$memberCondString = " = " . count($stageMemberIds);
+		if ($memberCond == 1) { $memberCondString = " > 0 "; }	// 1. OR
+
+		// メンバーによる絞込み
+//		$query .= " JOIN (SELECT selMem.stage_id, selMem.revision, COUNT(*) AS CNT FROM Stage_Member selMem WHERE selMem.member_id IN ($stageMemberIdsString) GROUP BY selMem.stage_id, selMem.revision) selMem2 ON (s.stage_id = selMem2.stage_id AND s.revision = selMem2.revision AND selMem2.CNT = " . count($stageMemberIds) . ") ";
+		$query .= " JOIN (SELECT selMem.stage_id, selMem.revision, COUNT(*) AS CNT FROM Stage_Member selMem WHERE selMem.member_id IN ($stageMemberIdsString) GROUP BY selMem.stage_id, selMem.revision) selMem2 ON (s.stage_id = selMem2.stage_id AND s.revision = selMem2.revision AND selMem2.CNT " . $memberCondString . ") ";
 
 		// 画面表示用のメンバー名のリスト
 		$stageMemberNameList = getMemberNameList($stageMemberIds);
 	}
-	
+
 	// イベントによる絞込み
 	$eventIds = array();
-	if (isset($_POST["stage_events"]) && count($_POST["stage_events"]) > 0 && $_POST["stage_events"][0] != 0)
+	if (isset($_POST["stage_events"]) && count($_POST["stage_events"]) > 0 && $_POST["stage_events"][0] != "0")
 	{
 		$eventIds = $_POST["stage_events"];
 		$eventIdsString = implode(",", $eventIds);
@@ -148,11 +168,14 @@ if (!isset($_POST["stage_register"])) {
 
 	// 公演名で絞込み
 	$programIds = array();
-	if (isset($_POST["stage_programs"]) && count($_POST["stage_programs"]) > 0 && $_POST["stage_programs"][0] != 0)
+	if (isset($_POST["stage_programs"]) && count($_POST["stage_programs"]) > 0 && $_POST["stage_programs"][0] != "0")
 	{
+		// 絞り込み条件
+		$stageCondString = "";
+		if ($stageCond == 1) { $stageCondString = " NOT "; }
 		$programIds = $_POST["stage_programs"];
 		$programIdsString = implode(",", $programIds);		
-		$query .= $condition .  " p.program_id IN ($programIdsString) ";
+		$query .= $condition .  " p.program_id $stageCondString IN ($programIdsString) ";
 		$condition = " AND ";
 		
 		// 画面表示用の公演名のリスト
@@ -192,7 +215,21 @@ if (!isset($_POST["stage_register"])) {
 		$query .= $condition .  " s.is_unofficial = b'1' ";
 		$condition = " AND ";
 	}
-	
+
+	// 出演していないメンバーによる絞込み
+	$stageMemberIds2 = array();
+	if (isset($_POST["stage_members2"]) && count($_POST["stage_members2"]) > 0 && $_POST["stage_members2"][0] != "0")
+	{
+		$stageMemberIds2 = $_POST["stage_members2"];
+		$stageMemberIdsString2 = implode(",", $stageMemberIds2);
+
+		// メンバーによる絞込み
+		$query .= $condition . " NOT EXISTS (SELECT 'x' FROM Stage_Member selNotMem WHERE selNotMem.member_id IN ($stageMemberIdsString2) AND s.stage_id = selNotMem.stage_id AND s.revision = selNotMem.revision) ";
+
+		// 画面表示用のメンバー名のリスト
+		$stageMemberNameList2 = getMemberNameList($stageMemberIds2);
+	}
+
 	$query .= $condition . " s.delete_time IS NULL ";
 	$query .= " ORDER BY s.stage_id ";
 

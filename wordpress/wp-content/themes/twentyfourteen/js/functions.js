@@ -138,4 +138,38 @@
         toggleHeader.next('.toggle-body').slideToggle('fast');
         toggleHeader.toggleClass('closed');
     });
+
+    $("select[multiple].op-toggle-all").prepend('<option class="toggle-all" value="-1">すべて反転</option>');
+    $("select[multiple].op-remove-all").prepend('<option class="remove-all" value="0">すべてはずす</option>');
+    $("select[multiple].op-select-all").prepend('<option class="select-all" value="1">すべて選択</option>');
+    $("select[multiple] option.select-all").click(function() {
+        var thiz = $(this);
+        var prnt = thiz.parent();
+        thiz.siblings().prop("selected", true);
+        thiz.prop("selected", false);
+        prnt.children(".remove-all").prop("selected", false);
+        prnt.children(".toggle-all").prop("selected", false);
+    });
+    $("select[multiple] option.remove-all").click(function() {
+        var thiz = $(this);
+        thiz.siblings().prop("selected", false);
+        thiz.prop("selected", false);
+    });
+    $("select[multiple] option.toggle-all").click(function() {
+        var thiz = $(this);
+        jQuery.each(thiz.siblings(), function(i, obj) {
+            var jobj = $(obj);
+            if (jobj.prop("selected")) {
+                jobj.prop("selected", false);
+            }
+            else {
+                jobj.prop("selected", true);
+            }
+        });
+        var prnt = thiz.parent();
+        prnt.children(".select-all").prop("selected", false);
+        prnt.children(".remove-all").prop("selected", false);
+        thiz.prop("selected", false);
+    });
+
 } )( jQuery );

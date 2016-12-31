@@ -10,7 +10,7 @@ jQuery(function($) {
                 p.val(13);
                 break;
             case 3:
-                p.val(2);
+                p.val(15);
                 break;
             case 4:
                 p.val(1);

@@ -143,11 +143,48 @@ section.detail article:last-of-type section.content {
 	vertical-align: middle;
 }
 
+a.button {
+	display: block;
+	width: 50%;
+	margin: auto;
+	font-family: Meiryo,"メイリオ";
+	background-color: gold;
+}
+
+a.button:visited {
+	background-color: gold;
+}
+
+a.button:hover, a.button:active {
+	background-color: yellow;
+}
+
+a.button>span {
+	display: inline-table;
+	height: 1.5em;
+	width: 100%;
+	vertical-align: middle;
+}
+
+a.button>span>span {
+	display: table-cell;
+	width: 100%;
+	text-align: center;
+}
+
 footer {
 	background-color: Gold;/*PeachPuff;*/
 	color: Snow;
 	text-align: center;
 	font-family: Meiryo,"メイリオ"
+}
+
+.meiryo {
+	font-family: Meiryo,"メイリオ"
+}
+
+.text-transform-clear {
+	text-transform: none;
 }
 
 /***********************
