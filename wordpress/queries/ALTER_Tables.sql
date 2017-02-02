@@ -328,3 +328,107 @@ INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regi
 VALUES
  (60, 100, '2017-01-01', '9999-12-31', NOW(), 'tatakauashi', NULL)
 ;
+
+
+-- 2017年1月6日 22:44:07 ８期生を追加
+INSERT INTO Member (member_id, member_name, sort_order, regist_time, regist_user, delete_time)
+VALUES
+ (10074, '渥美彩羽', 'あつみあやはGGGGGG', NOW(), 'tatakauashi', NULL)
+,(10075, '石川咲姫', 'いしかわさきGGGGGG', NOW(), 'tatakauashi', NULL)
+,(10076, '石黒友月', 'いしくろゆつきGGOGGOG', NOW(), 'tatakauashi', NULL)
+,(10077, '井上瑠夏', 'いのうえるかGGGGGG', NOW(), 'tatakauashi', NULL)
+,(10078, '大芝りんか', 'おおしはりんかGGGOGGG', NOW(), 'tatakauashi', NULL)
+,(10079, '岡田美紅', 'おかたみくGGOGG', NOW(), 'tatakauashi', NULL)
+,(10080, '川合杏奈', 'かわいあんなGGGGGG', NOW(), 'tatakauashi', NULL)
+,(10081, '北川愛乃', 'きたかわよしのGGOGGGG', NOW(), 'tatakauashi', NULL)
+,(10082, '倉島杏実', 'くらしまあみGGGGGG', NOW(), 'tatakauashi', NULL)
+,(10083, '小林佳乃', 'こはやしかのGOGGGG', NOW(), 'tatakauashi', NULL)
+,(10084, '坂本真凛', 'さかもとまりんGGGGGGG', NOW(), 'tatakauashi', NULL)
+,(10085, '佐藤佳穂', 'さとうかほGGGGG', NOW(), 'tatakauashi', NULL)
+,(10086, '白雪希明', 'しらゆきこはくGGGGGGG', NOW(), 'tatakauashi', NULL)
+,(10087, '仲村和泉', 'なかむらいすみGGGGGOG', NOW(), 'tatakauashi', NULL)
+,(10088, '野々垣美希', 'ののかきみきGGOGGG', NOW(), 'tatakauashi', NULL)
+,(10089, '野村実代', 'のむらみよGGGGG', NOW(), 'tatakauashi', NULL)
+,(10090, '深井ねがい', 'ふかいねかいGGGGOG', NOW(), 'tatakauashi', NULL)
+,(10091, '森平莉子', 'もりひらりこGGGGGG', NOW(), 'tatakauashi', NULL)
+,(10092, '矢作有紀奈', 'やはきゆきなGGOGGG', NOW(), 'tatakauashi', NULL)
+;
+
+-- 所属に副ソート順の「ランク」を追加。８期研究生がSKE48モバイルの並び順でも７期生の後になったため。
+ALTER TABLE Belonging ADD COLUMN rank int NOT NULL DEFAULT 0 AFTER team_id;
+
+INSERT INTO Belonging (member_id, team_id, rank, from_date, to_date, regist_time, regist_user, delete_time)
+VALUES 
+ (10074, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10075, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10076, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10077, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10078, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10079, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10080, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10081, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10082, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10083, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10084, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10085, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10086, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10087, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10088, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10089, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10090, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10091, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+,(10092, 4, 8, '2017-01-11', '9999-12-31', NOW(), 'tatakauashi', NULL)
+;
+
+-- メンバーのソート順に所属のrankを加味する。
+CREATE OR REPLACE VIEW Member_View AS
+SELECT m.member_id
+     , m.member_name
+     , t.team_id
+     , t.team_name
+     , b.from_date
+     , b.to_date
+     , t.sort_order AS order1
+     , m.sort_order AS order2
+     , b.rank       AS order3
+FROM Member m
+JOIN Belonging b ON (m.member_id = b.member_id)
+JOIN Team t ON (t.team_id = b.team_id)
+ORDER BY t.sort_order, b.rank, m.sort_order
+;
+
+
+-- 名前の漢字間違い
+UPDATE Member SET member_name = '坂本真凛' WHERE member_id = 10084;
+
+-- INSERT時のmember_id間違い
+UPDATE Member SET member_id = 10088 WHERE member_id = 10098;
+UPDATE Member SET member_id = 10089 WHERE member_id = 10099;
+
+-- 2017年1月21日 2:43:13 小林佳乃さん活動辞退
+update Belonging set to_date = '2017-01-16' where member_id = 10083 AND to_date = '9999-12-31';
+INSERT INTO Belonging (member_id, team_id, from_date, to_date, regist_time, regist_user, delete_time)
+VALUES
+ (10083, 100, '2017-01-17', '9999-12-31', NOW(), 'tatakauashi', NULL)
+;
+
+-- 2017年2月1日 19:29:22 検索条件を残す
+DROP TABLE IF EXISTS Stage_Search_Cond;
+CREATE TABLE Stage_Search_Cond (
+	cond_key varchar(50) primary key,
+	cond_text text not null,
+	regist_ip varchar(20) NOT NULL,
+	regist_time datetime not null,			-- 登録日時
+	regist_user varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 2017年2月2日 21:44:30 検索
+DROP TABLE ID EXISTS Stage_Search_Log;
+CREATE TABLE Stage_Search_Log (
+	cond_key varchar(50) NOT NULL,
+	regist_ip varchar(20) NOT NULL,
+	regist_time datetime not null,
+	regist_user varchar(20) NOT NULL,
+	KEY cond_key (cond_key),
+	KEY regist_time (regist_time)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

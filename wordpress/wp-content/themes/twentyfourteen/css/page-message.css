@@ -9,7 +9,7 @@ h2.entry-title {
 
 body {
 	position: related;
-	background-image: url(http://sakaimei-senkyo.net/wp-content/themes/twentyfourteen/images/free/winter-back053_500.jpg);
+	background-image: url("/wp-content/themes/twentyfourteen/images/free/winter-back053_500.jpg");
 }
 
 body.ja {
@@ -71,15 +71,15 @@ div#float-box input[type="submit"] {
 }*/
 
 div#float-box input[type="submit"]#lang_jp {
-	background: url(http://sakaimei-senkyo.net/wp-content/themes/twentyfourteen/images/flag_jp.png) no-repeat;
+	background: url("/wp-content/themes/twentyfourteen/images/flag_jp.png") no-repeat;
 }
 
 div#float-box input[type="submit"]#lang_en {
-	background-image: url(http://sakaimei-senkyo.net/wp-content/themes/twentyfourteen/images/flag_en.png);
+	background-image: url("/wp-content/themes/twentyfourteen/images/flag_en.png");
 }
 
 div#float-box input[type="submit"]#lang_zh {
-	background-image: url(http://sakaimei-senkyo.net/wp-content/themes/twentyfourteen/images/flag_zh.png);
+	background-image: url("/wp-content/themes/twentyfourteen/images/flag_zh.png");
 }
 
 div#float-box input[type="submit"]#lang_hide {

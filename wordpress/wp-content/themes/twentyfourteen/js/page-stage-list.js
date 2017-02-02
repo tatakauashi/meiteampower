@@ -5,12 +5,18 @@ jQuery(function($) {
     $('#stage_date_specify_one_day').click(function() {
     	setStageDateSpecifyDurationReadOnly(true);
     });
+    $('#stage_date_specify_none').click(function() {
+        setStageDateSpecifyNone();
+    });
 
     // onload時
     if ($("#stage_date_specify_duration").prop("checked")) {
     	setStageDateSpecifyDurationReadOnly(false);
-    } else {
+    } else if ($("#stage_date_specify_one_day").prop("checked")) {
     	setStageDateSpecifyDurationReadOnly(true);
+    } else {
+        // 指定なし（過去１か月の場合）は、期間指定、日付指定ともreadonly＆グレイ
+        setStageDateSpecifyNone();
     }
 
     // 期間指定させるかどうかを設定する
@@ -29,6 +35,15 @@ jQuery(function($) {
     	$("#stage_date_from").css("background-color", durationColor);
     	$("#stage_date_to").css("background-color", durationColor);
     	$("#stage_date_one_day").css("background-color", oneDayColor);
+    }
+
+    function setStageDateSpecifyNone() {
+        $("#stage_date_from").attr("readonly", true);
+        $("#stage_date_to").attr("readonly", true);
+        $("#stage_date_one_day").attr("readonly", true);
+        $("#stage_date_from").css("background-color", "lightgray");
+        $("#stage_date_to").css("background-color", "lightgray");
+        $("#stage_date_one_day").css("background-color", "lightgray");
     }
 
     // 「出演する」に選択しているメンバーを、出演しないメンバーのSELECTボックスにコピーする。

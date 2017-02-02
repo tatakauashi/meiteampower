@@ -5,8 +5,50 @@ Template Name: stage-list
 
 namespace MEIMEI;
 
+session_start();
+
 include_once('inc/meimei_libs.php');
 include_once('inc/stage_libs.php');
+
+$wSearchCondHash = array();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	if (isset($_POST["stage_period"])) {
+		$json_string = json_encode($_POST);
+		$key = getSearchKey($json_string);
+		if (!empty($key)) {
+			header("Location: /stage/stagelist?mei_s=$key");
+			return;
+		}
+
+		$wNum = 1;
+		$wIsSuccess = false;
+		do {
+			$key = genSearchKey($wNum++);
+			$wIsSuccess = registerSearchCond($key, $json_string);
+		} while ($wIsSuccess == false);
+
+		header("Location: /stage/stagelist?mei_s=$key");
+		return;
+	} else {
+		header("Location: /stage/stagelist");
+		return;
+	}
+} else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+	if (isset($_GET['mei_s'])) {
+		$key = $_GET['mei_s'];
+		$json_string = getSearchCond($key);
+		if (empty($json_string)) {
+			header("Location: /stage/stagelist");
+			return;
+		}
+		$wSearchCondHash = json_decode($json_string, true);
+		logSearchCond($key);
+	}
+} else {
+	header("Location: /stage/stagelist");
+	return;
+}
+
 
 // ログインの確認
 $isLogined = false;
@@ -19,76 +61,76 @@ if (!is_user_logged_in()) {
 }
 
 // 日付指定方法
-$stageDateSpecify = "1";
-if (isset($_POST["stage_date_specify"]) && $_POST["stage_date_specify"] != "")
+$stageDateSpecify = "0";
+if (isset($wSearchCondHash["stage_date_specify"]) && $wSearchCondHash["stage_date_specify"] != "")
 {
-	$stageDateSpecify = $_POST["stage_date_specify"];
+	$stageDateSpecify = $wSearchCondHash["stage_date_specify"];
 }
+$stageDateSpecifyInner = $stageDateSpecify;
 $stageDateFrom = "";
-//if (isset($_POST["stage_date_from"]) && $_POST["stage_date_from"] != "")
-if (isset($_POST["stage_date_from"]))
+if ($stageDateSpecify == "1" && isset($wSearchCondHash["stage_date_from"]) && $wSearchCondHash["stage_date_from"] != "")
 {
-	$stageDateFrom = $_POST["stage_date_from"];
+	$stageDateFrom = $wSearchCondHash["stage_date_from"];
 } else {
 	$stageDateFrom = date("Y-m-d", time() - 31 * 24 * 60 * 60);
 }
 $stageDateTo = "";
-if (isset($_POST["stage_date_to"]) && $_POST["stage_date_to"] != "")
+if ($stageDateSpecify == "1" && isset($wSearchCondHash["stage_date_to"]) && $wSearchCondHash["stage_date_to"] != "")
 {
-	$stageDateTo = $_POST["stage_date_to"];
+	$stageDateTo = $wSearchCondHash["stage_date_to"];
 }
 $stageDateOneDay = "";
-if (isset($_POST["stage_date_one_day"]) && $_POST["stage_date_one_day"] != "")
+if (isset($wSearchCondHash["stage_date_one_day"]) && $wSearchCondHash["stage_date_one_day"] != "")
 {
-	$stageDateOneDay = $_POST["stage_date_one_day"];
+	$stageDateOneDay = $wSearchCondHash["stage_date_one_day"];
 }
 
 // 出演回数指定
 $stageCount = 0;
-if (isset($_POST["stage_count"]) && $_POST["stage_count"] != "" && ctype_digit($_POST["stage_count"]) && intval($_POST["stage_count"]) > 0)
+if (isset($wSearchCondHash["stage_count"]) && $wSearchCondHash["stage_count"] != "" && ctype_digit($wSearchCondHash["stage_count"]) && intval($wSearchCondHash["stage_count"]) > 0)
 {
-	$stageCount = intval($_POST["stage_count"]);
+	$stageCount = intval($wSearchCondHash["stage_count"]);
 }
 
 // レギュラー・シャッフル
 $stageRegularShuffle = 0;
-if (isset($_POST["stage_regular_shuffle"]) && ($_POST["stage_regular_shuffle"] == "0" || $_POST["stage_regular_shuffle"] == "1" || $_POST["stage_regular_shuffle"] == "2"))
+if (isset($wSearchCondHash["stage_regular_shuffle"]) && ($wSearchCondHash["stage_regular_shuffle"] == "0" || $wSearchCondHash["stage_regular_shuffle"] == "1" || $wSearchCondHash["stage_regular_shuffle"] == "2"))
 {
-	$stageRegularShuffle = intval($_POST["stage_regular_shuffle"]);
+	$stageRegularShuffle = intval($wSearchCondHash["stage_regular_shuffle"]);
 }
 
 // 特別公演を含むか
 $inclSpecialStage = 1;
-if (isset($_POST["stage_include_special"]) && ($_POST["stage_include_special"] == "0" || $_POST["stage_include_special"] == "1" || $_POST["stage_include_special"] == "2"))
+if (isset($wSearchCondHash["stage_include_special"]) && ($wSearchCondHash["stage_include_special"] == "0" || $wSearchCondHash["stage_include_special"] == "1" || $wSearchCondHash["stage_include_special"] == "2"))
 {
-	$inclSpecialStage = intval($_POST["stage_include_special"]);
+	$inclSpecialStage = intval($wSearchCondHash["stage_include_special"]);
 }
 
 // ダブルチェックが必要なもののみ
 $notDoubleCheckedOnly = false;
-if (isset($_POST["stage_not_double_checked_only"]) && $_POST["stage_not_double_checked_only"] == "1")
+if (isset($wSearchCondHash["stage_not_double_checked_only"]) && $wSearchCondHash["stage_not_double_checked_only"] == "1")
 {
-	$notDoubleCheckedOnly = intval($_POST["stage_not_double_checked_only"]) == 1;
+	$notDoubleCheckedOnly = intval($wSearchCondHash["stage_not_double_checked_only"]) == 1;
 }
 
 // 出演メンバー指定の条件
 $memberCond = 0;
-if (isset($_POST["member_cond"])) {
-	if ($_POST["member_cond"] == "1") { $memberCond = 1; }
+if (isset($wSearchCondHash["member_cond"])) {
+	if ($wSearchCondHash["member_cond"] == "1") { $memberCond = 1; }
 }
 // 出演していないメンバー指定の条件
 $memberCond2 = 0;
-if (isset($_POST["member_cond2"])) {
-	if ($_POST["member_cond2"] == "1") { $memberCond2 = 1; }
+if (isset($wSearchCondHash["member_cond2"])) {
+	if ($wSearchCondHash["member_cond2"] == "1") { $memberCond2 = 1; }
 }
 // 公演の絞り込み条件
 $stageCond = 0;
-if (isset($_POST["stage_cond"])) {
-	if ($_POST["stage_cond"] == "1") { $stageCond = 1; }
+if (isset($wSearchCondHash["stage_cond"])) {
+	if ($wSearchCondHash["stage_cond"] == "1") { $stageCond = 1; }
 }
 
 $rows = array();
-if (!isset($_POST["stage_register"])) {
+if (!isset($wSearchCondHash["stage_register"])) {
 	// 一覧取得
 	global $wpdb;
 	$wpdb->show_errors();
@@ -103,9 +145,9 @@ if (!isset($_POST["stage_register"])) {
 
 	// 出演メンバーによる絞込み
 	$stageMemberIds = array();
-	if (isset($_POST["stage_members"]) && count($_POST["stage_members"]) > 0 && $_POST["stage_members"][0] != "0")
+	if (isset($wSearchCondHash["stage_members"]) && count($wSearchCondHash["stage_members"]) > 0 && $wSearchCondHash["stage_members"][0] != "0")
 	{
-		$stageMemberIds = $_POST["stage_members"];
+		$stageMemberIds = $wSearchCondHash["stage_members"];
 		$stageMemberIdsString = implode(",", $stageMemberIds);
 
 		// 出演メンバーの条件 0. AND
@@ -122,9 +164,9 @@ if (!isset($_POST["stage_register"])) {
 
 	// イベントによる絞込み
 	$eventIds = array();
-	if (isset($_POST["stage_events"]) && count($_POST["stage_events"]) > 0 && $_POST["stage_events"][0] != "0")
+	if (isset($wSearchCondHash["stage_events"]) && count($wSearchCondHash["stage_events"]) > 0 && $wSearchCondHash["stage_events"][0] != "0")
 	{
-		$eventIds = $_POST["stage_events"];
+		$eventIds = $wSearchCondHash["stage_events"];
 		$eventIdsString = implode(",", $eventIds);
 		// イベントのOR条件
  		$query .= " JOIN (SELECT selEvt.stage_id, MAX(selEvt.revision) AS revision FROM Stage_Event selEvt WHERE selEvt.event_id IN ($eventIdsString) GROUP BY selEvt.stage_id) selEvt2 ON (s.stage_id = selEvt2.stage_id AND s.revision = selEvt2.revision) ";
@@ -136,9 +178,13 @@ if (!isset($_POST["stage_register"])) {
 	$condition = " WHERE ";
 	$param = array();
 	$needPreparedStatement = 0;
-//	if (isset($_POST["stage_date_from"]) && $_POST["stage_date_from"] != "")
+
 	// 期間、または日付指定で絞込み
-	if ($stageDateSpecify == "1")
+	if ($stageDateSpecifyInner == "0") {
+		// 過去１か月
+		$stageDateSpecifyInner = "1";
+	}
+	if ($stageDateSpecifyInner == "1")
 	{
 		if ($stageDateFrom != "")
 		{
@@ -147,15 +193,15 @@ if (!isset($_POST["stage_register"])) {
 			$param[] = $stageDateFrom;
 			$needPreparedStatement = 1;
 		}
-		if (isset($_POST["stage_date_to"]) && $_POST["stage_date_to"] != "")
+		if (isset($wSearchCondHash["stage_date_to"]) && $wSearchCondHash["stage_date_to"] != "")
 		{
 			$query .= $condition .  " s.stage_date <= %s ";
 			$condition = " AND ";
-			$param[] = $_POST["stage_date_to"];
+			$param[] = $wSearchCondHash["stage_date_to"];
 			$needPreparedStatement = 1;
 		}
 	}
-	else if ($stageDateSpecify == "2")
+	else if ($stageDateSpecifyInner == "2")
 	{
 		if ($stageDateOneDay != "")
 		{
@@ -168,12 +214,12 @@ if (!isset($_POST["stage_register"])) {
 
 	// 公演名で絞込み
 	$programIds = array();
-	if (isset($_POST["stage_programs"]) && count($_POST["stage_programs"]) > 0 && $_POST["stage_programs"][0] != "0")
+	if (isset($wSearchCondHash["stage_programs"]) && count($wSearchCondHash["stage_programs"]) > 0 && $wSearchCondHash["stage_programs"][0] != "0")
 	{
 		// 絞り込み条件
 		$stageCondString = "";
 		if ($stageCond == 1) { $stageCondString = " NOT "; }
-		$programIds = $_POST["stage_programs"];
+		$programIds = $wSearchCondHash["stage_programs"];
 		$programIdsString = implode(",", $programIds);		
 		$query .= $condition .  " p.program_id $stageCondString IN ($programIdsString) ";
 		$condition = " AND ";
@@ -218,9 +264,9 @@ if (!isset($_POST["stage_register"])) {
 
 	// 出演していないメンバーによる絞込み
 	$stageMemberIds2 = array();
-	if (isset($_POST["stage_members2"]) && count($_POST["stage_members2"]) > 0 && $_POST["stage_members2"][0] != "0")
+	if (isset($wSearchCondHash["stage_members2"]) && count($wSearchCondHash["stage_members2"]) > 0 && $wSearchCondHash["stage_members2"][0] != "0")
 	{
-		$stageMemberIds2 = $_POST["stage_members2"];
+		$stageMemberIds2 = $wSearchCondHash["stage_members2"];
 		$stageMemberIdsString2 = implode(",", $stageMemberIds2);
 
 		// メンバーによる絞込み

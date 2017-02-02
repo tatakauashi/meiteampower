@@ -52,10 +52,10 @@ function getStageDetail($stageId, $specifiedRevision)
 			. " , m.member_name "
 			. " FROM Member m "
 			. " JOIN (SELECT sm.member_id FROM Stage_Member sm WHERE sm.stage_id = %d AND sm.revision = %d) sm2 ON (m.member_id = sm2.member_id) "
-			. " JOIN (SELECT bl.member_id, bl.team_id FROM Belonging bl WHERE bl.from_date <= %s AND bl.to_date >= %s) bl2 ON (m.member_id = bl2.member_id) "
+			. " JOIN (SELECT bl.member_id, bl.team_id, bl.rank FROM Belonging bl WHERE bl.from_date <= %s AND bl.to_date >= %s) bl2 ON (m.member_id = bl2.member_id) "
 			. " JOIN Team t ON (bl2.team_id = t.team_id) "
 //			. " WHERE sm.stage_id = %d AND sm.revision = %d "
-			. " ORDER BY t.sort_order, m.sort_order ";
+			. " ORDER BY t.sort_order, bl2.rank, m.sort_order ";
 // 	$stageDate = getStageDate($stageId);
 	$paramMember = array();
 	$paramMember[] = $stageId;
@@ -479,10 +479,10 @@ function getMembers($specificialDate = null)
 // 	$query = "SELECT member_id, member_name FROM Member ORDER BY sort_order ";
 // 	$rows = $wpdb->get_results($query);
 	$query = "SELECT m.member_id, m.member_name FROM Member m "
-			. " JOIN (SELECT bl.member_id, bl.team_id FROM Belonging bl WHERE bl.from_date <= %s AND bl.to_date >= %s) bl2 "
+			. " JOIN (SELECT bl.member_id, bl.team_id, bl.rank FROM Belonging bl WHERE bl.from_date <= %s AND bl.to_date >= %s) bl2 "
 					. " ON (bl2.member_id = m.member_id) "
 			. " JOIN Team t ON (t.team_id = bl2.team_id) "
-			. " ORDER BY t.sort_order, m.sort_order ";
+			. " ORDER BY t.sort_order, bl2.rank, m.sort_order ";
 	$param = array();
 	$param[] = $specificialDate;
 	$param[] = $specificialDate;
@@ -562,4 +562,135 @@ function getStageDate($stageId)
 {
 	$s = "" . $stageId;
 	return substr($s, 0, 4) . "-" . substr($s, 4, 2) . "-" . substr($s, 6, 2);
+}
+
+function genSearchKey($pNum)
+{
+	$wStr = "sd;afj;akdsjf" + $_SERVER["REMOTE_ADDR"] + time() + '' + $pNum;
+	$hashed = md5($wStr, true);
+	$base64ed = base64_encode($hashed);
+	$base64ed = str_replace('=', '_', $base64ed);
+	$base64ed = str_replace('+', '.', $base64ed);
+	$base64ed = str_replace('/', '-', $base64ed);
+
+	return substr($base64ed, 0, 6);
+}
+
+function registerSearchCond($pCondKey, $pCondText)
+{
+	global $wpdb;
+	$wpdb->show_errors();
+
+	$wCurrentUser = wp_get_current_user();
+	$userLogin = empty($wCurrentUser) || !isset($wCurrentUser->user_login) || empty($wCurrentUser->user_login) ? '(guest)' : $wCurrentUser->user_login;
+	$nowDateTime = getSqlNowDateTime();
+
+	$stageId = 0;
+	$results = array();
+	$wpdb->query('START TRANSACTION');
+
+	$results[] = $wpdb->insert(
+		'Stage_Search_Cond',
+		array(
+			'cond_key' => $pCondKey,
+			'cond_text' => $pCondText,
+			'regist_ip' => $_SERVER["REMOTE_ADDR"],
+			'regist_time' => $nowDateTime,
+			'regist_user' => $userLogin
+		),
+		array(
+			'%s',
+			'%s',
+			'%s',
+			'%s',
+			'%s'
+		)
+	);
+
+	$success = 1;
+	foreach ($results as $result)
+	{
+		$success = $success * $result;
+	}
+	if ($success > 0)
+	{
+		$wpdb->query("COMMIT;");
+		$success = true;
+	}
+	else
+	{
+		$wpdb->query("ROLLBACK;");
+		$success = false;
+	}
+	
+	return $success;
+}
+
+// 検索IDに紐づく検索条件を取得する。
+function getSearchCond($pCondKey)
+{
+	global $wpdb;
+	$wpdb->show_errors();
+	
+	$query = " SELECT cond_text FROM Stage_Search_Cond "
+			. " WHERE cond_key = %s ";
+	$param = array();
+	$param[] = $pCondKey;
+	$query = $wpdb->prepare($query, $param);
+	$rows = $wpdb->get_results($query);
+	$wRetVal = "";
+	if ($rows != null)
+	{
+		$wRetVal = $rows[0]->cond_text;
+	}
+	return $wRetVal;
+}
+
+// 検索条件に紐づく検索IDを取得する。
+function getSearchKey($pSearchCond)
+{
+	global $wpdb;
+	$wpdb->show_errors();
+	
+	$query = " SELECT cond_key FROM Stage_Search_Cond "
+			. " WHERE cond_text = %s ";
+	$param = array();
+	$param[] = $pSearchCond;
+	$query = $wpdb->prepare($query, $param);
+	$rows = $wpdb->get_results($query);
+	$wRetVal = "";
+	if ($rows != null)
+	{
+		$wRetVal = $rows[0]->cond_key;
+	}
+	return $wRetVal;
+}
+
+function logSearchCond($pCondKey)
+{
+	global $wpdb;
+	$wpdb->show_errors();
+
+	$wCurrentUser = wp_get_current_user();
+	$userLogin = empty($wCurrentUser) || !isset($wCurrentUser->user_login) || empty($wCurrentUser->user_login) ? '(guest)' : $wCurrentUser->user_login;
+	$nowDateTime = getSqlNowDateTime();
+
+	$stageId = 0;
+	$results = array();
+
+	$results[] = $wpdb->insert(
+		'Stage_Search_Log',
+		array(
+			'cond_key' => $pCondKey,
+			'regist_ip' => $_SERVER["REMOTE_ADDR"],
+			'regist_time' => $nowDateTime,
+			'regist_user' => $userLogin
+		),
+		array(
+			'%s',
+			'%s',
+			'%s',
+			'%s'
+		)
+	);
 }

@@ -24,6 +24,10 @@
 	<div class="formarea">
 		<p>
 			<dl>
+			<dt><label><input type="radio" id="stage_date_specify_none" name="stage_date_specify" value="0" <?php echo isset($stageDateSpecify) && ($stageDateSpecify != "0") ? "" : "checked" ?>>指定なし（過去１か月）</label></dt>
+			</dl>
+
+			<dl>
 			<dt><label><input type="radio" id="stage_date_specify_duration" name="stage_date_specify" value="1" <?php echo isset($stageDateSpecify) && ($stageDateSpecify != "1") ? "" : "checked" ?>>期間：</label></dt>
 			<dd><label>FROM:<br><input type="date" id="stage_date_from" name="stage_date_from" value="<?php echo $stageDateFrom ?>"></label></dd>
 			<dd><label>To:<br><input type="date" id="stage_date_to" name="stage_date_to" value="<?php echo $stageDateTo ?>"></label></dd>

@@ -130,3 +130,22 @@ CREATE TABLE Stage_Comment (
 	delete_time datetime,					-- 削除日時
 	PRIMARY KEY (stage_id, branch_no, revision)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS Stage_Search_Cond;
+CREATE TABLE Stage_Search_Cond (
+	cond_key varchar(50) primary key,
+	cond_text text not null,
+	regist_ip varchar(20) NOT NULL,
+	regist_time datetime not null,			-- 登録日時
+	regist_user varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE ID EXISTS Stage_Search_Log;
+CREATE TABLE Stage_Search_Log (
+	cond_key varchar(50) NOT NULL,
+	regist_ip varchar(20) NOT NULL,
+	regist_time datetime not null,
+	regist_user varchar(20) NOT NULL,
+	KEY cond_key (cond_key),
+	KEY regist_time (regist_time)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
